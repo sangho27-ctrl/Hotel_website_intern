@@ -11,6 +11,10 @@ frontend/node_modules/
 frontend/.env
 frontend/dist/
 
+# Claude personal context
+.claude/ME.md
+.claude/SOUL.md
+
 # OS
 .DS_Store
 Thumbs.db

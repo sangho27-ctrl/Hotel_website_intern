@@ -1,13 +1,13 @@
 # Hotel Website Intern — Project Context
 
-Read the following files before responding. Do not summarise them back — just use them as context.
+Read the files below before responding. Do not summarise them back — just use them as context.
 
 ## Load on every session
 
-1. [ME.md](C:/Users/PNV/ProductBrain/ME.md) — who I am, background, goals
-2. [SOUL.md](C:/Users/PNV/ProductBrain/SOUL.md) — working style and communication preferences
-3. [PRODUCT_CONTEXT.md](C:/Users/PNV/ProductBrain/PRODUCT_CONTEXT.md) — current work, tools, constraints
-4. [DECISIONS.md](C:/Users/PNV/ProductBrain/DECISIONS.md) — decision log and open questions
+1. [.claude/ME.md](.claude/ME.md) — who I am, background, goals
+2. [.claude/SOUL.md](.claude/SOUL.md) — working style and communication preferences
+3. [.claude/PRODUCT_CONTEXT.md](.claude/PRODUCT_CONTEXT.md) — current work, stack, constraints
+4. [.claude/DECISIONS.md](.claude/DECISIONS.md) — decision log and open questions
 
 ## Rules
 
