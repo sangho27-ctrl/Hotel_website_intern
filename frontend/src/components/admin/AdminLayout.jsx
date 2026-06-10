@@ -1,0 +1,49 @@
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
+import { brand } from '../../config/brand'
+import './AdminLayout.css'
+
+export default function AdminLayout({ children }) {
+  const { logout } = useAuth()
+  const navigate = useNavigate()
+
+  function handleLogout() {
+    fetch('/api/auth/logout', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('admin_token')}`,
+      },
+    }).finally(() => {
+      logout()
+      navigate('/admin/login')
+    })
+  }
+
+  return (
+    <div className="admin-layout">
+      <aside className="admin-sidebar">
+        <div className="admin-sidebar__brand">
+          <span className="admin-sidebar__brand-name">{brand.name}</span>
+          <span className="admin-sidebar__brand-sub">Admin</span>
+        </div>
+
+        <nav className="admin-sidebar__nav">
+          <NavLink to="/admin/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
+            Dashboard
+          </NavLink>
+          <NavLink to="/admin/rooms" className={({ isActive }) => isActive ? 'active' : ''}>
+            Rooms
+          </NavLink>
+        </nav>
+
+        <button className="admin-sidebar__logout" onClick={handleLogout}>
+          Sign Out
+        </button>
+      </aside>
+
+      <main className="admin-main">
+        {children}
+      </main>
+    </div>
+  )
+}

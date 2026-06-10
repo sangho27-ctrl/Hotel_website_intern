@@ -3,7 +3,6 @@
 ## My Role at Hodfords
 
 - **Track**: Web Development
-- **Supervisor**: Cong Nguyen
 - **Placement Manager**: Orlando Adam
 - **Placement dates**: 8 June – 28 August 2026
 
@@ -41,15 +40,9 @@ Hotel_website_intern/
 ## Key People
 
 - **Orlando Adam** — Placement Manager
-- **Cong Nguyen** — Day-to-day technical supervisor
 
 ## Known Constraints
 
-- Must ask Cong Nguyen before pushing to main / production
 - Two interns working on the same repo — always branch from `dev`
-- FreeToBook booking widget is third-party — cannot patch internal logic directly
 - Placement only until 28 August 2026
-
-
-
-## 
+    

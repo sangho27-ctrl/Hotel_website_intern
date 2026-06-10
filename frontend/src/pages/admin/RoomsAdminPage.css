@@ -1,0 +1,209 @@
+.rooms-admin__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.rooms-admin__title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.rooms-admin__add-btn {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background-color: var(--color-accent);
+  color: var(--color-text-dark);
+  text-decoration: none;
+  padding: 12px 20px;
+  transition: opacity 0.2s;
+}
+
+.rooms-admin__add-btn:hover {
+  opacity: 0.85;
+}
+
+.rooms-admin__message {
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  border-left: 3px solid;
+}
+
+.rooms-admin__message--success {
+  border-color: #81c784;
+  color: #81c784;
+  background-color: rgba(129, 199, 132, 0.08);
+}
+
+.rooms-admin__message--error {
+  border-color: #e57373;
+  color: #e57373;
+  background-color: rgba(229, 115, 115, 0.08);
+}
+
+.rooms-admin__empty {
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* Table */
+.rooms-admin__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.rooms-admin__table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 16px 12px;
+}
+
+.rooms-admin__table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.rooms-admin__table tr:hover td {
+  background-color: var(--color-card);
+}
+
+.rooms-admin__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.rooms-admin__edit-btn {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-accent);
+  text-decoration: none;
+  border: 1px solid var(--color-accent);
+  padding: 5px 14px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.rooms-admin__edit-btn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-dark);
+}
+
+.rooms-admin__delete-btn {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #e57373;
+  background: none;
+  border: 1px solid #e57373;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.rooms-admin__delete-btn:hover {
+  background-color: #e57373;
+  color: #fff;
+}
+
+/* Modal */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.admin-modal {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  padding: 40px;
+  max-width: 440px;
+  width: 100%;
+}
+
+.admin-modal__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.admin-modal__body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.admin-modal__body strong {
+  color: var(--color-text);
+}
+
+.admin-modal__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.admin-modal__cancel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
+  background: none;
+  border: 1px solid var(--color-border);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.admin-modal__cancel:hover {
+  border-color: var(--color-text-muted);
+}
+
+.admin-modal__confirm {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #e57373;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.admin-modal__confirm:hover {
+  opacity: 0.85;
+}

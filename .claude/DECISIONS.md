@@ -4,7 +4,7 @@
 
 _Last reviewed: 2026-06-09_
 
-1. **Deployment process** — Where does the Laravel backend get hosted? Confirm with Cong Nguyen before any deploy work.
+1. **Deployment process** — Where does the Laravel backend get hosted? Confirm with placement manager before any deploy work.
 2. **Room content** — Do room photos and descriptions already exist, or do we source from the hotel owner?
 3. **Reviews approach** — Manual curation (4–6 static quotes) or a live embedded widget (Google Reviews)? Needs supervisor sign-off.
 
