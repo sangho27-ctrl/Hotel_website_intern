@@ -49,3 +49,7 @@ Hotel_website_intern/
 - Two interns working on the same repo — always branch from `dev`
 - FreeToBook booking widget is third-party — cannot patch internal logic directly
 - Placement only until 28 August 2026
+
+
+
+## 
