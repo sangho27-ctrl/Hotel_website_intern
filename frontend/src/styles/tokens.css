@@ -8,6 +8,13 @@
   --color-card:        #221e17;
   --color-text-dark:   #1a1611;
 
+  /* Light section palette */
+  --color-light-bg:         #f8f4ef;
+  --color-light-card:       #ffffff;
+  --color-light-text:       #1a1611;
+  --color-light-text-muted: #6b5c48;
+  --color-light-border:     #e0d5c8;
+
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body:    'Inter', system-ui, sans-serif;
 }

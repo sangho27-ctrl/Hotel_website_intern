@@ -67,7 +67,7 @@ DB_PORT=3306
 DB_DATABASE=hotel_website
 DB_USERNAME=root
 DB_PASSWORD=your_mysql_password
-```
+``` 
 
 Then run the following commands **in order**:
 

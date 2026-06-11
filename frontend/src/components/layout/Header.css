@@ -10,7 +10,8 @@
 .header__topbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 24px;
   padding: 8px 40px;
   font-family: var(--font-body);
   font-size: 12px;
