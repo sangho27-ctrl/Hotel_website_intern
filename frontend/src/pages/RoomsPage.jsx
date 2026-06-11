@@ -7,13 +7,25 @@ import './RoomsPage.css'
 const MS_PER_DAY = 86400000
 const today = new Date().toISOString().split('T')[0]
 
+const STATIC_ROOMS = [
+  { id: 1, name: 'Deluxe Double Room',   size: 32, price: 185, description: 'Guests will have a special experience as this double room offers a fireplace. Includes a private bathroom with a shower and a hairdryer, seating area, wardrobe and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Tea/Coffee', 'Fridge', 'Daily Housekeeping'], images: [] },
+  { id: 2, name: 'Four Poster Room',     size: 22, price: 130, description: 'Guests will have a special experience as this double room offers a fireplace. Features a seating area, wardrobe, flat-screen TV and four poster bed.', amenities: ['Wifi Free', 'Four Poster Bed', 'En Suite', 'Flat Screen TV', 'Tea/Coffee', 'Daily Housekeeping'], images: [] },
+  { id: 3, name: 'Standard Double',      size: 18, price: 110, description: 'Featuring free toiletries, this double room includes a private bathroom with a shower and hairdryer, wardrobe, electric kettle and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Kettle', 'Tea/Coffee', 'Daily Housekeeping'], images: [] },
+  { id: 4, name: 'Deluxe Balcony Room',  size: 16, price: 95,  description: 'This double room provides a fireplace, seating area with flat-screen TV, a desk, a balcony and a private bathroom.', amenities: ['Wifi Free', 'Balcony', 'En Suite', 'Flat Screen TV', 'Kettle', 'Daily Housekeeping'], images: [] },
+  { id: 5, name: 'Standard Double',      size: 28, price: 165, description: 'Featuring free toiletries, this double room includes a private bathroom with a shower and hairdryer, wardrobe, electric kettle and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Work Desk', 'Tea/Coffee', 'Daily Housekeeping'], images: [] },
+  { id: 6, name: 'Deluxe Double',        size: 20, price: 120, description: 'Offering free toiletries, this double room includes a private bathroom with a shower and hairdryer. Features a seating area, wardrobe and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Fridge', 'Tea/Coffee', 'Daily Housekeeping'], images: [] },
+  { id: 7, name: 'Small Single',         size: 24, price: 140, description: 'A TV, DVD player and tea/coffee making facilities are featured in this room.', amenities: ['Wifi Free', 'En Suite', 'TV In Room', 'Tea/Coffee', 'Work Desk', 'Daily Housekeeping'], images: [] },
+  { id: 8, name: 'Deluxe Double',        size: 26, price: 155, description: 'Offering free toiletries, this double room includes a private bathroom. Features a seating area, wardrobe, flat-screen TV and fridge.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Fridge', 'Kettle', 'Daily Housekeeping'], images: [] },
+  { id: 9, name: 'Split Level Double',   size: 30, price: 175, description: 'Guests will have a special experience as this double room offers a fireplace. Features a seating area, wardrobe and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Fridge', 'Work Desk', 'Daily Housekeeping'], images: [] },
+]
+
 function fetchRooms(url, setRooms, setLoading, setError) {
   setLoading(true)
   setError(null)
   fetch(url)
     .then((r) => { if (!r.ok) throw new Error('Failed to load rooms'); return r.json() })
     .then((data) => { setRooms(data); setLoading(false) })
-    .catch((err) => { setError(err.message); setLoading(false) })
+    .catch(() => { setRooms(STATIC_ROOMS); setLoading(false) })
 }
 
 export default function RoomsPage() {

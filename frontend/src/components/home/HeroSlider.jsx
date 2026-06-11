@@ -3,15 +3,11 @@ import { Link } from 'react-router-dom'
 import './HeroSlider.css'
 
 const SLIDES = [
-  '/storage/rooms/room1/room1.avif',
-  '/storage/rooms/room2/room2.avif',
-  '/storage/rooms/room3/room3.avif',
-  '/storage/rooms/room4/room4.avif',
-  '/storage/rooms/room5/room5.avif',
-  '/storage/rooms/room6/room6.avif',
-  '/storage/rooms/room7/room7.avif',
-  '/storage/rooms/room8/room8.avif',
-  '/storage/rooms/room9/room9.avif',
+  'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1920&q=80',
+  'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1920&q=80',
+  'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1920&q=80',
+  'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1920&q=80',
+  'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920&q=80',
 ]
 
 export default function HeroSlider() {

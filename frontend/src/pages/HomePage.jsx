@@ -83,11 +83,17 @@ export default function HomePage() {
     }
   }
 
+  const STATIC_ROOMS_PREVIEW = [
+    { id: 1, name: 'Deluxe Double Room', size: 32, price: 185, description: 'A fireplace, private bathroom, seating area and flat-screen TV. One street from Brighton seafront.', images: [] },
+    { id: 2, name: 'Four Poster Room',   size: 22, price: 130, description: 'Romance and period charm with a stunning four poster bed, fireplace and en-suite bathroom.', images: [] },
+    { id: 3, name: 'Deluxe Balcony Room', size: 16, price: 95, description: 'Wake up to sea breezes on your private balcony. Flat-screen TV, desk and en-suite shower.', images: [] },
+  ]
+
   useEffect(() => {
     fetch('/api/rooms')
       .then((r) => r.json())
       .then((data) => setRooms(Array.isArray(data) ? data.slice(0, 3) : []))
-      .catch(() => {})
+      .catch(() => setRooms(STATIC_ROOMS_PREVIEW))
   }, [])
 
   return (
