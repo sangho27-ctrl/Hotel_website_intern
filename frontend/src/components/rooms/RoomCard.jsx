@@ -10,6 +10,7 @@ export default function RoomCard({ room }) {
             src={room.images[0]}
             alt={room.name}
             className="room-card__image"
+            loading="lazy"
           />
         ) : (
           <div className="room-card__image-placeholder" />

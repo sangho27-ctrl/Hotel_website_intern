@@ -34,6 +34,9 @@ export default function AdminLayout({ children }) {
           <NavLink to="/admin/rooms" className={({ isActive }) => isActive ? 'active' : ''}>
             Rooms
           </NavLink>
+          <NavLink to="/admin/media" className={({ isActive }) => isActive ? 'active' : ''}>
+            Media
+          </NavLink>
         </nav>
 
         <button className="admin-sidebar__logout" onClick={handleLogout}>

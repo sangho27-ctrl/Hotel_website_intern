@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import RoomCard from '../components/rooms/RoomCard'
 import { useReveal } from '../hooks/useReveal'
+import { useSEO } from '../hooks/useSEO'
 import './RoomsPage.css'
 
 export default function RoomsPage() {
   const [rooms, setRooms] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  useSEO({ title: 'Our Rooms | Colson House Brighton', description: 'Browse our individually designed rooms at Colson House, a boutique hotel in Brighton\'s Kemp Town. Book direct for the best rate.' })
   const heroRef = useReveal()
   const gridRef = useReveal()
 

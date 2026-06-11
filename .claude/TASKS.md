@@ -15,395 +15,183 @@
 
 ## In Progress
 
+_(nothing — all current tasks complete)_
+
 ---
 
 ## Backlog
 
-### E3.1 — Header Navigation
+### B1.1 — Run database migration
 
-Build a React Header component.
+Start MySQL and run `php artisan migrate` to create the `rooms` table.
+
+**Blocker:** MySQL service must be running first (XAMPP / MySQL Workbench).
+
+---
+
+### B1.2 — Room seed data
+
+Add seeder so `/api/rooms` returns real-looking test data.
+
+**Files to create**
+- `backend/database/seeders/RoomSeeder.php`
+- Update `DatabaseSeeder.php` to call `RoomSeeder`
+
+**Run with:** `php artisan db:seed`
+
+---
+
+### E4.4 — Home Page Hero Section
+
+Build the main landing page hero.
 
 **Design**
+- Full-viewport hero image (placeholder for now)
+- Headline: "Welcome to Colson House" in `--font-heading`, large, white
+- Subheading: small gold eyebrow text — "Brighton · Est. 1997"
+- CTA button: "Explore Rooms" → `/rooms`, gold bg, no border-radius
+- Dark overlay on hero image for text legibility
 
-- Top info bar (bg `--color-bg`): phone left, email center-left, address right — small text, gold icons
-- Main header (bg `--color-bg`): logo left, nav center, Book Now button right
-- Logo: "COLSON HOUSE" in `--font-heading`, "BRIGHTON" subtitle in small `--color-accent` tracking caps
-- Nav links: white, uppercase, letter-spaced — highlight active with `--color-accent`
-- Book Now: bg `--color-accent`, text `--color-bg`, uppercase, bold, no border-radius
-- Divider between top bar and main header: `--color-border`
-
-**Files to create**
-
-- `frontend/src/components/layout/Header.jsx`
-- `frontend/src/components/layout/Header.css`
-- `frontend/src/config/brand.js`
-
-**Add to brand.js**
-
-    export const brand = {
-      name: "Colson House",
-      subtitle: "Brighton",
-      phone: "+44 1273 044 306",
-      email: "info@colsonhouse.co.uk",
-      address: "17 Upper Rock Gardens, Brighton, BN2 1QE",
-      bookingUrl: "/book",
-      nav: [
-        { label: "Home", path: "/" },
-        { label: "Our Rooms", path: "/rooms" },
-        { label: "Offers", path: "/offers" },
-        { label: "Local Attractions", path: "/attractions" },
-        { label: "Reviews", path: "/reviews" },
-        { label: "Contact", path: "/contact" },
-      ],
-    }
-
-**Requirements**
-
-- All values from `brand.js` — never hardcoded
-- Use React Router `<NavLink>` with active state
-- `position: sticky; top: 0; z-index: 100`
-- Mobile (< 768px): hide nav + top bar, show hamburger
-- Hamburger toggles full-width dropdown nav
-- No Tailwind — plain CSS only
-
-**Acceptance Criteria**
-
-- [ ] Top info bar shows phone, email, address from brand config
-- [ ] Logo shows name + subtitle from brand config
-- [ ] Active nav link highlighted in gold
-- [ ] Book Now links to `/book`
-- [ ] Sticky on scroll
-- [ ] Hamburger menu works on mobile < 768px
+**Files to create/modify**
+- `frontend/src/pages/HomePage.jsx`
+- `frontend/src/pages/HomePage.css`
+- Update `App.jsx` route `/` to use `HomePage`
 
 ---
 
-### E3.2 — Footer
+### E4.5 — Offers Page
 
-Build a React Footer component.
+**Files to create**
+- `frontend/src/pages/OffersPage.jsx`
+- `frontend/src/pages/OffersPage.css`
 
 **Design**
-
-- Background: `--color-bg-footer`
-- 4-column layout:
-  - Col 1: Logo + tagline + social icons (Instagram, Facebook)
-  - Col 2: EXPLORE — Our Rooms, Special Offers, Local Attractions, Gallery
-  - Col 3: INFORMATION — Check-In & Check-Out, Parking, Terms & Conditions, Privacy Policy, Cookie Policy
-  - Col 4: CONTACT — email, phone, address
-- Column headings: uppercase, letter-spaced, `--color-accent`
-- Links: `--color-text-muted`, no underline, hover → `--color-accent`
-- Bottom bar: divider `--color-border`, copyright left, "Website by Hodfords" right
-
-**Files to create**
-
-- `frontend/src/components/layout/Footer.jsx`
-- `frontend/src/components/layout/Footer.css`
-
-**Add to brand.js**
-
-    tagline: "A boutique Georgian townhouse hotel in the heart of Brighton's Kemp Town — one street from the seafront since 1997.",
-    social: {
-      instagram: "https://instagram.com/colsonhouse",
-      facebook: "https://facebook.com/colsonhouse",
-    },
-    footer: {
-      explore: [
-        { label: "Our Rooms", path: "/rooms" },
-        { label: "Special Offers", path: "/offers" },
-        { label: "Local Attractions", path: "/attractions" },
-        { label: "Gallery", path: "/gallery" },
-      ],
-      information: [
-        { label: "Check-In & Check-Out", path: "/checkin" },
-        { label: "Parking", path: "/parking" },
-        { label: "Terms & Conditions", path: "/terms" },
-        { label: "Privacy Policy", path: "/privacy" },
-        { label: "Cookie Policy", path: "/cookies" },
-      ],
-    },
-    copyright: "© 2024 Colson House. All rights reserved.",
-    builtBy: "Website by Hodfords",
-
-**Requirements**
-
-
-
-- All content from `brand.js` — never hardcoded
-- Use React Router `<Link>` for internal links
-- Responsive: 4 cols desktop, 2 cols tablet (768px), 1 col mobile (< 768px)
-- Social icons use Tabler icons — no image files
-- No Tailwind — plain CSS only
-
-**Acceptance Criteria**
-
-- [ ] 4-column layout on desktop
-- [ ] Stacks correctly on tablet and mobile
-- [ ] All links route correctly
-- [ ] Hover on links turns gold
-- [ ] Social icons link correctly
-- [ ] Bottom bar shows copyright + built by
-- [ ] All values from brand.js
+- Offer cards in a 2-column grid (desktop), 1-col mobile
+- Each card: image, offer title, short description, validity date, "View Offer" CTA
 
 ---
 
-### E3.4 — Page Layout Wrapper
-
-Build a reusable Layout component that wraps every page with Header and Footer.
+### E4.6 — Contact Page
 
 **Files to create**
-
-- `frontend/src/components/layout/Layout.jsx`
-- `frontend/src/components/layout/Layout.css`
-
-**Layout.jsx structure**
-
-    <div class="layout">
-      <Header />
-      <main class="layout__main">
-        {children}
-      </main>
-      <Footer />
-    </div>
-
-**Requirements**
-
-- `layout__main` has `min-height: calc(100vh - header height - footer height)`
-- Background `--color-bg` applied at layout level
-- Import and apply CSS variables from `frontend/src/styles/tokens.css`
-- No Tailwind — plain CSS only
-
-**Acceptance Criteria**
-
-- [ ] Header and Footer appear on every page automatically
-- [ ] Main content area fills available height
-- [ ] CSS tokens file created at `frontend/src/styles/tokens.css` with all design tokens
-
----
-
-### E4.1 — Rooms Listing Page
-
-Build the Rooms page showing all available rooms.
+- `frontend/src/pages/ContactPage.jsx`
+- `frontend/src/pages/ContactPage.css`
 
 **Design**
-
-- Page title: "Our Rooms" — `--font-heading`, centered, large
-- Subtitle: small gold eyebrow text above title — "COLSON HOUSE · BRIGHTON"
-- Room cards in a 3-column grid (desktop), 2-col tablet, 1-col mobile
-- Each card: hero image top, room name, size (m²), short description, amenity icons, price per night, Book Now button
-- Card bg: slightly lighter than page bg — `#221e17`
-- Card hover: subtle gold border `--color-accent`
-- Book Now button: gold bg, dark text — same style as header CTA
-
-**Files to create**
-
-- `frontend/src/pages/RoomsPage.jsx`
-- `frontend/src/pages/RoomsPage.css`
-- `frontend/src/components/rooms/RoomCard.jsx`
-- `frontend/src/components/rooms/RoomCard.css`
-
-**API call**
-
-    GET /api/rooms
-    Response: [{ id, name, size, description, price, images[], amenities[] }]
-
-**Requirements**
-
-- Fetch rooms from Laravel API `GET /api/rooms`
-- Show loading skeleton while fetching
-- Show error message if fetch fails
-- RoomCard is a separate reusable component
-- Clicking a card or Book Now navigates to `/rooms/:id`
-- No Tailwind — plain CSS only
-
-**Acceptance Criteria**
-
-- [ ] Rooms fetched from API and displayed
-- [ ] Loading state shown while fetching
-- [ ] Error state shown if API fails
-- [ ] 3-col grid on desktop, 2-col tablet, 1-col mobile
-- [ ] Each card shows image, name, size, price, Book Now button
-- [ ] Clicking card navigates to room detail page
+- Left: contact form (name, email, message, submit)
+- Right: address, phone, email, embedded Google Map iframe
+- Form submits to `POST /api/contact`
 
 ---
 
-### E4.2 — Room Detail Page
-
-Build the individual room page.
+### E5.3 — Admin Dashboard
 
 **Files to create**
-
-- `frontend/src/pages/RoomDetailPage.jsx`
-- `frontend/src/pages/RoomDetailPage.css`
-
-**API call**
-
-    GET /api/rooms/:id
-    Response: { id, name, size, description, price, images[], amenities[], longDescription }
+- `frontend/src/pages/admin/DashboardPage.jsx`
+- `frontend/src/pages/admin/DashboardPage.css`
 
 **Design**
-
-- Full-width hero image at top
-- Room name in large `--font-heading`
-- Size badge, price per night
-- Amenities list with icons
-- Long description paragraph
-- Image gallery grid below description
-- Sticky "Book This Room" CTA button on right side (desktop)
-
-**Requirements**
-
-- Fetch room by ID from API using `useParams()`
-- Image gallery — clicking image opens lightbox
-- "Book This Room" button links to `/book?room=:id`
-- No Tailwind — plain CSS only
-
-**Acceptance Criteria**
-
-- [ ] Room data fetched by ID from API
-- [ ] Hero image, name, size, price displayed
-- [ ] Amenities shown with icons
-- [ ] Image gallery renders
-- [ ] Book This Room button links to booking with correct room ID
+- Stats cards: Total Rooms (live count from API)
+- Quick links: Add Room, View Site
 
 ---
 
-### E4.3 — Reuse Room System for Brighton Inn
-
-Add Brighton Inn brand config so the same room components work for both hotels.
+### E5.4 — Admin Media Library
 
 **Files to create**
+- `frontend/src/pages/admin/MediaAdminPage.jsx`
+- `backend/app/Http/Controllers/MediaController.php`
+- `backend/database/migrations/xxxx_create_media_table.php`
 
-- `frontend/src/config/brands/colson-house.js` (move existing brand.js here)
-- `frontend/src/config/brands/brighton-inn.js` (new)
-- `frontend/src/config/brand.js` (updated — reads from env variable)
-
-**brand.js updated logic**
-
-    import colsonHouse from './brands/colson-house.js'
-    import brightonInn from './brands/brighton-inn.js'
-    const brandMap = { 'colson-house': colsonHouse, 'brighton-inn': brightonInn }
-    export const brand = brandMap[import.meta.env.VITE_BRAND] || colsonHouse
-
-**brighton-inn.js shape** — same structure as colson-house.js but with Brighton Inn values:
-
-    name: "Brighton Inn",
-    subtitle: "Kemp Town, Brighton",
-    phone: "+44 1273 044 306",
-    email: "info@brightoninn.co.uk",
-    address: "20 St Georges Terrace, Brighton, BN2 1JH",
-
-**Requirements**
-
-- No component files should change — only brand.js and config files
-- Build command for Colson House: `VITE_BRAND=colson-house npm run build`
-- Build command for Brighton Inn: `VITE_BRAND=brighton-inn npm run build`
-- Add `VITE_BRAND=colson-house` to `.env.example`
-
-**Acceptance Criteria**
-
-- [ ] `VITE_BRAND=colson-house` builds Colson House site
-- [ ] `VITE_BRAND=brighton-inn` builds Brighton Inn site
-- [ ] No hotel name or contact info hardcoded in any component
-- [ ] Both brands share identical component files
+**API**
+- `GET /api/admin/media` — list images
+- `POST /api/admin/media` — upload (multipart/form-data, max 5MB, JPG/PNG/WebP)
+- `DELETE /api/admin/media/:id` — delete
 
 ---
 
-### E5.1 — Admin Authentication
+### E6.1 — Booking Flow (Frontend)
 
-Build secure admin login using JWT.
+Multi-step booking: Select Room → Dates → Guest Info → Confirm.
 
 **Files to create**
+- `frontend/src/pages/booking/BookingPage.jsx`
+- `frontend/src/components/booking/` (StepRoomSelect, StepDateSelect, StepGuestInfo, StepConfirmation, BookingStepper)
 
-- `frontend/src/pages/admin/LoginPage.jsx`
-- `frontend/src/pages/admin/LoginPage.css`
-- `frontend/src/context/AuthContext.jsx`
-- `frontend/src/hooks/useAuth.js`
-- `backend/app/Http/Controllers/AuthController.php` (if not exists)
+**Requirements**
+- `?room=:id` pre-selects room from Room Detail page
+- Total price calculated: nights × room.price
+- Submits to `POST /api/bookings` → redirect to `/booking/success`
 
-**API calls**
+---
 
-    POST /api/auth/login
-    Body: { email, password }
-    Response: { token, user }
+### E6.2 — Booking Engine (Backend)
 
-    POST /api/auth/logout
-    Headers: Authorization: Bearer {token}
+**Files to create**
+- `backend/app/Http/Controllers/BookingController.php`
+- `backend/app/Models/Booking.php`
+- `backend/database/migrations/xxxx_create_bookings_table.php`
+
+**API**
+- `POST /api/bookings` — create booking, check availability, calculate total
+- `GET /api/rooms/:id/availability?checkin=&checkout=` — availability check
+
+**Requirements**
+- Reject overlapping bookings (409 Conflict)
+- Send confirmation email via Laravel Mail
+
+---
+
+### E6.3 — Stripe Payment
+
+**Requirements**
+- Stripe Elements embedded in booking Step 4
+- `POST /api/payments/create-intent` → client_secret
+- `POST /api/payments/confirm` → mark booking confirmed
+- Keys: `STRIPE_SECRET` (backend), `VITE_STRIPE_KEY` (frontend)
+
+---
+
+### E7.1 — Guest Reviews Section
+
+**Files to create**
+- `frontend/src/components/reviews/ReviewsSection.jsx`
+- `frontend/src/components/reviews/ReviewCard.jsx`
+
+**API:** `GET /api/reviews`
 
 **Design**
-
-- Centered login card on dark bg `--color-bg`
-- Logo at top of card
-- Email + password inputs — dark bg `#221e17`, cream text, gold focus border
-- Login button — gold bg, dark text, full width
-- Error message in red below button if login fails
-
-**Requirements**
-
-- Store JWT token in `localStorage` as `admin_token`
-- `AuthContext` provides `user`, `login()`, `logout()`, `isAuthenticated`
-- All admin routes wrapped in `<ProtectedRoute>` — redirect to `/admin/login` if not authenticated
-- Token sent in `Authorization: Bearer` header on all API calls
-- No Tailwind — plain CSS only
-
-**Acceptance Criteria**
-
-- [ ] Login form submits to `POST /api/auth/login`
-- [ ] JWT token stored in localStorage on success
-- [ ] Failed login shows error message
-- [ ] Authenticated user redirected to `/admin/dashboard`
-- [ ] Unauthenticated access to admin routes redirects to `/admin/login`
-- [ ] Logout clears token and redirects to login
+- Stars in gold, card bg `#221e17`
+- Average rating at top, max 6 reviews shown
 
 ---
 
-### E5.2 — Admin Room Management
+### E8.1 — Real Page Content
 
-Build admin panel for adding, editing, and deleting rooms.
+Fill all pages with real Colson House content (no placeholders).
+- Text in `brand.js` under `content` key — never hardcoded in JSX
+- Images in `frontend/public/images/`
 
-**Files to create**
+---
 
-- `frontend/src/pages/admin/RoomsAdminPage.jsx`
-- `frontend/src/pages/admin/RoomsAdminPage.css`
-- `frontend/src/pages/admin/RoomFormPage.jsx`
-- `frontend/src/pages/admin/RoomFormPage.css`
-- `backend/app/Http/Controllers/RoomController.php`
-- `backend/app/Models/Room.php`
-- `database/migrations/xxxx_create_rooms_table.php`
+### E8.2 — On-Page SEO
 
-**API calls**
+- `useSEO.js` hook sets `<title>` + `<meta name="description">` per page
+- `robots.txt` + `sitemap.xml` in `frontend/public/`
 
-    GET    /api/admin/rooms          — list all rooms
-    POST   /api/admin/rooms          — create room
-    PUT    /api/admin/rooms/:id      — update room
-    DELETE /api/admin/rooms/:id      — delete room
+---
 
-    Body (create/update): { name, size, description, price, amenities[], images[] }
+### E8.3 — Performance & Accessibility
 
-**Design**
+- `loading="lazy"` on all images except hero
+- Code-split routes via `React.lazy()` + `Suspense`
+- Lighthouse targets: Performance > 85, Accessibility > 90
 
-- Admin layout: dark sidebar left (links: Rooms, Content, Media), main content area right
-- Rooms list: table with columns — Name, Size, Price, Status, Actions (Edit / Delete)
-- Add Room button top right — navigates to room form
-- Room form: inputs for name, size (m²), description, price per night, amenities (multi-select), image upload
-- Delete: confirmation modal before deleting
+---
 
-**Requirements**
+### E8.4 — Pre-Launch SEO Audit
 
-- All admin routes protected by `<ProtectedRoute>` (from E5.1)
-- Send `Authorization: Bearer {token}` header on all admin API calls
-- Room form used for both Create and Edit (detect by presence of `:id` in URL)
-- Delete triggers confirmation modal — only deletes on confirm
-- After create/edit/delete — redirect back to rooms list with success message
-- No Tailwind — plain CSS only
-
-**Acceptance Criteria**
-
-- [ ] Rooms list fetched and displayed in table
-- [ ] Add Room navigates to empty form
-- [ ] Edit Room navigates to pre-filled form
-- [ ] Create submits `POST /api/admin/rooms`
-- [ ] Update submits `PUT /api/admin/rooms/:id`
-- [ ] Delete shows confirmation modal then calls `DELETE /api/admin/rooms/:id`
-- [ ] All actions require valid JWT token
+Full checklist before going live — broken links, Lighthouse scores, Google Search Console.
 
 ---
 
@@ -412,3 +200,12 @@ Build admin panel for adding, editing, and deleting rooms.
 - [x] E2.0 — Website designs (signed off)
 - [x] E2.1 — Tech stack configured (Laravel + React + Vite + MySQL)
 - [x] E2.2 — Colson House design tokens extracted (colors, fonts, CSS variables)
+- [x] E3.1 — Header (sticky, Playfair Display logo, gold nav underline, mobile hamburger)
+- [x] E3.2 — Footer (4-col layout, Tabler icons, responsive)
+- [x] E3.4 — Layout wrapper (Header + Footer on every page, tokens.css)
+- [x] E4.1 — Rooms Listing Page + RoomCard (skeleton loading, error state)
+- [x] E4.2 — Room Detail Page (hero, gallery, lightbox, sticky CTA)
+- [x] E4.3 — Multi-brand config (VITE_BRAND=colson-house / brighton-inn)
+- [x] E5.1 — Admin Auth (LoginPage, AuthContext, ProtectedRoute)
+- [x] E5.2 — Admin Room Management (RoomsAdminPage, RoomFormPage, RoomController, migration)
+- [x] Scroll animations system (useReveal hook, animations.css, stagger, hover effects)

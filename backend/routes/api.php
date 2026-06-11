@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
 
 // Public room listing
@@ -17,6 +18,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/auth/me', [AuthController::class, 'me']);
 
     Route::get('/admin/rooms', [RoomController::class, 'index']);
+    Route::get('/admin/media', [MediaController::class, 'index']);
+    Route::post('/admin/media', [MediaController::class, 'store']);
+    Route::delete('/admin/media/{id}', [MediaController::class, 'destroy']);
     Route::post('/admin/rooms', [RoomController::class, 'store']);
     Route::put('/admin/rooms/{id}', [RoomController::class, 'update']);
     Route::delete('/admin/rooms/{id}', [RoomController::class, 'destroy']);
