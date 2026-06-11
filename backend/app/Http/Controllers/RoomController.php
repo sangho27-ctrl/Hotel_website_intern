@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -10,6 +11,28 @@ class RoomController extends Controller
     public function index()
     {
         return response()->json(Room::all());
+    }
+
+    public function available(Request $request)
+    {
+        $request->validate([
+            'check_in'  => 'required|date|after_or_equal:today',
+            'check_out' => 'required|date|after:check_in',
+            'guests'    => 'nullable|integer|min:1',
+        ]);
+
+        $checkIn  = $request->check_in;
+        $checkOut = $request->check_out;
+        $guests   = $request->guests ?? 1;
+
+        $bookedRoomIds = Booking::where('status', '!=', 'cancelled')
+            ->where('check_in', '<', $checkOut)
+            ->where('check_out', '>', $checkIn)
+            ->pluck('room_id');
+
+        $rooms = Room::whereNotIn('id', $bookedRoomIds)->get();
+
+        return response()->json($rooms);
     }
 
     public function show(int $id)

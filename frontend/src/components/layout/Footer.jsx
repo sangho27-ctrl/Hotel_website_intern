@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { IconBrandInstagram, IconBrandFacebook } from '@tabler/icons-react'
 import { brand } from '../../config/brand'
 import { useReveal } from '../../hooks/useReveal'
+import logoColson from '../../assets/logos/Logo_Colson.avif'
 import './Footer.css'
 
 export default function Footer() {
@@ -12,8 +13,7 @@ export default function Footer() {
       <div className="footer__inner reveal stagger" ref={innerRef}>
         <div className="footer__col footer__col--brand">
           <div className="footer__logo">
-            <span className="footer__logo-name">{brand.name}</span>
-            <span className="footer__logo-subtitle">{brand.subtitle}</span>
+            <img src={logoColson} alt={brand.name} className="footer__logo-img" />
           </div>
           <p className="footer__tagline">{brand.tagline}</p>
           <div className="footer__social">

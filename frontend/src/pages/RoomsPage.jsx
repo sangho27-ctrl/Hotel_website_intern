@@ -4,29 +4,64 @@ import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
 import './RoomsPage.css'
 
+const today    = new Date().toISOString().split('T')[0]
+const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0]
+
 export default function RoomsPage() {
-  const [rooms, setRooms] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  useSEO({ title: 'Our Rooms | Colson House Brighton', description: 'Browse our individually designed rooms at Colson House, a boutique hotel in Brighton\'s Kemp Town. Book direct for the best rate.' })
+  const [rooms, setRooms]       = useState([])
+  const [loading, setLoading]   = useState(true)
+  const [error, setError]       = useState(null)
+  const [searched, setSearched] = useState(false)
+
+  const [checkIn,  setCheckIn]  = useState('')
+  const [checkOut, setCheckOut] = useState('')
+  const [guests,   setGuests]   = useState(1)
+
+  useSEO({
+    title: 'Our Rooms | Colson House Brighton',
+    description: 'Browse our individually designed rooms at Colson House, a boutique hotel in Brighton\'s Kemp Town. Book direct for the best rate.',
+  })
   const heroRef = useReveal()
   const gridRef = useReveal()
 
   useEffect(() => {
     fetch('/api/rooms')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to load rooms')
-        return res.json()
-      })
-      .then((data) => {
-        setRooms(data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        setError(err.message)
-        setLoading(false)
-      })
+      .then((r) => { if (!r.ok) throw new Error('Failed to load rooms'); return r.json() })
+      .then((data) => { setRooms(data); setLoading(false) })
+      .catch((err) => { setError(err.message); setLoading(false) })
   }, [])
+
+  function handleSearch(e) {
+    e.preventDefault()
+    if (!checkIn || !checkOut) return
+
+    setLoading(true)
+    setError(null)
+    setSearched(true)
+
+    const params = new URLSearchParams({ check_in: checkIn, check_out: checkOut, guests })
+    fetch(`/api/rooms/available?${params}`)
+      .then((r) => { if (!r.ok) throw new Error('Search failed'); return r.json() })
+      .then((data) => { setRooms(data); setLoading(false) })
+      .catch((err) => { setError(err.message); setLoading(false) })
+  }
+
+  function handleReset() {
+    setCheckIn('')
+    setCheckOut('')
+    setGuests(1)
+    setSearched(false)
+    setLoading(true)
+    setError(null)
+    fetch('/api/rooms')
+      .then((r) => r.json())
+      .then((data) => { setRooms(data); setLoading(false) })
+      .catch((err) => { setError(err.message); setLoading(false) })
+  }
+
+  const nights = checkIn && checkOut
+    ? Math.max(0, Math.round((new Date(checkOut) - new Date(checkIn)) / 86400000))
+    : 0
 
   return (
     <section className="rooms-page">
@@ -35,29 +70,81 @@ export default function RoomsPage() {
         <h1 className="rooms-page__title">Our Rooms</h1>
       </div>
 
+      {/* Search bar */}
+      <div className="rooms-search">
+        <form className="rooms-search__form" onSubmit={handleSearch}>
+          <label className="rooms-search__field">
+            <span>Check-in</span>
+            <input
+              type="date"
+              value={checkIn}
+              min={today}
+              onChange={(e) => setCheckIn(e.target.value)}
+            />
+          </label>
+
+          <label className="rooms-search__field">
+            <span>Check-out</span>
+            <input
+              type="date"
+              value={checkOut}
+              min={checkIn || today}
+              onChange={(e) => setCheckOut(e.target.value)}
+            />
+          </label>
+
+          <label className="rooms-search__field rooms-search__field--guests">
+            <span>Guests</span>
+            <input
+              type="number"
+              value={guests}
+              min={1}
+              max={10}
+              onChange={(e) => setGuests(e.target.value)}
+            />
+          </label>
+
+          {nights > 0 && (
+            <span className="rooms-search__nights">{nights} night{nights !== 1 ? 's' : ''}</span>
+          )}
+
+          <button type="submit" className="rooms-search__btn" disabled={!checkIn || !checkOut}>
+            Check Availability
+          </button>
+
+          {searched && (
+            <button type="button" className="rooms-search__reset" onClick={handleReset}>
+              Show All
+            </button>
+          )}
+        </form>
+
+        {searched && !loading && (
+          <p className="rooms-search__result">
+            {rooms.length > 0
+              ? `${rooms.length} room${rooms.length !== 1 ? 's' : ''} available`
+              : 'No rooms available for those dates.'}
+          </p>
+        )}
+      </div>
+
       <div className="rooms-page__content">
         {loading && (
           <div className="rooms-page__grid">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="rooms-page__skeleton" />
-            ))}
+            {[1, 2, 3].map((i) => <div key={i} className="rooms-page__skeleton" />)}
           </div>
         )}
 
-        {error && (
-          <p className="rooms-page__error">Unable to load rooms: {error}</p>
-        )}
+        {error && <p className="rooms-page__error">Unable to load rooms: {error}</p>}
 
-        {!loading && !error && rooms.length === 0 && (
+        {!loading && !error && rooms.length === 0 && !searched && (
           <p className="rooms-page__empty">No rooms available at the moment.</p>
         )}
 
         {!loading && !error && rooms.length > 0 && (
-          <div className="rooms-page__grid stagger" ref={gridRef}>
+          <div className="rooms-page__grid">
             {rooms.map((room) => (
-              <div key={room.id} className="reveal">
-                <RoomCard room={room} />
-              </div>
+              <RoomCard key={room.id} room={room} checkIn={checkIn} checkOut={checkOut} />
             ))}
           </div>
         )}

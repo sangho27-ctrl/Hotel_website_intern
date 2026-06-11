@@ -20,6 +20,12 @@
   margin-bottom: 20px;
 }
 
+.footer__logo-img {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
 .footer__logo-name {
   font-family: var(--font-heading);
   font-size: 22px;

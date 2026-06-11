@@ -1,13 +1,18 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
 
 // Public room listing
 Route::get('/rooms', [RoomController::class, 'index']);
+Route::get('/rooms/available', [RoomController::class, 'available']);
 Route::get('/rooms/{id}', [RoomController::class, 'show']);
+
+// Public booking
+Route::post('/bookings', [BookingController::class, 'store']);
 
 // Auth
 Route::post('/auth/login', [AuthController::class, 'login']);
@@ -24,4 +29,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/admin/rooms', [RoomController::class, 'store']);
     Route::put('/admin/rooms/{id}', [RoomController::class, 'update']);
     Route::delete('/admin/rooms/{id}', [RoomController::class, 'destroy']);
+
+    Route::get('/admin/bookings', [BookingController::class, 'index']);
+    Route::put('/admin/bookings/{id}', [BookingController::class, 'update']);
 });

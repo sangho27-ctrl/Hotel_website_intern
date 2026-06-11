@@ -17,17 +17,66 @@
 /* Hero */
 .room-detail__hero {
   width: 100%;
-  max-height: 520px;
-  overflow: hidden;
-  animation: fadeIn 0.8s ease both;
+  background: #000;
 }
 
-.room-detail__hero img {
+.room-detail__hero > img {
+  width: 100%;
+  max-height: 560px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Thumbnail strip */
+.room-detail__hero-thumbs {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  background: #000;
+  overflow-x: auto;
+}
+
+.room-detail__hero-thumb {
+  flex-shrink: 0;
+  width: 80px;
+  height: 56px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.room-detail__hero-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  animation: scaleIn 1s ease both;
+  opacity: 0.65;
+  transition: opacity 0.15s;
+}
+
+.room-detail__hero-thumb:hover img,
+.room-detail__hero-thumb.active img {
+  opacity: 1;
+}
+
+.room-detail__hero-thumb.active {
+  border-color: var(--color-accent);
+}
+
+.room-detail__hero-thumb--more {
+  width: 80px;
+  height: 56px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
 }
 
 /* Layout */
@@ -245,6 +294,40 @@
 
 .room-detail__lightbox-close:hover {
   opacity: 1;
+}
+
+.room-detail__lightbox-prev,
+.room-detail__lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.room-detail__lightbox-prev { left: 24px; }
+.room-detail__lightbox-next { right: 24px; }
+.room-detail__lightbox-prev:hover,
+.room-detail__lightbox-next:hover { background: rgba(255,255,255,0.25); }
+
+.room-detail__lightbox-counter {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  font-family: var(--font-body);
 }
 
 /* Mobile */

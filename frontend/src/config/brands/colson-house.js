@@ -2,7 +2,7 @@ export default {
   name: "Colson House",
   subtitle: "Brighton",
   tagline: "A boutique Georgian townhouse hotel in the heart of Brighton's Kemp Town — one street from the seafront since 1997.",
-  phone: "+44 1273 044 306",
+  phone: "+441273044306",
   email: "info@colsonhouse.co.uk",
   address: "17 Upper Rock Gardens, Brighton, BN2 1QE",
   bookingUrl: "/book",

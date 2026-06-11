@@ -123,9 +123,8 @@
 
 .home__feature-icon {
   display: block;
-  font-size: 24px;
   color: var(--color-accent);
-  margin-bottom: 16px;
+  margin: 0 auto 16px;
 }
 
 .home__feature-title {

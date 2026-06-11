@@ -66,6 +66,12 @@
 .stagger > *:nth-child(5)  { transition-delay: 320ms; }
 .stagger > *:nth-child(6)  { transition-delay: 400ms; }
 
+/* When stagger parent is revealed, reveal all child .reveal elements */
+.stagger.revealed > .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ─── Gold underline on links ─── */
 .gold-underline {
   position: relative;

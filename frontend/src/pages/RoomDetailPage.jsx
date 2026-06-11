@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { useReveal } from '../hooks/useReveal'
 import './RoomDetailPage.css'
 
 export default function RoomDetailPage() {
@@ -9,7 +8,7 @@ export default function RoomDetailPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [lightbox, setLightbox] = useState(null)
-  const layoutRef = useReveal()
+  const [activeImg, setActiveImg] = useState(0)
 
   useEffect(() => {
     fetch(`/api/rooms/${id}`)
@@ -28,19 +27,42 @@ export default function RoomDetailPage() {
   }, [id])
 
   if (loading) return <div className="room-detail__loading">Loading...</div>
-  if (error) return <div className="room-detail__error">{error}</div>
-  if (!room) return null
+  if (error)   return <div className="room-detail__error">{error}</div>
+  if (!room)   return null
+
+  const images = room.images ?? []
 
   return (
     <div className="room-detail">
       {/* Hero image */}
-      {room.images?.[0] && (
+      {images[0] && (
         <div className="room-detail__hero">
-          <img src={room.images[0]} alt={room.name} />
+          <img src={`/storage/${images[activeImg]}`} alt={room.name} />
+          {images.length > 1 && (
+            <div className="room-detail__hero-thumbs">
+              {images.slice(0, 8).map((src, i) => (
+                <button
+                  key={i}
+                  className={`room-detail__hero-thumb${i === activeImg ? ' active' : ''}`}
+                  onClick={() => setActiveImg(i)}
+                >
+                  <img src={`/storage/${src}`} alt="" loading="lazy" />
+                </button>
+              ))}
+              {images.length > 8 && (
+                <button
+                  className="room-detail__hero-thumb room-detail__hero-thumb--more"
+                  onClick={() => setLightbox(8)}
+                >
+                  +{images.length - 8}
+                </button>
+              )}
+            </div>
+          )}
         </div>
       )}
 
-      <div className="room-detail__layout reveal" ref={layoutRef}>
+      <div className="room-detail__layout">
         <div className="room-detail__main">
           <div className="room-detail__badges">
             {room.size && <span className="room-detail__badge">{room.size} m²</span>}
@@ -52,8 +74,8 @@ export default function RoomDetailPage() {
             <p className="room-detail__desc">{room.description}</p>
           )}
 
-          {room.longDescription && (
-            <p className="room-detail__long-desc">{room.longDescription}</p>
+          {room.long_description && (
+            <p className="room-detail__long-desc">{room.long_description}</p>
           )}
 
           {room.amenities?.length > 0 && (
@@ -67,17 +89,17 @@ export default function RoomDetailPage() {
             </div>
           )}
 
-          {room.images?.length > 1 && (
+          {images.length > 1 && (
             <div className="room-detail__gallery">
               <h3 className="room-detail__section-title">Gallery</h3>
               <div className="room-detail__gallery-grid">
-                {room.images.map((src, i) => (
+                {images.map((src, i) => (
                   <button
                     key={i}
                     className="room-detail__gallery-item"
                     onClick={() => setLightbox(i)}
                   >
-                    <img src={src} alt={`${room.name} ${i + 1}`} />
+                    <img src={`/storage/${src}`} alt={`${room.name} ${i + 1}`} loading="lazy" />
                   </button>
                 ))}
               </div>
@@ -85,17 +107,14 @@ export default function RoomDetailPage() {
           )}
         </div>
 
-        {/* Sticky CTA sidebar */}
+        {/* Sticky sidebar */}
         <aside className="room-detail__sidebar">
           <div className="room-detail__cta-card">
             <div className="room-detail__price">
               <span className="room-detail__price-amount">£{room.price}</span>
               <span className="room-detail__price-label">per night</span>
             </div>
-            <Link
-              to={`/book?room=${room.id}`}
-              className="room-detail__book-btn"
-            >
+            <Link to={`/book?room=${room.id}`} className="room-detail__book-btn">
               Book This Room
             </Link>
             <Link to="/rooms" className="room-detail__back-link">
@@ -109,11 +128,14 @@ export default function RoomDetailPage() {
       {lightbox !== null && (
         <div className="room-detail__lightbox" onClick={() => setLightbox(null)}>
           <button className="room-detail__lightbox-close" onClick={() => setLightbox(null)}>✕</button>
+          <button className="room-detail__lightbox-prev" onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + images.length) % images.length) }}>‹</button>
           <img
-            src={room.images[lightbox]}
+            src={`/storage/${images[lightbox]}`}
             alt={room.name}
             onClick={(e) => e.stopPropagation()}
           />
+          <button className="room-detail__lightbox-next" onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % images.length) }}>›</button>
+          <span className="room-detail__lightbox-counter">{lightbox + 1} / {images.length}</span>
         </div>
       )}
     </div>
