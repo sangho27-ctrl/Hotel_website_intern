@@ -27,9 +27,39 @@ Hotel_website_intern/
 
 Make sure you have all of these installed before starting:
 
-- PHP 8.2+ and Composer
-- Node 18+ and npm
-- MySQL 8 (running locally)
+#### Required
+
+| Tool | Version | Download |
+|------|---------|----------|
+| Git | any | [git-scm.com](https://git-scm.com) |
+| PHP | 8.2+ | [php.net/downloads](https://www.php.net/downloads) |
+| Composer | 2+ | [getcomposer.org](https://getcomposer.org) |
+| Node.js | 18+ (includes npm) | [nodejs.org](https://nodejs.org) |
+| MySQL | 8 | [dev.mysql.com](https://dev.mysql.com/downloads/mysql) |
+
+**PHP extensions required** (usually bundled with PHP, but check `php -m`):
+
+- `pdo_mysql` — database connection
+- `openssl` — JWT signing
+- `mbstring`, `xml`, `tokenizer`, `ctype`, `json`, `bcmath`, `fileinfo` — Laravel core
+
+To verify all tools are installed, run:
+
+```bash
+git --version
+php --version
+composer --version
+node --version
+mysql --version
+```
+
+#### Recommended (optional)
+
+| Tool | Purpose |
+|------|---------|
+| [TablePlus](https://tableplus.com) or [MySQL Workbench](https://dev.mysql.com/downloads/workbench) | GUI to manage the database |
+| [VS Code](https://code.visualstudio.com) | Code editor |
+| [Postman](https://www.postman.com) | Test API endpoints manually |
 
 ---
 

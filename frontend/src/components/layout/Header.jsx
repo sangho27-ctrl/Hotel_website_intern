@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { brand } from '../../config/brand'
+import colsonLogo from '../../assets/logos/Logo_Colson.avif'
 import './Header.css'
 
 export default function Header() {
@@ -25,8 +26,7 @@ export default function Header() {
 
       <div className="header__main">
         <Link to="/" className="header__logo">
-          <span className="header__logo-name">{brand.name}</span>
-          <span className="header__logo-subtitle">{brand.subtitle}</span>
+          <img src={colsonLogo} alt={brand.name} className="header__logo-img" />
         </Link>
 
         <nav>
