@@ -6,7 +6,12 @@
 
 .booking-page__hero {
   text-align: center;
-  padding: 60px 0 40px;
+  padding: 100px 24px 80px;
+  background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('/storage/rooms/room1/room1.avif');
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  margin-bottom: 48px;
 }
 
 .booking-page__eyebrow {
@@ -63,14 +68,18 @@
 
 .booking-page__title {
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: 42px;
   margin-bottom: 8px;
-  color: var(--color-text);
+  color: #fff;
+}
+
+.booking-page__eyebrow {
+  color: rgba(255,255,255,0.7);
 }
 
 .booking-page__room-name {
-  color: var(--color-muted, #666);
-  margin-bottom: 24px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 0;
 }
 
 .booking-page__error {
