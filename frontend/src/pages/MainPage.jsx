@@ -7,6 +7,51 @@ import RoomCard from '../components/rooms/RoomCard'
 import './MainPage.css'
 
 /* ─── Static data ─── */
+const ATTRACTIONS = [
+  {
+    id: 1,
+    category: 'Beach & Seafront',
+    name: 'Brighton Beach & Palace Pier',
+    desc: 'Just two minutes on foot. Brighton\'s iconic pebble beach and the Victorian Palace Pier with its funfair, restaurants, and arcades.',
+    distance: '2 min walk',
+  },
+  {
+    id: 2,
+    category: 'Culture',
+    name: 'Royal Pavilion',
+    desc: 'A magnificent Regency-era palace built for King George IV, with extraordinary Indo-Saracenic architecture and beautifully restored interiors.',
+    distance: '10 min walk',
+  },
+  {
+    id: 3,
+    category: 'Shopping',
+    name: 'The Lanes & North Laine',
+    desc: 'Brighton\'s famous maze of independent boutiques, antique shops, cafés, and jewellers — all within easy walking distance of Colson House.',
+    distance: '8 min walk',
+  },
+  {
+    id: 4,
+    category: 'Nature',
+    name: 'South Downs National Park',
+    desc: 'Miles of open downland, chalk cliffs, and panoramic sea views — accessible by bus or a short drive from the hotel.',
+    distance: '20 min drive',
+  },
+  {
+    id: 5,
+    category: 'Arts',
+    name: 'Brighton Museum & Art Gallery',
+    desc: 'World-class collections of fine art, fashion, and archaeology in a stunning Edwardian building at the heart of the Royal Pavilion estate.',
+    distance: '12 min walk',
+  },
+  {
+    id: 6,
+    category: 'Food & Drink',
+    name: 'Kemp Town Village',
+    desc: 'Colson House sits in the heart of Kemp Town — Brighton\'s most characterful neighbourhood, packed with independent restaurants, bars, and delis.',
+    distance: 'On your doorstep',
+  },
+]
+
 const FEATURES = [
   { title: 'Georgian Architecture', desc: 'Original 1820s townhouse lovingly restored with period features throughout.' },
   { title: 'One Street from the Sea', desc: 'Stroll to Brighton beach and the famous seafront in under two minutes.' },
@@ -93,11 +138,12 @@ export default function MainPage() {
   })
 
   const [rooms, setRooms] = useState([])
-  const featuresRef = useReveal()
-  const aboutRef    = useReveal()
-  const offersRef   = useReveal()
-  const reviewsRef  = useReveal()
-  const contactRef  = useReveal()
+  const featuresRef    = useReveal()
+  const aboutRef       = useReveal()
+  const offersRef      = useReveal()
+  const attractionsRef = useReveal()
+  const reviewsRef     = useReveal()
+  const contactRef     = useReveal()
 
   useEffect(() => {
     fetch('/api/rooms').then((r) => r.json()).then(setRooms).catch(() => {})
@@ -195,6 +241,31 @@ export default function MainPage() {
               <p className="mp-offer-card__desc">{offer.description}</p>
               <span className="mp-offer-card__valid">{offer.valid}</span>
               <a href="#contact" className="mp-offer-card__btn">Book This Offer</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════ DIVIDER ══════════════ */}
+      <div className="mp-divider" />
+
+      {/* ══════════════ LOCAL ATTRACTIONS ══════════════ */}
+      <section id="attractions" className="mp-section mp-attractions">
+        <div className="mp-section__head">
+          <span className="mp-eyebrow">Explore Brighton</span>
+          <h2 className="mp-section__title">Local Attractions</h2>
+          <p className="mp-section__sub">Everything Brighton has to offer — right on your doorstep</p>
+        </div>
+
+        <div className="mp-attractions__grid stagger" ref={attractionsRef}>
+          {ATTRACTIONS.map((a) => (
+            <article key={a.id} className="mp-attraction-card reveal">
+              <div className="mp-attraction-card__top">
+                <span className="mp-attraction-card__category">{a.category}</span>
+                <span className="mp-attraction-card__distance">{a.distance}</span>
+              </div>
+              <h3 className="mp-attraction-card__name">{a.name}</h3>
+              <p className="mp-attraction-card__desc">{a.desc}</p>
             </article>
           ))}
         </div>

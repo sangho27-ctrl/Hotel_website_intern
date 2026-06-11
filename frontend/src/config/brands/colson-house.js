@@ -14,6 +14,7 @@ export default {
     { label: "Home",               anchor: "home" },
     { label: "Our Rooms",          anchor: "rooms" },
     { label: "Offers",             anchor: "offers" },
+    { label: "Local Attractions",  anchor: "attractions" },
     { label: "Reviews",            anchor: "reviews" },
     { label: "Contact",            anchor: "contact" },
   ],
