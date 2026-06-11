@@ -16,6 +16,8 @@ class Booking extends Model
         'phone',
         'status',
         'notes',
+        'ftb_booking_ref',
+        'source',
     ];
 
     protected $casts = [

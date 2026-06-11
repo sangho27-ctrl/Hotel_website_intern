@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FreeToBookWebhookController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,9 @@ Route::get('/rooms/{id}', [RoomController::class, 'show']);
 
 // Public booking
 Route::post('/bookings', [BookingController::class, 'store']);
+
+// FreeToBook webhook (no auth — secured by secret in URL)
+Route::post('/webhooks/freetobook', [FreeToBookWebhookController::class, 'handle']);
 
 // Auth
 Route::post('/auth/login', [AuthController::class, 'login']);
