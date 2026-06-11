@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { brand } from '../config/brand'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
+import API_BASE from '../config/api'
 import RoomCard from '../components/rooms/RoomCard'
 import './MainPage.css'
 
@@ -99,7 +100,7 @@ function ContactForm() {
     setSending(true)
     setStatus(null)
     try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+      const res = await fetch(`${API_BASE}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
       if (!res.ok) throw new Error()
       setStatus('success')
       setForm({ name: '', email: '', message: '' })
@@ -146,7 +147,7 @@ export default function MainPage() {
   const contactRef     = useReveal()
 
   useEffect(() => {
-    fetch('/api/rooms').then((r) => r.json()).then(setRooms).catch(() => {})
+    fetch(`${API_BASE}/api/rooms`).then((r) => r.json()).then(setRooms).catch(() => {})
   }, [])
 
   return (

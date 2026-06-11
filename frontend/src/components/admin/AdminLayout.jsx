@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { brand } from '../../config/brand'
+import API_BASE from '../../config/api'
 import './AdminLayout.css'
 
 export default function AdminLayout({ children }) {
@@ -8,7 +9,7 @@ export default function AdminLayout({ children }) {
   const navigate = useNavigate()
 
   function handleLogout() {
-    fetch('/api/auth/logout', {
+    fetch(`${API_BASE}/api/auth/logout`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('admin_token')}`,

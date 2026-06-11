@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
+import API_BASE from '../config/api'
 import './RoomDetailPage.css'
 
 
@@ -21,14 +22,14 @@ export default function RoomDetailPage() {
   useEffect(() => {
     setLoading(true)
     setActiveImg(0)
-    fetch(`/api/rooms/${id}`)
+    fetch(`${API_BASE}/api/rooms/${id}`)
       .then((res) => { if (!res.ok) throw new Error('Room not found'); return res.json() })
       .then((data) => { setRoom(data); setLoading(false) })
       .catch((err) => { setError(err.message); setLoading(false) })
   }, [id])
 
   useEffect(() => {
-    fetch('/api/rooms')
+    fetch(`${API_BASE}/api/rooms`)
       .then((r) => r.json())
       .then((data) => setOtherRooms(data.filter((r) => String(r.id) !== String(id)).slice(0, 3)))
       .catch(() => {})

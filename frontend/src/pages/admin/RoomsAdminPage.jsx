@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AdminLayout from '../../components/admin/AdminLayout'
+import API_BASE from '../../config/api'
 import './RoomsAdminPage.css'
 
 export default function RoomsAdminPage() {
@@ -18,7 +19,7 @@ export default function RoomsAdminPage() {
 
   function fetchRooms() {
     setLoading(true)
-    fetch('/api/admin/rooms', { headers })
+    fetch(`${API_BASE}/api/admin/rooms`, { headers })
       .then((r) => r.json())
       .then((data) => { setRooms(data); setLoading(false) })
       .catch(() => setLoading(false))
@@ -26,7 +27,7 @@ export default function RoomsAdminPage() {
 
   async function confirmDelete() {
     try {
-      const res = await fetch(`/api/admin/rooms/${deleteTarget.id}`, {
+      const res = await fetch(`${API_BASE}/api/admin/rooms/${deleteTarget.id}`, {
         method: 'DELETE',
         headers,
       })

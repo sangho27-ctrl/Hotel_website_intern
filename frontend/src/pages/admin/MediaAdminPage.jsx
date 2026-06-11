@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import AdminLayout from '../../components/admin/AdminLayout'
+import API_BASE from '../../config/api'
 import './MediaAdminPage.css'
 
 export default function MediaAdminPage() {
@@ -20,7 +21,7 @@ export default function MediaAdminPage() {
 
   function fetchMedia() {
     setLoading(true)
-    fetch('/api/admin/media', { headers })
+    fetch(`${API_BASE}/api/admin/media`, { headers })
       .then((r) => r.json())
       .then((data) => { setMedia(data); setLoading(false) })
       .catch(() => setLoading(false))
@@ -47,7 +48,7 @@ export default function MediaAdminPage() {
     fd.append('file', file)
 
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', '/api/admin/media')
+    xhr.open('POST', `${API_BASE}/api/admin/media`)
     xhr.setRequestHeader('Authorization', `Bearer ${token}`)
 
     xhr.upload.onprogress = (e) => {
@@ -81,7 +82,7 @@ export default function MediaAdminPage() {
 
   async function confirmDelete() {
     try {
-      await fetch(`/api/admin/media/${deleteTarget.id}`, { method: 'DELETE', headers })
+      await fetch(`${API_BASE}/api/admin/media/${deleteTarget.id}`, { method: 'DELETE', headers })
       setMessage({ type: 'success', text: 'File deleted.' })
       setDeleteTarget(null)
       fetchMedia()

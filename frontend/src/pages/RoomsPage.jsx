@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import RoomCard from '../components/rooms/RoomCard'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
+import API_BASE from '../config/api'
 import './RoomsPage.css'
 
 export default function RoomsPage() {
@@ -12,7 +13,7 @@ export default function RoomsPage() {
   const heroRef = useReveal()
 
   useEffect(() => {
-    fetch('/api/rooms')
+    fetch(`${API_BASE}/api/rooms`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load rooms')
         return res.json()

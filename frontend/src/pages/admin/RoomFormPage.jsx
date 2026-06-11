@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import AdminLayout from '../../components/admin/AdminLayout'
+import API_BASE from '../../config/api'
 import './RoomFormPage.css'
 
 const AMENITY_OPTIONS = [
@@ -36,7 +37,7 @@ export default function RoomFormPage() {
 
   useEffect(() => {
     if (!isEdit) return
-    fetch(`/api/admin/rooms/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${API_BASE}/api/admin/rooms/${id}`, { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => r.json())
       .then((data) => {
         setForm({
@@ -71,7 +72,7 @@ export default function RoomFormPage() {
     setError(null)
     setSaving(true)
 
-    const url = isEdit ? `/api/admin/rooms/${id}` : '/api/admin/rooms'
+    const url = isEdit ? `${API_BASE}/api/admin/rooms/${id}` : `${API_BASE}/api/admin/rooms`
     const method = isEdit ? 'PUT' : 'POST'
 
     try {
