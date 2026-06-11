@@ -2,46 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Media;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use App\Http\Requests\StoreMediaRequest;
+use App\Http\Resources\MediaResource;
+use App\Services\MediaService;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\JsonResponse;
 
 class MediaController extends Controller
 {
-    public function index()
+    protected MediaService $mediaService;
+
+    public function __construct(MediaService $mediaService)
     {
-        return response()->json(Media::latest()->get());
+        $this->mediaService = $mediaService;
     }
 
-    public function store(Request $request)
+    public function index(): AnonymousResourceCollection
     {
-        $request->validate([
-            'file' => 'required|file|mimes:jpg,jpeg,png,webp|max:5120',
-        ]);
-
-        $file     = $request->file('file');
-        $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
-        $path     = $file->storeAs('public/media', $filename);
-        $url      = Storage::url($path);
-
-        $media = Media::create([
-            'filename'      => $filename,
-            'original_name' => $file->getClientOriginalName(),
-            'mime_type'     => $file->getMimeType(),
-            'size'          => $file->getSize(),
-            'path'          => $path,
-            'url'           => $url,
-        ]);
-
-        return response()->json($media, 201);
+        $media = $this->mediaService->getAllMedia();
+        return MediaResource::collection($media);
     }
 
-    public function destroy(int $id)
+    public function store(StoreMediaRequest $request): JsonResponse
     {
-        $media = Media::findOrFail($id);
-        Storage::delete($media->path);
-        $media->delete();
+        $media = $this->mediaService->uploadMedia($request->file('file'));
+        return (new MediaResource($media))
+            ->response()
+            ->setStatusCode(201);
+    }
+
+    public function destroy(int $id): JsonResponse
+    {
+        $media = $this->mediaService->getMediaById($id);
+        $this->mediaService->deleteMedia($media);
         return response()->json(null, 204);
     }
 }

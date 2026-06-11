@@ -1,32 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useRooms } from '../hooks/useRooms'
 import RoomCard from '../components/rooms/RoomCard'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
-import API_BASE from '../config/api'
 import './RoomsPage.css'
 
 export default function RoomsPage() {
-  const [rooms, setRooms] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  useSEO({ title: 'Our Rooms | Colson House Brighton', description: 'Browse our individually designed rooms at Colson House, a boutique hotel in Brighton\'s Kemp Town. Book direct for the best rate.' })
+  const { rooms, loading, error } = useRooms()
   const heroRef = useReveal()
 
-  useEffect(() => {
-    fetch(`${API_BASE}/api/rooms`)
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to load rooms')
-        return res.json()
-      })
-      .then((data) => {
-        setRooms(data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        setError(err.message)
-        setLoading(false)
-      })
-  }, [])
+  useSEO({ 
+    title: 'Our Rooms | Colson House Brighton', 
+    description: 'Browse our individually designed rooms at Colson House, a boutique hotel in Brighton\'s Kemp Town. Book direct for the best rate.' 
+  })
 
   return (
     <section className="rooms-page">

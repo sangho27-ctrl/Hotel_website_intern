@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { brand } from '../../config/brand'
-import API_BASE from '../../config/api'
+import { authService } from '../../services/authService'
 import './LoginPage.css'
 
 export default function LoginPage() {
@@ -19,18 +19,7 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
-      const res = await fetch(`${API_BASE}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
-
-      if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.message || 'Invalid credentials')
-      }
-
-      const { token, user } = await res.json()
+      const { token, user } = await authService.login(email, password)
       login(token, user)
       navigate('/admin/dashboard')
     } catch (err) {

@@ -2,11 +2,15 @@ import { useState } from 'react'
 import { brand } from '../config/brand'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
-import API_BASE from '../config/api'
+import { contactService } from '../services/contactService'
 import './ContactPage.css'
 
 export default function ContactPage() {
-  useSEO({ title: 'Contact Us | Colson House Brighton', description: 'Get in touch with Colson House Brighton. Call, email, or send a message. We\'re happy to help with bookings and enquiries.' })
+  useSEO({ 
+    title: 'Contact Us | Colson House Brighton', 
+    description: 'Get in touch with Colson House Brighton. Call, email, or send a message. We\'re happy to help with bookings and enquiries.' 
+  })
+  
   const heroRef = useReveal()
   const contentRef = useReveal()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -22,12 +26,7 @@ export default function ContactPage() {
     setSending(true)
     setStatus(null)
     try {
-      const res = await fetch(`${API_BASE}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) throw new Error()
+      await contactService.sendMessage(form)
       setStatus('success')
       setForm({ name: '', email: '', message: '' })
     } catch {

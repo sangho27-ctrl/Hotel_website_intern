@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import AdminLayout from '../../components/admin/AdminLayout'
 import API_BASE from '../../config/api'
+import { mediaService } from '../../services/mediaService'
 import './MediaAdminPage.css'
 
 export default function MediaAdminPage() {
@@ -14,16 +15,17 @@ export default function MediaAdminPage() {
   const [dragging, setDragging] = useState(false)
   const inputRef = useRef(null)
 
-  const token = localStorage.getItem('admin_token')
-  const headers = { Authorization: `Bearer ${token}` }
-
-  useEffect(() => { fetchMedia() }, [])
+  useEffect(() => { 
+    fetchMedia() 
+  }, [])
 
   function fetchMedia() {
     setLoading(true)
-    fetch(`${API_BASE}/api/admin/media`, { headers })
-      .then((r) => r.json())
-      .then((data) => { setMedia(data); setLoading(false) })
+    mediaService.getAll()
+      .then((data) => { 
+        setMedia(data)
+        setLoading(false) 
+      })
       .catch(() => setLoading(false))
   }
 
@@ -47,12 +49,17 @@ export default function MediaAdminPage() {
     const fd = new FormData()
     fd.append('file', file)
 
+    const token = localStorage.getItem('admin_token')
     const xhr = new XMLHttpRequest()
     xhr.open('POST', `${API_BASE}/api/admin/media`)
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+    if (token) {
+      xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+    }
 
     xhr.upload.onprogress = (e) => {
-      if (e.lengthComputable) setUploadProgress(Math.round((e.loaded / e.total) * 100))
+      if (e.lengthComputable) {
+        setUploadProgress(Math.round((e.loaded / e.total) * 100))
+      }
     }
 
     xhr.onload = () => {
@@ -66,7 +73,10 @@ export default function MediaAdminPage() {
       }
     }
 
-    xhr.onerror = () => { setUploading(false); setError('Upload failed.') }
+    xhr.onerror = () => { 
+      setUploading(false)
+      setError('Upload failed.') 
+    }
     xhr.send(fd)
   }
 
@@ -82,7 +92,7 @@ export default function MediaAdminPage() {
 
   async function confirmDelete() {
     try {
-      await fetch(`${API_BASE}/api/admin/media/${deleteTarget.id}`, { method: 'DELETE', headers })
+      await mediaService.delete(deleteTarget.id)
       setMessage({ type: 'success', text: 'File deleted.' })
       setDeleteTarget(null)
       fetchMedia()

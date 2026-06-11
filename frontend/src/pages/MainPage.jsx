@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { brand } from '../config/brand'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
-import API_BASE from '../config/api'
+import { useRooms } from '../hooks/useRooms'
+import { contactService } from '../services/contactService'
 import RoomCard from '../components/rooms/RoomCard'
 import './MainPage.css'
 
@@ -100,12 +101,14 @@ function ContactForm() {
     setSending(true)
     setStatus(null)
     try {
-      const res = await fetch(`${API_BASE}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
-      if (!res.ok) throw new Error()
+      await contactService.sendMessage(form)
       setStatus('success')
       setForm({ name: '', email: '', message: '' })
-    } catch { setStatus('error') }
-    finally { setSending(false) }
+    } catch { 
+      setStatus('error') 
+    } finally { 
+      setSending(false) 
+    }
   }
 
   return (
@@ -138,17 +141,13 @@ export default function MainPage() {
     description: 'Brighton Inn is a boutique Georgian townhouse hotel in Brighton\'s Kemp Town, one street from the seafront. Book direct for the best rates.',
   })
 
-  const [rooms, setRooms] = useState([])
+  const { rooms, loading, error } = useRooms()
   const featuresRef    = useReveal()
   const aboutRef       = useReveal()
   const offersRef      = useReveal()
   const attractionsRef = useReveal()
   const reviewsRef     = useReveal()
   const contactRef     = useReveal()
-
-  useEffect(() => {
-    fetch(`${API_BASE}/api/rooms`).then((r) => r.json()).then(setRooms).catch(() => {})
-  }, [])
 
   return (
     <div className="mp">
@@ -208,7 +207,7 @@ export default function MainPage() {
           <p className="mp-section__sub">Each room individually designed — period charm with modern comforts</p>
         </div>
 
-        {rooms.length > 0 ? (
+        {!loading && !error && rooms.length > 0 ? (
           <div className="mp-rooms__grid">
             {rooms.map((room, i) => (
               <div key={room.id} className="mp-rooms__card-wrap" style={{ animationDelay: `${i * 80}ms` }}>

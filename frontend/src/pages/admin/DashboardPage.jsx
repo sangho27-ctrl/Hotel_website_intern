@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AdminLayout from '../../components/admin/AdminLayout'
-import API_BASE from '../../config/api'
+import { roomService } from '../../services/roomService'
 import './DashboardPage.css'
 
 export default function DashboardPage() {
   const [roomCount, setRoomCount] = useState(null)
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/rooms`)
-      .then((r) => r.json())
+    roomService.getAll()
       .then((data) => setRoomCount(Array.isArray(data) ? data.length : 0))
       .catch(() => setRoomCount(0))
   }, [])

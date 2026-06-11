@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AdminLayout from '../../components/admin/AdminLayout'
-import API_BASE from '../../config/api'
+import { roomService } from '../../services/roomService'
 import './RoomsAdminPage.css'
 
 export default function RoomsAdminPage() {
@@ -10,28 +10,23 @@ export default function RoomsAdminPage() {
   const [deleteTarget, setDeleteTarget] = useState(null)
   const [message, setMessage] = useState(null)
 
-  const token = localStorage.getItem('admin_token')
-  const headers = { Authorization: `Bearer ${token}` }
-
   useEffect(() => {
     fetchRooms()
   }, [])
 
   function fetchRooms() {
     setLoading(true)
-    fetch(`${API_BASE}/api/admin/rooms`, { headers })
-      .then((r) => r.json())
-      .then((data) => { setRooms(data); setLoading(false) })
+    roomService.getAll()
+      .then((data) => { 
+        setRooms(data)
+        setLoading(false) 
+      })
       .catch(() => setLoading(false))
   }
 
   async function confirmDelete() {
     try {
-      const res = await fetch(`${API_BASE}/api/admin/rooms/${deleteTarget.id}`, {
-        method: 'DELETE',
-        headers,
-      })
-      if (!res.ok) throw new Error('Delete failed')
+      await roomService.delete(deleteTarget.id)
       setMessage({ type: 'success', text: `"${deleteTarget.name}" deleted.` })
       setDeleteTarget(null)
       fetchRooms()

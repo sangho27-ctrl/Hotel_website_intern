@@ -2,60 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Room;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreRoomRequest;
+use App\Http\Requests\UpdateRoomRequest;
+use App\Http\Resources\RoomResource;
+use App\Services\RoomService;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\JsonResponse;
 
 class RoomController extends Controller
 {
-    public function index()
+    protected RoomService $roomService;
+
+    public function __construct(RoomService $roomService)
     {
-        return response()->json(Room::all());
+        $this->roomService = $roomService;
     }
 
-    public function show(int $id)
+    public function index(): AnonymousResourceCollection
     {
-        $room = Room::findOrFail($id);
-        return response()->json($room);
+        $rooms = $this->roomService->getAllRooms();
+        return RoomResource::collection($rooms);
     }
 
-    public function store(Request $request)
+    public function show(int $id): RoomResource
     {
-        $validated = $request->validate([
-            'name'             => 'required|string|max:255',
-            'size'             => 'nullable|integer|min:1',
-            'description'      => 'nullable|string',
-            'long_description' => 'nullable|string',
-            'price'            => 'required|integer|min:0',
-            'amenities'        => 'nullable|array',
-            'images'           => 'nullable|array',
-        ]);
-
-        $room = Room::create($validated);
-        return response()->json($room, 201);
+        $room = $this->roomService->getRoomById($id);
+        return new RoomResource($room);
     }
 
-    public function update(Request $request, int $id)
+    public function store(StoreRoomRequest $request): JsonResponse
     {
-        $room = Room::findOrFail($id);
-
-        $validated = $request->validate([
-            'name'             => 'sometimes|required|string|max:255',
-            'size'             => 'nullable|integer|min:1',
-            'description'      => 'nullable|string',
-            'long_description' => 'nullable|string',
-            'price'            => 'sometimes|required|integer|min:0',
-            'amenities'        => 'nullable|array',
-            'images'           => 'nullable|array',
-        ]);
-
-        $room->update($validated);
-        return response()->json($room);
+        $room = $this->roomService->createRoom($request->validated());
+        return (new RoomResource($room))
+            ->response()
+            ->setStatusCode(201);
     }
 
-    public function destroy(int $id)
+    public function update(UpdateRoomRequest $request, int $id): RoomResource
     {
-        $room = Room::findOrFail($id);
-        $room->delete();
+        $room = $this->roomService->getRoomById($id);
+        $updatedRoom = $this->roomService->updateRoom($room, $request->validated());
+        return new RoomResource($updatedRoom);
+    }
+
+    public function destroy(int $id): JsonResponse
+    {
+        $room = $this->roomService->getRoomById($id);
+        $this->roomService->deleteRoom($room);
         return response()->json(null, 204);
     }
 }

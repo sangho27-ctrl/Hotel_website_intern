@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import AdminLayout from '../../components/admin/AdminLayout'
-import API_BASE from '../../config/api'
+import { roomService } from '../../services/roomService'
 import './RoomFormPage.css'
 
 const AMENITY_OPTIONS = [
@@ -29,16 +29,9 @@ export default function RoomFormPage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState(null)
 
-  const token = localStorage.getItem('admin_token')
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
-  }
-
   useEffect(() => {
     if (!isEdit) return
-    fetch(`${API_BASE}/api/admin/rooms/${id}`, { headers: { Authorization: `Bearer ${token}` } })
-      .then((r) => r.json())
+    roomService.getById(id)
       .then((data) => {
         setForm({
           name: data.name || '',
@@ -72,28 +65,21 @@ export default function RoomFormPage() {
     setError(null)
     setSaving(true)
 
-    const url = isEdit ? `${API_BASE}/api/admin/rooms/${id}` : `${API_BASE}/api/admin/rooms`
-    const method = isEdit ? 'PUT' : 'POST'
+    const payload = {
+      name: form.name,
+      size: form.size ? Number(form.size) : null,
+      description: form.description,
+      price: Number(form.price),
+      amenities: form.amenities,
+      images: form.images,
+    }
 
     try {
-      const res = await fetch(url, {
-        method,
-        headers,
-        body: JSON.stringify({
-          name: form.name,
-          size: form.size ? Number(form.size) : null,
-          description: form.description,
-          price: Number(form.price),
-          amenities: form.amenities,
-          images: form.images,
-        }),
-      })
-
-      if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.message || 'Save failed')
+      if (isEdit) {
+        await roomService.update(id, payload)
+      } else {
+        await roomService.create(payload)
       }
-
       navigate('/admin/rooms')
     } catch (err) {
       setError(err.message)

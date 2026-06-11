@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
-import API_BASE from '../config/api'
+import { useRoomDetail } from '../hooks/useRoomDetail'
+import { roomService } from '../services/roomService'
 import './RoomDetailPage.css'
-
 
 export default function RoomDetailPage() {
   const { id } = useParams()
-  const [room, setRoom] = useState(null)
+  const { room, loading, error } = useRoomDetail(id)
   const [otherRooms, setOtherRooms] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
   const [activeImg, setActiveImg] = useState(0)
   const [lightbox, setLightbox] = useState(null)
 
@@ -19,18 +17,13 @@ export default function RoomDetailPage() {
     description: room?.description ?? '',
   })
 
+  // Reset active image index when room changes
   useEffect(() => {
-    setLoading(true)
     setActiveImg(0)
-    fetch(`${API_BASE}/api/rooms/${id}`)
-      .then((res) => { if (!res.ok) throw new Error('Room not found'); return res.json() })
-      .then((data) => { setRoom(data); setLoading(false) })
-      .catch((err) => { setError(err.message); setLoading(false) })
   }, [id])
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/rooms`)
-      .then((r) => r.json())
+    roomService.getAll()
       .then((data) => setOtherRooms(data.filter((r) => String(r.id) !== String(id)).slice(0, 3)))
       .catch(() => {})
   }, [id])
@@ -38,8 +31,14 @@ export default function RoomDetailPage() {
   const prevImg = () => setActiveImg((i) => (i - 1 + room.images.length) % room.images.length)
   const nextImg = () => setActiveImg((i) => (i + 1) % room.images.length)
 
-  const prevLightbox = (e) => { e.stopPropagation(); setLightbox((i) => (i - 1 + room.images.length) % room.images.length) }
-  const nextLightbox = (e) => { e.stopPropagation(); setLightbox((i) => (i + 1) % room.images.length) }
+  const prevLightbox = (e) => { 
+    e.stopPropagation() 
+    setLightbox((i) => (i - 1 + room.images.length) % room.images.length) 
+  }
+  const nextLightbox = (e) => { 
+    e.stopPropagation() 
+    setLightbox((i) => (i + 1) % room.images.length) 
+  }
 
   if (loading) return (
     <div className="rd__loading">
