@@ -15,6 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Seed rooms
         $this->call(RoomSeeder::class);
+
+        // Seed default Admin User if not exists
+        User::firstOrCreate(
+            ['email' => 'admin@brightoninn.com'],
+            [
+                'name' => 'Admin User',
+                'password' => bcrypt('admin123'), // Default password
+            ]
+        );
     }
 }
