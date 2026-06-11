@@ -1,9 +1,12 @@
-.reviews-page { padding-bottom: 80px; }
+.reviews-page {
+  background-color: var(--color-bg-light);
+  padding-bottom: 80px;
+}
 
 .reviews-page__hero {
   text-align: center;
   padding: 80px 40px 56px;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-on-light);
   margin-bottom: 56px;
 }
 
@@ -22,7 +25,7 @@
   font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-text-on-light);
   margin-bottom: 24px;
 }
 
@@ -43,7 +46,7 @@
 .reviews-page__avg-label {
   font-family: var(--font-body);
   font-size: 13px;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted-on-light);
 }
 
 .reviews-page__content {
@@ -56,7 +59,7 @@
 .review-stars { display: inline-flex; gap: 2px; }
 
 .review-stars__star--filled { color: var(--color-accent); font-size: 16px; }
-.review-stars__star--empty  { color: var(--color-border);  font-size: 16px; }
+.review-stars__star--empty  { color: var(--color-border-on-light);  font-size: 16px; }
 
 /* Grid */
 .reviews-grid {
@@ -67,8 +70,8 @@
 }
 
 .review-card {
-  background-color: var(--color-card);
-  border: 1px solid var(--color-border);
+  background-color: #fff;
+  border: 1px solid var(--color-border-on-light);
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -84,7 +87,7 @@
 .review-card__text {
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted-on-light);
   line-height: 1.75;
   flex: 1;
   font-style: italic;
@@ -95,20 +98,20 @@
   flex-direction: column;
   gap: 4px;
   padding-top: 16px;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border-on-light);
 }
 
 .review-card__author {
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-text-on-light);
 }
 
 .review-card__meta {
   font-family: var(--font-body);
   font-size: 11px;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted-on-light);
 }
 
 .review-card__source { color: var(--color-accent); }
@@ -117,7 +120,7 @@
   text-align: center;
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted-on-light);
 }
 
 .reviews-page__cta a {

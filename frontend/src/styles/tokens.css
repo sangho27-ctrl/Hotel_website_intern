@@ -1,12 +1,16 @@
 :root {
   --color-bg:          #1a1611;
   --color-bg-footer:   #111009;
+  --color-bg-light:    #f5efe0;
   --color-accent:      #c9a96e;
   --color-text:        #ffffff;
   --color-text-muted:  #d4c5a9;
   --color-border:      #2e2a22;
   --color-card:        #221e17;
   --color-text-dark:   #1a1611;
+  --color-text-on-light:       #1a1611;
+  --color-text-muted-on-light: #6b5e4a;
+  --color-border-on-light:     #ddd3c0;
 
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body:    'Inter', system-ui, sans-serif;

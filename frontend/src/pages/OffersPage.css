@@ -1,11 +1,12 @@
 .offers-page {
+  background-color: var(--color-bg-light);
   padding-bottom: 80px;
 }
 
 .offers-page__hero {
   text-align: center;
   padding: 80px 40px 56px;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-on-light);
   margin-bottom: 56px;
 }
 
@@ -24,14 +25,14 @@
   font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-text-on-light);
   margin-bottom: 12px;
 }
 
 .offers-page__sub {
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted-on-light);
 }
 
 .offers-page__content {
@@ -49,8 +50,8 @@
 
 /* Offer card */
 .offer-card {
-  background-color: var(--color-card);
-  border: 1px solid var(--color-border);
+  background-color: #fff;
+  border: 1px solid var(--color-border-on-light);
   display: flex;
   flex-direction: column;
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
@@ -88,13 +89,13 @@
   font-family: var(--font-heading);
   font-size: 22px;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-text-on-light);
 }
 
 .offer-card__desc {
   font-family: var(--font-body);
   font-size: 13px;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted-on-light);
   line-height: 1.7;
   flex: 1;
 }
@@ -132,10 +133,10 @@
 .offers-page__note {
   font-family: var(--font-body);
   font-size: 13px;
-  color: var(--color-text-muted);
+  color: var(--color-text-muted-on-light);
   text-align: center;
   padding: 24px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-on-light);
   line-height: 1.7;
 }
 
