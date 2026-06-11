@@ -40,9 +40,9 @@ function Stars({ rating }) {
 }
 
 const STATIC_ROOMS_PREVIEW = [
-  { id: 1, name: 'Deluxe Double Room',  size: 32, price: 185, description: 'A fireplace, private bathroom, seating area and flat-screen TV. One street from Brighton seafront.', images: [] },
-  { id: 2, name: 'Four Poster Room',    size: 22, price: 130, description: 'Romance and period charm with a stunning four poster bed, fireplace and en-suite bathroom.', images: [] },
-  { id: 3, name: 'Deluxe Balcony Room', size: 16, price: 95,  description: 'Wake up to sea breezes on your private balcony. Flat-screen TV, desk and en-suite shower.', images: [] },
+  { id: 1, name: 'Deluxe Double Room',  size: 32, price: 185, description: 'A fireplace, private bathroom, seating area and flat-screen TV. One street from Brighton seafront.', images: ['https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80'] },
+  { id: 2, name: 'Four Poster Room',    size: 22, price: 130, description: 'Romance and period charm with a stunning four poster bed, fireplace and en-suite bathroom.', images: ['https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80'] },
+  { id: 3, name: 'Deluxe Balcony Room', size: 16, price: 95,  description: 'Wake up to sea breezes on your private balcony. Flat-screen TV, desk and en-suite shower.', images: ['https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80'] },
 ]
 
 export default function HomePage() {
@@ -160,7 +160,9 @@ export default function HomePage() {
               <Link key={room.id} to={`/rooms/${room.id}`} className="home__room-card reveal">
                 <div className="home__room-card-img">
                   <img
-                    src={room.images?.[0] || `/storage/rooms/room${room.id}/room${room.id}.avif`}
+                    src={room.images?.[0]
+                      ? (room.images[0].startsWith('http') ? room.images[0] : `/storage/${room.images[0]}`)
+                      : `/storage/rooms/room${room.id}/room${room.id}.avif`}
                     alt={room.name}
                     onError={(e) => { e.target.style.display = 'none' }}
                   />
