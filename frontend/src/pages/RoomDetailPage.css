@@ -241,10 +241,11 @@
   font-size: 13px;
   color: var(--color-text);
 }
-.rd__amenity-icon {
-  font-size: 16px;
-  width: 24px;
-  text-align: center;
+.rd__amenity-check {
+  color: var(--color-accent);
+  font-size: 13px;
+  width: 18px;
+  flex-shrink: 0;
 }
 
 /* ── Gallery ── */

@@ -3,24 +3,6 @@ import { useParams, Link } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
 import './RoomDetailPage.css'
 
-const AMENITY_ICONS = {
-  'En-suite bathroom': '🚿',
-  'Sea view': '🌊',
-  'Free WiFi': '📶',
-  'Flat-screen TV': '📺',
-  'Tea & coffee': '☕',
-  'Air conditioning': '❄️',
-  'Hairdryer': '💨',
-  'Safe': '🔒',
-  'Desk': '🖊',
-  'Mini fridge': '🧊',
-  'Bathtub': '🛁',
-  'Sofa': '🛋',
-  'Garden view': '🌿',
-  'Heated bathroom floor': '♨️',
-  'Blackout curtains': '🌙',
-  'Balcony': '🏠',
-}
 
 export default function RoomDetailPage() {
   const { id } = useParams()
@@ -150,7 +132,7 @@ export default function RoomDetailPage() {
               <ul className="rd__amenities">
                 {room.amenities.map((a, i) => (
                   <li key={i} className="rd__amenity">
-                    <span className="rd__amenity-icon">{AMENITY_ICONS[a] ?? '✓'}</span>
+                    <span className="rd__amenity-check">✓</span>
                     <span>{a}</span>
                   </li>
                 ))}
