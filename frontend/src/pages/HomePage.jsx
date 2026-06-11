@@ -51,13 +51,17 @@ export default function HomePage() {
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' })
   const [contactStatus, setContactStatus] = useState(null)
   const [contactSending, setContactSending] = useState(false)
-  const featuresRef    = useReveal()
-  const aboutRef       = useReveal()
-  const roomsRef       = useReveal()
-  const offersRef      = useReveal()
-  const attractionsRef = useReveal()
-  const reviewsRef     = useReveal()
-  const contactRef     = useReveal()
+  const featuresRef       = useReveal()
+  const aboutRef          = useReveal()
+  const roomsHeaderRef    = useReveal()
+  const roomsGridRef      = useReveal()
+  const offersHeaderRef   = useReveal()
+  const offersGridRef     = useReveal()
+  const attractHeaderRef  = useReveal()
+  const attractGridRef    = useReveal()
+  const reviewsHeaderRef  = useReveal()
+  const reviewsGridRef    = useReveal()
+  const contactRef        = useReveal()
 
   async function handleContactSubmit(e) {
     e.preventDefault()
@@ -140,12 +144,12 @@ export default function HomePage() {
       {/* Rooms Preview — dark section */}
       {rooms.length > 0 && (
         <section className="home__rooms-preview" id="rooms">
-          <div className="home__section-header reveal" ref={roomsRef}>
+          <div className="home__section-header reveal" ref={roomsHeaderRef}>
             <span className="home__eyebrow">Our Rooms</span>
             <h2 className="home__section-title">Each Room Individually Designed</h2>
             <p className="home__section-sub">Period charm with modern comforts — no two rooms alike.</p>
           </div>
-          <div className="home__rooms-grid stagger">
+          <div className="home__rooms-grid stagger" ref={roomsGridRef}>
             {rooms.map((room) => (
               <Link key={room.id} to={`/rooms/${room.id}`} className="home__room-card reveal">
                 <div className="home__room-card-img">
@@ -175,12 +179,12 @@ export default function HomePage() {
 
       {/* Special Offers — light section */}
       <section className="home__offers" id="offers">
-        <div className="home__section-header reveal" ref={offersRef}>
+        <div className="home__section-header reveal" ref={offersHeaderRef}>
           <span className="home__eyebrow home__eyebrow--dark">Direct Bookings Only</span>
           <h2 className="home__section-title home__section-title--dark">Special Offers</h2>
           <p className="home__section-sub home__section-sub--dark">Exclusive deals you won't find anywhere else.</p>
         </div>
-        <div className="home__offers-grid stagger">
+        <div className="home__offers-grid stagger" ref={offersGridRef}>
           {OFFERS_PREVIEW.map((offer) => (
             <article key={offer.id} className="home__offer-card reveal">
               <div className="home__offer-badge">{offer.badge}</div>
@@ -197,12 +201,12 @@ export default function HomePage() {
 
       {/* Local Attractions — dark section */}
       <section className="home__attractions-preview" id="attractions">
-        <div className="home__section-header reveal" ref={attractionsRef}>
+        <div className="home__section-header reveal" ref={attractHeaderRef}>
           <span className="home__eyebrow">Explore Brighton</span>
           <h2 className="home__section-title">Local Attractions</h2>
           <p className="home__section-sub">Everything Brighton has to offer — right on your doorstep.</p>
         </div>
-        <div className="home__attractions-grid stagger">
+        <div className="home__attractions-grid stagger" ref={attractGridRef}>
           {[
             { cat: 'Beach & Seafront', walk: '2 min walk', name: 'Brighton Beach & Palace Pier', desc: 'Just two minutes on foot. Brighton\'s famous pebble beach and the Victorian Palace Pier with its funfair, restaurants, and arcades.' },
             { cat: 'Culture', walk: '10 min walk', name: 'Royal Pavilion', desc: 'A magnificent Regency-era palace built for King George IV, with extraordinary Indo-Saracenic architecture and beautifully restored interiors.' },
@@ -228,7 +232,7 @@ export default function HomePage() {
 
       {/* Reviews — light section */}
       <section className="home__reviews" id="reviews">
-        <div className="home__section-header reveal" ref={reviewsRef}>
+        <div className="home__section-header reveal" ref={reviewsHeaderRef}>
           <span className="home__eyebrow home__eyebrow--dark">What Guests Say</span>
           <h2 className="home__section-title home__section-title--dark">Guest Reviews</h2>
           <div className="home__reviews-avg">
@@ -237,7 +241,7 @@ export default function HomePage() {
             <span className="home__reviews-label">average · 6 reviews</span>
           </div>
         </div>
-        <div className="home__reviews-grid stagger">
+        <div className="home__reviews-grid stagger" ref={reviewsGridRef}>
           {REVIEWS_PREVIEW.map((r) => (
             <article key={r.id} className="home__review-card reveal">
               <Stars rating={r.rating} />
