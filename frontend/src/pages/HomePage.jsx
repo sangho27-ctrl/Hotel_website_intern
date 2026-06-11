@@ -139,7 +139,7 @@ export default function HomePage() {
           </div>
           <div className="home__about-image">
             <img
-              src="/storage/rooms/room3/room3.avif"
+              src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=900&q=80"
               alt="Colson House Brighton"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
@@ -198,7 +198,7 @@ export default function HomePage() {
                 <h3 className="home__offer-title">{offer.title}</h3>
                 <p className="home__offer-desc">{offer.description}</p>
                 <span className="home__offer-valid">{offer.valid}</span>
-                <Link to="/book" className="home__offer-btn">Book This Offer</Link>
+                <a href={brand.bookingUrl} className="home__offer-btn" target="_blank" rel="noopener noreferrer">Book This Offer</a>
               </div>
             </article>
           ))}

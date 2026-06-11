@@ -5,7 +5,7 @@ export default {
   phone: "+441273044306",
   email: "info@colsonhouse.co.uk",
   address: "17 Upper Rock Gardens, Brighton, BN2 1QE",
-  bookingUrl: "/book",
+  bookingUrl: "https://booking-directly.com/widgets/2FtcovmkVyAu40RKQAmygormLwDtQaaiPqUPvmBAmAEMHQRdo3lLtMhkIBSWY/properties",
   social: {
     instagram: "https://instagram.com/colsonhouse",
     facebook: "https://facebook.com/colsonhouse",

@@ -72,9 +72,9 @@ export default function Header() {
           </ul>
         </nav>
 
-        <Link to={brand.bookingUrl} className="header__book-btn">
+        <a href={brand.bookingUrl} className="header__book-btn" target="_blank" rel="noopener noreferrer">
           Book Now
-        </Link>
+        </a>
 
         <button
           className="header__hamburger"
@@ -109,13 +109,15 @@ export default function Header() {
             </NavLink>
           )
         ))}
-        <Link
-          to={brand.bookingUrl}
+        <a
+          href={brand.bookingUrl}
           className="header__mobile-book"
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}
         >
           Book Now
-        </Link>
+        </a>
       </nav>
     </header>
   )

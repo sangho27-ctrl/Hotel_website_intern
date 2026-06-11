@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, memo } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useCallback } from 'react'
+import { brand } from '../../config/brand'
 import './HeroSlider.css'
 
 const SLIDES = [
@@ -36,9 +36,10 @@ export default function HeroSlider() {
         <div
           key={src}
           className={`hero-slider__slide${i === current ? ' active' : ''}`}
-          style={{ backgroundImage: `url(${src})` }}
           aria-hidden={i !== current}
-        />
+        >
+          <img src={src} alt="" className="hero-slider__slide-img" loading={i === 0 ? 'eager' : 'lazy'} />
+        </div>
       ))}
 
       <div className="hero-slider__overlay" />
@@ -79,12 +80,16 @@ function HeroContent() {
         A boutique Georgian townhouse hotel in the heart of Brighton's Kemp Town
       </p>
       <div className="hero-slider__ctas">
-        <Link to="/rooms" className="hero-slider__btn hero-slider__btn--primary">
+        <a href="#rooms" className="hero-slider__btn hero-slider__btn--primary" onClick={(e) => {
+          e.preventDefault()
+          const el = document.getElementById('rooms')
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' })
+        }}>
           Explore Rooms
-        </Link>
-        <Link to="/book" className="hero-slider__btn hero-slider__btn--outline">
+        </a>
+        <a href={brand.bookingUrl} className="hero-slider__btn hero-slider__btn--outline" target="_blank" rel="noopener noreferrer">
           Book Now
-        </Link>
+        </a>
       </div>
     </div>
   )

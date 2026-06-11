@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { brand } from '../../config/brand'
 import './RoomCard.css'
 
 export default function RoomCard({ room, checkIn, checkOut }) {
   const [imgIndex, setImgIndex] = useState(0)
   const images = room.images ?? []
 
-  const bookUrl = checkIn && checkOut
-    ? `/book?room=${room.id}&check_in=${checkIn}&check_out=${checkOut}`
-    : `/book?room=${room.id}`
+  const bookUrl = brand.bookingUrl
 
   function prev(e) {
     e.preventDefault()
@@ -93,9 +92,9 @@ export default function RoomCard({ room, checkIn, checkOut }) {
           <Link to={`/rooms/${room.id}`} className="room-card__btn room-card__btn--outline">
             View Room
           </Link>
-          <Link to={bookUrl} className="room-card__btn room-card__btn--primary">
+          <a href={bookUrl} className="room-card__btn room-card__btn--primary" target="_blank" rel="noopener noreferrer">
             Book Now
-          </Link>
+          </a>
         </div>
       </div>
     </article>
