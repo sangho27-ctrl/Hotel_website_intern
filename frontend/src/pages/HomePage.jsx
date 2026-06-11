@@ -18,6 +18,7 @@ export default function HomePage() {
   })
   const featuresRef = useReveal()
   const aboutRef = useReveal()
+  const ctaRef = useReveal()
 
   return (
     <div className="home">
@@ -42,10 +43,10 @@ export default function HomePage() {
       </section>
 
       {/* Features strip */}
-      <section className="home__features" ref={featuresRef}>
-        <div className="home__features-inner reveal stagger">
+      <section className="home__features">
+        <div className="home__features-inner stagger" ref={featuresRef}>
           {FEATURES.map((f) => (
-            <div key={f.title} className="home__feature reveal">
+            <div key={f.title} className="home__feature home__feature-anim">
               <span className="home__feature-icon">{f.icon}</span>
               <h3 className="home__feature-title">{f.title}</h3>
               <p className="home__feature-desc">{f.desc}</p>
@@ -75,14 +76,14 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="home__about-image">
-            <div className="home__about-image-placeholder" />
+            <img src="/images/about.webp" alt="Inside Colson House Brighton" loading="lazy" />
           </div>
         </div>
       </section>
 
       {/* CTA Banner */}
       <section className="home__cta-banner">
-        <div className="home__cta-banner-inner reveal">
+        <div className="home__cta-banner-inner reveal" ref={ctaRef}>
           <span className="home__eyebrow">Ready to visit?</span>
           <h2 className="home__cta-title">Book Your Stay in Brighton</h2>
           <Link to="/book" className="home__hero-btn home__hero-btn--primary">

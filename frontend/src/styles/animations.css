@@ -75,6 +75,20 @@
   transform: translateY(0);
 }
 
+/* When a .reveal container itself is revealed, show its direct .reveal children */
+.reveal.revealed > .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Direct reveal on elements that are themselves the observed target */
+.home__features-inner.revealed,
+.home__about-inner.revealed,
+.home__cta-banner-inner.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ─── Gold underline on links ─── */
 .gold-underline {
   position: relative;
