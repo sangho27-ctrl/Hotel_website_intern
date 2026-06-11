@@ -10,7 +10,6 @@ export default function RoomsPage() {
   const [error, setError] = useState(null)
   useSEO({ title: 'Our Rooms | Colson House Brighton', description: 'Browse our individually designed rooms at Colson House, a boutique hotel in Brighton\'s Kemp Town. Book direct for the best rate.' })
   const heroRef = useReveal()
-  const gridRef = useReveal()
 
   useEffect(() => {
     fetch('/api/rooms')
@@ -53,9 +52,9 @@ export default function RoomsPage() {
         )}
 
         {!loading && !error && rooms.length > 0 && (
-          <div className="rooms-page__grid stagger" ref={gridRef}>
-            {rooms.map((room) => (
-              <div key={room.id} className="reveal">
+          <div className="rooms-page__grid rooms-page__grid--loaded">
+            {rooms.map((room, i) => (
+              <div key={room.id} className="rooms-page__card-wrap" style={{ animationDelay: `${i * 80}ms` }}>
                 <RoomCard room={room} />
               </div>
             ))}

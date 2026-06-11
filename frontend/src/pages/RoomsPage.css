@@ -39,6 +39,17 @@
   gap: 28px;
 }
 
+/* Card entrance animation */
+.rooms-page__card-wrap {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: roomCardIn 0.55s ease forwards;
+}
+
+@keyframes roomCardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Skeleton */
 .rooms-page__skeleton {
   background-color: var(--color-card);
