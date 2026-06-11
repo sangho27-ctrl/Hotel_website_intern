@@ -3,8 +3,8 @@ import { useSearchParams } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
 import './BookingPage.css'
 
-// Replace with actual FreeToBook widget URL from dashboard → Booking Button
-const FTB_WIDGET_URL = 'https://booking-directly.com/widgets/2FtcovmkVyAu40RKQAmygormLwDtQaaiPqUPvmBAmAEMHQRdo3lLtMhkIBSWY/properties'
+const FTB_ID    = '48235'
+const FTB_TOKEN = '2FtcovmkVyAu40RKQAmygormLwDtQaaiPqUPvmBAmAEMHQRdo3lLtMhkIBSWY'
 
 export default function BookingPage() {
   const [searchParams] = useSearchParams()
@@ -24,6 +24,14 @@ export default function BookingPage() {
       .catch(() => {})
   }, [roomId])
 
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://widget.freetobook.com/widget.js?v=20190925'
+    script.async = true
+    document.body.appendChild(script)
+    return () => document.body.removeChild(script)
+  }, [])
+
   return (
     <div className="booking-page">
       <div className="booking-page__hero">
@@ -37,24 +45,11 @@ export default function BookingPage() {
       </div>
 
       <div className="booking-page__widget-wrap">
-        {FTB_WIDGET_URL ? (
-          <iframe
-            src={FTB_WIDGET_URL}
-            title="Book at Colson House"
-            className="booking-page__iframe"
-            frameBorder="0"
-            scrolling="yes"
-            allowFullScreen
-          />
-        ) : (
-          <div className="booking-page__placeholder">
-            <p>Online booking coming soon.</p>
-            <p>
-              To book, please call <a href="tel:+441273044306">+44 1273 044 306</a> or email{' '}
-              <a href="mailto:info@colsonhouse.co.uk">info@colsonhouse.co.uk</a>
-            </p>
-          </div>
-        )}
+        <div
+          className="ftb-widget"
+          data-id={FTB_ID}
+          data-token={FTB_TOKEN}
+        />
       </div>
     </div>
   )
