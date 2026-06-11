@@ -112,8 +112,8 @@
 .mp-divider {
   height: 1px;
   background: #ffffff;
-  opacity: 0.12;
-  margin: 0;
+  opacity: 0.25;
+  margin: 0 40px;
 }
 
 /* ══ About ══ */
@@ -172,11 +172,13 @@
 /* ══ Section shared ══ */
 .mp-section {
   padding: 96px 40px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 .mp-section__head {
   text-align: center;
+  margin-bottom: 56px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 56px;
 }
 .mp-section__title {
@@ -193,11 +195,13 @@
 }
 
 /* ══ Rooms ══ */
-.mp-rooms { max-width: 1300px; }
+.mp-rooms { max-width: 100%; background: var(--color-bg); padding: 96px 40px; }
 .mp-rooms__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 .mp-rooms__card-wrap {
   opacity: 0;
@@ -209,6 +213,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 .mp-skeleton {
   background: var(--color-card);
