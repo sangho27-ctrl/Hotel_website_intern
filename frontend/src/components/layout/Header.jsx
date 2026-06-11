@@ -1,10 +1,31 @@
 import { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { brand } from '../../config/brand'
 import './Header.css'
 
+function scrollToSection(anchor) {
+  const el = document.getElementById(anchor)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  function handleNavClick(e, anchor) {
+    e.preventDefault()
+    setMenuOpen(false)
+    if (location.pathname === '/') {
+      scrollToSection(anchor)
+    } else {
+      // Navigate to homepage then scroll after render
+      navigate('/')
+      setTimeout(() => scrollToSection(anchor), 100)
+    }
+  }
 
   return (
     <header className="header">
@@ -32,22 +53,25 @@ export default function Header() {
         <nav>
           <ul className="header__nav">
             {brand.nav.map((item) => (
-              <li key={item.path}>
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) => isActive ? 'active' : ''}
-                  end={item.path === '/'}
+              <li key={item.anchor}>
+                <a
+                  href={`#${item.anchor}`}
+                  onClick={(e) => handleNavClick(e, item.anchor)}
                 >
                   {item.label}
-                </NavLink>
+                </a>
               </li>
             ))}
           </ul>
         </nav>
 
-        <Link to={brand.bookingUrl} className="header__book-btn">
+        <a
+          href="#contact"
+          className="header__book-btn"
+          onClick={(e) => handleNavClick(e, 'contact')}
+        >
           Book Now
-        </Link>
+        </a>
 
         <button
           className="header__hamburger"
@@ -62,23 +86,21 @@ export default function Header() {
 
       <nav className={`header__mobile-nav${menuOpen ? ' open' : ''}`}>
         {brand.nav.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) => isActive ? 'active' : ''}
-            end={item.path === '/'}
-            onClick={() => setMenuOpen(false)}
+          <a
+            key={item.anchor}
+            href={`#${item.anchor}`}
+            onClick={(e) => handleNavClick(e, item.anchor)}
           >
             {item.label}
-          </NavLink>
+          </a>
         ))}
-        <Link
-          to={brand.bookingUrl}
+        <a
+          href="#contact"
           className="header__mobile-book"
-          onClick={() => setMenuOpen(false)}
+          onClick={(e) => handleNavClick(e, 'contact')}
         >
           Book Now
-        </Link>
+        </a>
       </nav>
     </header>
   )

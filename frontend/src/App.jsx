@@ -4,12 +4,8 @@ import { AuthProvider } from './context/AuthContext'
 import Layout from './components/layout/Layout'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 
-const HomePage        = lazy(() => import('./pages/HomePage'))
-const RoomsPage       = lazy(() => import('./pages/RoomsPage'))
+const MainPage        = lazy(() => import('./pages/MainPage'))
 const RoomDetailPage  = lazy(() => import('./pages/RoomDetailPage'))
-const OffersPage      = lazy(() => import('./pages/OffersPage'))
-const ReviewsPage     = lazy(() => import('./pages/ReviewsPage'))
-const ContactPage     = lazy(() => import('./pages/ContactPage'))
 const LoginPage       = lazy(() => import('./pages/admin/LoginPage'))
 const DashboardPage   = lazy(() => import('./pages/admin/DashboardPage'))
 const RoomsAdminPage  = lazy(() => import('./pages/admin/RoomsAdminPage'))
@@ -42,20 +38,8 @@ function App() {
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* Public routes */}
-            <Route path="/"            element={<Layout><HomePage /></Layout>} />
-            <Route path="/rooms"       element={<Layout><RoomsPage /></Layout>} />
-            <Route path="/rooms/:id"   element={<Layout><RoomDetailPage /></Layout>} />
-            <Route path="/offers"      element={<Layout><OffersPage /></Layout>} />
-            <Route path="/reviews"     element={<Layout><ReviewsPage /></Layout>} />
-            <Route path="/contact"     element={<Layout><ContactPage /></Layout>} />
-            <Route path="/attractions" element={<Layout><Placeholder title="Local Attractions" /></Layout>} />
-            <Route path="/book"        element={<Layout><Placeholder title="Book Your Stay" /></Layout>} />
-            <Route path="/gallery"     element={<Layout><Placeholder title="Gallery" /></Layout>} />
-            <Route path="/checkin"     element={<Layout><Placeholder title="Check-In & Check-Out" /></Layout>} />
-            <Route path="/parking"     element={<Layout><Placeholder title="Parking" /></Layout>} />
-            <Route path="/terms"       element={<Layout><Placeholder title="Terms & Conditions" /></Layout>} />
-            <Route path="/privacy"     element={<Layout><Placeholder title="Privacy Policy" /></Layout>} />
-            <Route path="/cookies"     element={<Layout><Placeholder title="Cookie Policy" /></Layout>} />
+            <Route path="/"          element={<Layout><MainPage /></Layout>} />
+            <Route path="/rooms/:id" element={<Layout><RoomDetailPage /></Layout>} />
 
             {/* Admin routes */}
             <Route path="/admin/login" element={<LoginPage />} />
