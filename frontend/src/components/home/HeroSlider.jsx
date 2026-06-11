@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, memo } from 'react'
 import { Link } from 'react-router-dom'
 import './HeroSlider.css'
 
@@ -15,21 +15,20 @@ const SLIDES = [
 ]
 
 export default function HeroSlider() {
-  const [slides] = useState(SLIDES)
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
 
   const next = useCallback(() => {
-    setCurrent((c) => (c + 1) % slides.length)
-  }, [slides.length])
+    setCurrent((c) => (c + 1) % SLIDES.length)
+  }, [])
 
-  const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length)
+  const prev = useCallback(() => setCurrent((c) => (c - 1 + SLIDES.length) % SLIDES.length), [])
 
   useEffect(() => {
-    if (paused || slides.length < 2) return
+    if (paused || SLIDES.length < 2) return
     const t = setInterval(next, 5000)
     return () => clearInterval(t)
-  }, [paused, next, slides.length])
+  }, [paused, next])
 
   return (
     <section
@@ -37,7 +36,7 @@ export default function HeroSlider() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {slides.map((src, i) => (
+      {SLIDES.map((src, i) => (
         <div
           key={src}
           className={`hero-slider__slide${i === current ? ' active' : ''}`}
@@ -50,7 +49,7 @@ export default function HeroSlider() {
 
       <HeroContent />
 
-      {slides.length > 1 && (
+      {SLIDES.length > 1 && (
         <>
           <button className="hero-slider__arrow hero-slider__arrow--prev" onClick={prev} aria-label="Previous">
             ‹
@@ -60,7 +59,7 @@ export default function HeroSlider() {
           </button>
 
           <div className="hero-slider__dots">
-            {slides.map((_, i) => (
+            {SLIDES.map((_, i) => (
               <button
                 key={i}
                 className={`hero-slider__dot${i === current ? ' active' : ''}`}

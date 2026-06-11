@@ -4,8 +4,17 @@ import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
 import './RoomsPage.css'
 
-const today    = new Date().toISOString().split('T')[0]
-const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0]
+const MS_PER_DAY = 86400000
+const today = new Date().toISOString().split('T')[0]
+
+function fetchRooms(url, setRooms, setLoading, setError) {
+  setLoading(true)
+  setError(null)
+  fetch(url)
+    .then((r) => { if (!r.ok) throw new Error('Failed to load rooms'); return r.json() })
+    .then((data) => { setRooms(data); setLoading(false) })
+    .catch((err) => { setError(err.message); setLoading(false) })
+}
 
 export default function RoomsPage() {
   const [rooms, setRooms]       = useState([])
@@ -25,25 +34,15 @@ export default function RoomsPage() {
   const gridRef = useReveal()
 
   useEffect(() => {
-    fetch('/api/rooms')
-      .then((r) => { if (!r.ok) throw new Error('Failed to load rooms'); return r.json() })
-      .then((data) => { setRooms(data); setLoading(false) })
-      .catch((err) => { setError(err.message); setLoading(false) })
+    fetchRooms('/api/rooms', setRooms, setLoading, setError)
   }, [])
 
   function handleSearch(e) {
     e.preventDefault()
     if (!checkIn || !checkOut) return
-
-    setLoading(true)
-    setError(null)
     setSearched(true)
-
     const params = new URLSearchParams({ check_in: checkIn, check_out: checkOut, guests })
-    fetch(`/api/rooms/available?${params}`)
-      .then((r) => { if (!r.ok) throw new Error('Search failed'); return r.json() })
-      .then((data) => { setRooms(data); setLoading(false) })
-      .catch((err) => { setError(err.message); setLoading(false) })
+    fetchRooms(`/api/rooms/available?${params}`, setRooms, setLoading, setError)
   }
 
   function handleReset() {
@@ -51,16 +50,11 @@ export default function RoomsPage() {
     setCheckOut('')
     setGuests(1)
     setSearched(false)
-    setLoading(true)
-    setError(null)
-    fetch('/api/rooms')
-      .then((r) => r.json())
-      .then((data) => { setRooms(data); setLoading(false) })
-      .catch((err) => { setError(err.message); setLoading(false) })
+    fetchRooms('/api/rooms', setRooms, setLoading, setError)
   }
 
   const nights = checkIn && checkOut
-    ? Math.max(0, Math.round((new Date(checkOut) - new Date(checkIn)) / 86400000))
+    ? Math.max(0, Math.round((new Date(checkOut) - new Date(checkIn)) / MS_PER_DAY))
     : 0
 
   return (

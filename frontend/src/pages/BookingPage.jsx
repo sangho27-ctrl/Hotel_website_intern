@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import './BookingPage.css'
 
-function getToday() { return new Date().toISOString().split('T')[0] }
-function getTomorrow() { return new Date(new Date().getTime() + 86400000).toISOString().split('T')[0] }
+const MS_PER_DAY = 86400000
+const today    = new Date().toISOString().split('T')[0]
+const tomorrow = new Date(Date.now() + MS_PER_DAY).toISOString().split('T')[0]
 
 export default function BookingPage() {
   const [searchParams] = useSearchParams()
@@ -13,9 +14,6 @@ export default function BookingPage() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-
-  const today    = getToday()
-  const tomorrow = getTomorrow()
 
   const [form, setForm] = useState({
     check_in: searchParams.get('check_in') || today,

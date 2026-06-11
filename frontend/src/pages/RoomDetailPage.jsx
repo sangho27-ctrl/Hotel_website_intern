@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { useSEO } from '../hooks/useSEO'
 import './RoomDetailPage.css'
 
 export default function RoomDetailPage() {
@@ -9,6 +10,11 @@ export default function RoomDetailPage() {
   const [error, setError] = useState(null)
   const [lightbox, setLightbox] = useState(null)
   const [activeImg, setActiveImg] = useState(0)
+
+  useSEO({
+    title: room ? `${room.name} | Colson House Brighton` : 'Room | Colson House Brighton',
+    description: room?.description ?? '',
+  })
 
   useEffect(() => {
     fetch(`/api/rooms/${id}`)
