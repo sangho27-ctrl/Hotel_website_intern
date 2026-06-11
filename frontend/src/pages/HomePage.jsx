@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
 import HeroSlider from '../components/home/HeroSlider'
+import { brand } from '../config/brand'
 import { Landmark, Waves, MapPin } from 'lucide-react'
 import './HomePage.css'
 
@@ -47,12 +48,36 @@ export default function HomePage() {
   })
 
   const [rooms, setRooms] = useState([])
+  const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' })
+  const [contactStatus, setContactStatus] = useState(null)
+  const [contactSending, setContactSending] = useState(false)
   const featuresRef    = useReveal()
   const aboutRef       = useReveal()
   const roomsRef       = useReveal()
   const offersRef      = useReveal()
   const attractionsRef = useReveal()
   const reviewsRef     = useReveal()
+  const contactRef     = useReveal()
+
+  async function handleContactSubmit(e) {
+    e.preventDefault()
+    setContactSending(true)
+    setContactStatus(null)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(contactForm),
+      })
+      if (!res.ok) throw new Error()
+      setContactStatus('success')
+      setContactForm({ name: '', email: '', message: '' })
+    } catch {
+      setContactStatus('error')
+    } finally {
+      setContactSending(false)
+    }
+  }
 
   useEffect(() => {
     fetch('/api/rooms')
@@ -66,7 +91,7 @@ export default function HomePage() {
       <HeroSlider />
 
       {/* Features strip */}
-      <section className="home__features">
+      <section className="home__features" id="features">
         <div className="home__features-inner reveal stagger" ref={featuresRef}>
           {FEATURES.map((f) => {
             const Icon = f.icon
@@ -83,7 +108,7 @@ export default function HomePage() {
       </section>
 
       {/* About — light section */}
-      <section className="home__about">
+      <section className="home__about" id="about">
         <div className="home__about-inner reveal" ref={aboutRef}>
           <div className="home__about-text">
             <span className="home__eyebrow home__eyebrow--dark">Our Story</span>
@@ -114,7 +139,7 @@ export default function HomePage() {
 
       {/* Rooms Preview — dark section */}
       {rooms.length > 0 && (
-        <section className="home__rooms-preview">
+        <section className="home__rooms-preview" id="rooms">
           <div className="home__section-header reveal" ref={roomsRef}>
             <span className="home__eyebrow">Our Rooms</span>
             <h2 className="home__section-title">Each Room Individually Designed</h2>
@@ -149,7 +174,7 @@ export default function HomePage() {
       )}
 
       {/* Special Offers — light section */}
-      <section className="home__offers">
+      <section className="home__offers" id="offers">
         <div className="home__section-header reveal" ref={offersRef}>
           <span className="home__eyebrow home__eyebrow--dark">Direct Bookings Only</span>
           <h2 className="home__section-title home__section-title--dark">Special Offers</h2>
@@ -171,7 +196,7 @@ export default function HomePage() {
       </section>
 
       {/* Local Attractions — dark section */}
-      <section className="home__attractions-preview">
+      <section className="home__attractions-preview" id="attractions">
         <div className="home__section-header reveal" ref={attractionsRef}>
           <span className="home__eyebrow">Explore Brighton</span>
           <h2 className="home__section-title">Local Attractions</h2>
@@ -202,7 +227,7 @@ export default function HomePage() {
       </section>
 
       {/* Reviews — light section */}
-      <section className="home__reviews">
+      <section className="home__reviews" id="reviews">
         <div className="home__section-header reveal" ref={reviewsRef}>
           <span className="home__eyebrow home__eyebrow--dark">What Guests Say</span>
           <h2 className="home__section-title home__section-title--dark">Guest Reviews</h2>
@@ -226,14 +251,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact CTA — dark */}
-      <section className="home__cta-banner">
-        <div className="home__cta-banner-inner reveal">
-          <span className="home__eyebrow">Ready to visit?</span>
-          <h2 className="home__cta-title">Book Your Stay in Brighton</h2>
-          <Link to="/book" className="home__hero-btn home__hero-btn--primary">
-            Check Availability
-          </Link>
+      {/* Contact — dark section */}
+      <section className="home__contact" id="contact">
+        <div className="home__contact-inner reveal" ref={contactRef}>
+          <div className="home__contact-left">
+            <span className="home__eyebrow">Get in Touch</span>
+            <h2 className="home__section-title" style={{ textAlign: 'left', marginBottom: '32px' }}>
+              Contact Us
+            </h2>
+            <form className="home__contact-form" onSubmit={handleContactSubmit} noValidate>
+              <input
+                className="home__contact-input"
+                type="text"
+                placeholder="Name"
+                value={contactForm.name}
+                onChange={(e) => setContactForm(f => ({ ...f, name: e.target.value }))}
+                required
+              />
+              <input
+                className="home__contact-input"
+                type="email"
+                placeholder="Email"
+                value={contactForm.email}
+                onChange={(e) => setContactForm(f => ({ ...f, email: e.target.value }))}
+                required
+              />
+              <textarea
+                className="home__contact-input home__contact-textarea"
+                placeholder="Message"
+                rows={5}
+                value={contactForm.message}
+                onChange={(e) => setContactForm(f => ({ ...f, message: e.target.value }))}
+                required
+              />
+              {contactStatus === 'success' && (
+                <p className="home__contact-msg home__contact-msg--ok">Thank you — we'll be in touch shortly.</p>
+              )}
+              {contactStatus === 'error' && (
+                <p className="home__contact-msg home__contact-msg--err">Something went wrong. Please try again.</p>
+              )}
+              <button type="submit" className="home__contact-btn" disabled={contactSending}>
+                {contactSending ? 'Sending…' : 'Send Message'}
+              </button>
+            </form>
+          </div>
+
+          <div className="home__contact-right">
+            <h2 className="home__section-title" style={{ textAlign: 'left', marginBottom: '28px' }}>
+              Find Us
+            </h2>
+            <ul className="home__contact-info">
+              <li><span>Address</span><span>{brand.address}</span></li>
+              <li><span>Phone</span><a href={`tel:${brand.phone}`}>{brand.phone}</a></li>
+              <li><span>Email</span><a href={`mailto:${brand.email}`}>{brand.email}</a></li>
+              <li><span>Check-in</span><span>From 3:00 pm</span></li>
+              <li><span>Check-out</span><span>By 11:00 am</span></li>
+            </ul>
+            <div className="home__contact-map">
+              <iframe
+                title="Colson House location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.5!2d-0.1194!3d50.8193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDQ5JzA5LjUiTiAwwrAwNyc0OS44Ilc!5e0!3m2!1sen!2suk!4v1"
+                width="100%"
+                height="220"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
         </div>
       </section>
     </div>

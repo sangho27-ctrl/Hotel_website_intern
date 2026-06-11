@@ -1,23 +1,44 @@
 import { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom'
 import { brand } from '../../config/brand'
-import colsonLogo from '../../assets/logos/Logo_Colson.avif'
 import './Header.css'
+
+function scrollToSection(hash) {
+  const offset = 80
+  const el = document.getElementById(hash)
+  if (!el) return
+  const top = el.getBoundingClientRect().top + window.scrollY - offset
+  window.scrollTo({ top, behavior: 'smooth' })
+}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const navigate   = useNavigate()
+  const location   = useLocation()
+
+  function handleNavClick(e, item) {
+    if (!item.hash) return
+    e.preventDefault()
+    setMenuOpen(false)
+    if (location.pathname === '/') {
+      scrollToSection(item.hash)
+    } else {
+      navigate('/')
+      setTimeout(() => scrollToSection(item.hash), 350)
+    }
+  }
 
   return (
     <header className="header">
       <div className="header__topbar">
-        <span className="header__topbar-item">
+        <a href={`tel:${brand.phone}`} className="header__topbar-item header__topbar-link">
           <span className="header__topbar-icon">✆</span>
           {brand.phone}
-        </span>
-        <span className="header__topbar-item">
+        </a>
+        <a href={`mailto:${brand.email}`} className="header__topbar-item header__topbar-link">
           <span className="header__topbar-icon">✉</span>
           {brand.email}
-        </span>
+        </a>
         <span className="header__topbar-item">
           <span className="header__topbar-icon">◎</span>
           {brand.address}
@@ -26,20 +47,26 @@ export default function Header() {
 
       <div className="header__main">
         <Link to="/" className="header__logo">
-          <img src={colsonLogo} alt={brand.name} className="header__logo-img" />
+          <span className="header__logo-name">{brand.name}</span>
+          <span className="header__logo-subtitle">{brand.subtitle}</span>
         </Link>
 
         <nav>
           <ul className="header__nav">
             {brand.nav.map((item) => (
-              <li key={item.path}>
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) => isActive ? 'active' : ''}
-                  end={item.path === '/'}
-                >
-                  {item.label}
-                </NavLink>
+              <li key={item.label}>
+                {item.hash ? (
+                  <a
+                    href={`#${item.hash}`}
+                    onClick={(e) => handleNavClick(e, item)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <NavLink to={item.path} end className={({ isActive }) => isActive ? 'active' : ''}>
+                    {item.label}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>
@@ -62,15 +89,25 @@ export default function Header() {
 
       <nav className={`header__mobile-nav${menuOpen ? ' open' : ''}`}>
         {brand.nav.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) => isActive ? 'active' : ''}
-            end={item.path === '/'}
-            onClick={() => setMenuOpen(false)}
-          >
-            {item.label}
-          </NavLink>
+          item.hash ? (
+            <a
+              key={item.label}
+              href={`#${item.hash}`}
+              onClick={(e) => handleNavClick(e, item)}
+            >
+              {item.label}
+            </a>
+          ) : (
+            <NavLink
+              key={item.label}
+              to={item.path}
+              end
+              className={({ isActive }) => isActive ? 'active' : ''}
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.label}
+            </NavLink>
+          )
         ))}
         <Link
           to={brand.bookingUrl}

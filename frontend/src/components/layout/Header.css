@@ -29,6 +29,14 @@
   font-size: 13px;
 }
 
+.header__topbar-link {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  transition: color 0.2s;
+}
+
+.header__topbar-link:hover { color: var(--color-accent); }
+
 /* Main header */
 .header__main {
   display: flex;
@@ -43,29 +51,23 @@
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  line-height: 1.15;
+  line-height: 1.2;
   flex-shrink: 0;
-}
-
-.header__logo-img {
-  height: 48px;
-  width: auto;
-  object-fit: contain;
 }
 
 .header__logo-name {
   font-family: var(--font-heading);
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--color-text);
   white-space: nowrap;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .header__logo-subtitle {
   font-family: var(--font-body);
   font-size: 9px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-accent);
   letter-spacing: 5px;
   text-transform: uppercase;

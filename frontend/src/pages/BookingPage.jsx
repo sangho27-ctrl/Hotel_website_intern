@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
 import './BookingPage.css'
 
@@ -50,8 +50,13 @@ export default function BookingPage() {
     if (val >= checkOut) setCheckOut(toYMD(addDays(new Date(val), 1)))
   }
 
+  const roomImg = room
+    ? (room.images?.[0] || `/storage/rooms/room${room.id}/room${room.id}.avif`)
+    : null
+
   return (
     <div className="booking-page">
+      {/* Hero */}
       <div className="booking-page__hero">
         <span className="booking-page__eyebrow">Colson House · Brighton</span>
         <h1 className="booking-page__title">Book Your Stay</h1>
@@ -62,49 +67,95 @@ export default function BookingPage() {
         )}
       </div>
 
-      <div className="booking-page__widget-wrap">
-        <form
-          className="ftb-custom-form"
-          action={FTB_ACTION}
-          method="post"
-          target="_blank"
-        >
-          <input type="hidden" name="w_id"   value={FTB_ID} />
-          <input type="hidden" name="w_tkn"  value={FTB_TOKEN} />
-          <input type="hidden" name="check_in_date"  value={checkIn} />
-          <input type="hidden" name="check_out_date" value={checkOut} />
-          <input type="hidden" name="stay_length"    value={stayLength} />
+      {/* Content */}
+      <div className="booking-page__content">
 
-          <div className="ftb-custom-form__fields">
-            <label className="ftb-custom-form__field">
-              <span>Check-in</span>
-              <input
-                type="date"
-                value={checkIn}
-                min={toYMD(new Date())}
-                onChange={handleCheckInChange}
-              />
-            </label>
+        {/* FreeToBook form */}
+        <div className="ftb-card">
+          <div className="ftb-card__header">
+            <span className="ftb-card__eyebrow">Direct Booking</span>
+            <h2 className="ftb-card__title">Check Availability</h2>
+          </div>
 
-            <label className="ftb-custom-form__field">
-              <span>Check-out</span>
-              <input
-                type="date"
-                value={checkOut}
-                min={toYMD(addDays(new Date(checkIn), 1))}
-                onChange={(e) => setCheckOut(e.target.value)}
-              />
-            </label>
+          <form
+            className="ftb-card__body"
+            action={FTB_ACTION}
+            method="post"
+            target="_blank"
+          >
+            <input type="hidden" name="w_id"            value={FTB_ID} />
+            <input type="hidden" name="w_tkn"           value={FTB_TOKEN} />
+            <input type="hidden" name="check_in_date"   value={checkIn} />
+            <input type="hidden" name="check_out_date"  value={checkOut} />
+            <input type="hidden" name="stay_length"     value={stayLength} />
 
-            <div className="ftb-custom-form__nights">
-              {stayLength} night{stayLength !== 1 ? 's' : ''}
+            <div className="ftb-card__row">
+              <div className="ftb-field">
+                <span className="ftb-field__label">Check-in</span>
+                <input
+                  type="date"
+                  value={checkIn}
+                  min={toYMD(new Date())}
+                  onChange={handleCheckInChange}
+                />
+              </div>
+              <div className="ftb-field">
+                <span className="ftb-field__label">Check-out</span>
+                <input
+                  type="date"
+                  value={checkOut}
+                  min={toYMD(addDays(new Date(checkIn), 1))}
+                  onChange={(e) => setCheckOut(e.target.value)}
+                />
+              </div>
             </div>
 
-            <button type="submit" className="ftb-custom-form__btn">
+            <div className="ftb-nights">
+              <strong>{stayLength}</strong> night{stayLength !== 1 ? 's' : ''}
+            </div>
+
+            <button type="submit" className="ftb-submit-btn">
               Check Availability
             </button>
-          </div>
-        </form>
+
+            <p className="ftb-note">
+              You'll be taken to our secure booking portal to complete your reservation.
+              Best rate guaranteed when booking direct.
+            </p>
+          </form>
+        </div>
+
+        {/* Room summary sidebar */}
+        <aside className="booking-page__summary">
+          {room ? (
+            <>
+              {roomImg ? (
+                <img
+                  src={roomImg}
+                  alt={room.name}
+                  className="booking-page__room-img"
+                  onError={(e) => { e.target.style.display = 'none' }}
+                />
+              ) : (
+                <div className="booking-page__room-img-placeholder">No image</div>
+              )}
+              <div className="booking-page__summary-body">
+                <h3>{room.name}</h3>
+                {room.size && <p className="booking-page__summary-size">{room.size} m²</p>}
+                <p className="booking-page__price">
+                  £{room.price} <small>/ night</small>
+                </p>
+              </div>
+            </>
+          ) : (
+            <div className="booking-page__no-room">
+              <p>No room selected. Browse our rooms to find your perfect stay.</p>
+              <Link to="/rooms" className="booking-page__browse-link">
+                View All Rooms
+              </Link>
+            </div>
+          )}
+        </aside>
       </div>
     </div>
   )

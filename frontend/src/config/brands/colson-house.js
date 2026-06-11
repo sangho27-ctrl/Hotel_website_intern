@@ -11,12 +11,12 @@ export default {
     facebook: "https://facebook.com/colsonhouse",
   },
   nav: [
-    { label: "Home", path: "/" },
-    { label: "Our Rooms", path: "/rooms" },
-    { label: "Offers", path: "/offers" },
-    { label: "Local Attractions", path: "/attractions" },
-    { label: "Reviews", path: "/reviews" },
-    { label: "Contact", path: "/contact" },
+    { label: "Home",              path: "/" },
+    { label: "Our Rooms",         path: "/rooms",       hash: "rooms" },
+    { label: "Offers",            path: "/offers",      hash: "offers" },
+    { label: "Local Attractions", path: "/attractions", hash: "attractions" },
+    { label: "Reviews",           path: "/reviews",     hash: "reviews" },
+    { label: "Contact",           path: "/contact",     hash: "contact" },
   ],
   footer: {
     explore: [

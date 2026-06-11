@@ -544,27 +544,102 @@
   color: var(--color-text-muted-on-light);
 }
 
-/* ─── CTA Banner (dark) ─── */
-.home__cta-banner {
-  background-color: var(--color-card);
+/* ─── Contact (dark) ─── */
+.home__contact {
+  background-color: var(--color-bg);
   border-top: 1px solid var(--color-border);
   padding: 96px 40px;
-  text-align: center;
 }
 
-.home__cta-banner-inner {
-  max-width: 600px;
+.home__contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-.home__cta-title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 700;
-  color: var(--color-text);
-  margin-bottom: 32px;
-  line-height: 1.2;
+.home__contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
+
+.home__contact-input {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.home__contact-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.home__contact-input::placeholder { color: var(--color-text-muted); }
+
+.home__contact-textarea { resize: vertical; min-height: 120px; }
+
+.home__contact-btn {
+  padding: 14px;
+  background: var(--color-accent);
+  color: var(--color-text-dark);
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.home__contact-btn:hover:not(:disabled) { opacity: 0.85; }
+.home__contact-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.home__contact-msg { font-size: 13px; padding: 10px 0; }
+.home__contact-msg--ok  { color: #7db87d; }
+.home__contact-msg--err { color: #e07070; }
+
+.home__contact-info {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.home__contact-info li {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.home__contact-info li span:first-child {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-text-muted);
+  min-width: 80px;
+  padding-top: 1px;
+}
+
+.home__contact-info li span:last-child,
+.home__contact-info li a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.home__contact-info li a:hover { color: var(--color-accent); }
+
+.home__contact-map iframe { display: block; }
 
 /* ─── Responsive ─── */
 @media (max-width: 1024px) {
@@ -583,9 +658,10 @@
   .home__offers,
   .home__attractions-preview,
   .home__reviews,
-  .home__cta-banner      { padding: 64px 20px; }
+  .home__contact         { padding: 64px 20px; }
   .home__rooms-grid      { grid-template-columns: 1fr; }
   .home__offers-grid     { grid-template-columns: 1fr; }
   .home__attractions-grid { grid-template-columns: 1fr; }
   .home__reviews-grid    { grid-template-columns: 1fr; }
+  .home__contact-inner   { grid-template-columns: 1fr; gap: 48px; }
 }
