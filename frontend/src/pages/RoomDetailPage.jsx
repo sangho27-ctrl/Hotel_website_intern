@@ -14,7 +14,7 @@ export default function RoomDetailPage() {
   const [lightbox, setLightbox] = useState(null)
 
   useSEO({
-    title: room ? `${room.name} | Colson House Brighton` : 'Room | Colson House Brighton',
+    title: room ? `${room.name} | Brighton Inn Brighton` : 'Room | Brighton Inn Brighton',
     description: room?.description ?? '',
   })
 

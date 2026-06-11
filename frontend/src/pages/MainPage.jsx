@@ -26,7 +26,7 @@ const ATTRACTIONS = [
     id: 3,
     category: 'Shopping',
     name: 'The Lanes & North Laine',
-    desc: 'Brighton\'s famous maze of independent boutiques, antique shops, cafés, and jewellers — all within easy walking distance of Colson House.',
+    desc: 'Brighton\'s famous maze of independent boutiques, antique shops, cafés, and jewellers — all within easy walking distance of Brighton Inn.',
     distance: '8 min walk',
   },
   {
@@ -47,7 +47,7 @@ const ATTRACTIONS = [
     id: 6,
     category: 'Food & Drink',
     name: 'Kemp Town Village',
-    desc: 'Colson House sits in the heart of Kemp Town — Brighton\'s most characterful neighbourhood, packed with independent restaurants, bars, and delis.',
+    desc: 'Brighton Inn sits in the heart of Kemp Town — Brighton\'s most characterful neighbourhood, packed with independent restaurants, bars, and delis.',
     distance: 'On your doorstep',
   },
 ]
@@ -71,7 +71,7 @@ const REVIEWS = [
   { id: 3, author: 'Charlotte B.', rating: 5, date: 'January 2026', source: 'TripAdvisor', text: 'Such a gem in Brighton. The Georgian architecture is stunning and the rooms feel authentic without sacrificing any modern comforts. Quiet, stylish, and perfectly located.' },
   { id: 4, author: 'Tom H.', rating: 4, date: 'December 2025', source: 'Google', text: 'Really lovely boutique hotel. Stayed for two nights over Christmas and felt very well looked after. The room overlooking the garden was peaceful and cosy.' },
   { id: 5, author: 'Priya K.', rating: 5, date: 'November 2025', source: 'Booking.com', text: 'One of the best boutique hotels I\'ve stayed in. Everything was immaculate, the location is unbeatable, and the personal touches made all the difference. Highly recommended.' },
-  { id: 6, author: 'David & Sue L.', rating: 5, date: 'October 2025', source: 'TripAdvisor', text: 'We have stayed at Colson House three times now and it never disappoints. Feels like a home away from home. The Brighton Suite is exceptional — treat yourself.' },
+  { id: 6, author: 'David & Sue L.', rating: 5, date: 'October 2025', source: 'TripAdvisor', text: 'We have stayed at Brighton Inn three times now and it never disappoints. Feels like a home away from home. The Brighton Suite is exceptional — treat yourself.' },
 ]
 
 function Stars({ rating }) {
@@ -133,8 +133,8 @@ function ContactForm() {
 /* ─── Main page ─── */
 export default function MainPage() {
   useSEO({
-    title: 'Colson House Brighton | Boutique Hotel in Kemp Town',
-    description: 'Colson House is a boutique Georgian townhouse hotel in Brighton\'s Kemp Town, one street from the seafront. Book direct for the best rates.',
+    title: 'Brighton Inn Brighton | Boutique Hotel in Kemp Town',
+    description: 'Brighton Inn is a boutique Georgian townhouse hotel in Brighton\'s Kemp Town, one street from the seafront. Book direct for the best rates.',
   })
 
   const [rooms, setRooms] = useState([])
@@ -157,7 +157,7 @@ export default function MainPage() {
         <div className="mp-hero__overlay" />
         <div className="mp-hero__content">
           <span className="mp-hero__eyebrow">Brighton · Est. 1997</span>
-          <h1 className="mp-hero__title">Welcome to<br />Colson House</h1>
+          <h1 className="mp-hero__title">Welcome to<br />Brighton Inn</h1>
           <p className="mp-hero__sub">A boutique Georgian townhouse hotel in the heart of Brighton's Kemp Town</p>
           <div className="mp-hero__ctas">
             <a href="#rooms" className="mp-btn mp-btn--primary">Explore Rooms</a>
@@ -186,12 +186,12 @@ export default function MainPage() {
           <div className="mp-about__text">
             <span className="mp-eyebrow">Our Story</span>
             <h2 className="mp-about__title">A Home Away from Home in Brighton</h2>
-            <p className="mp-about__body">Colson House has been welcoming guests to Brighton since 1997. Set in a beautifully preserved Georgian townhouse, just one street from the seafront, we offer a warm and personal alternative to the big hotels.</p>
+            <p className="mp-about__body">Brighton Inn has been welcoming guests to Brighton since 1997. Set in a beautifully preserved Georgian townhouse, just one street from the seafront, we offer a warm and personal alternative to the big hotels.</p>
             <p className="mp-about__body">Each of our individually designed rooms combines original period features with modern comforts. From the sweeping Brighton Suite to the peaceful Garden Room, every stay is a little different.</p>
             <a href="#rooms" className="mp-about__link">View Our Rooms →</a>
           </div>
           <div className="mp-about__image">
-            <img src="/images/about.webp" alt="Inside Colson House Brighton" loading="lazy" />
+            <img src="/images/about.webp" alt="Inside Brighton Inn Brighton" loading="lazy" />
           </div>
         </div>
       </section>
@@ -202,7 +202,7 @@ export default function MainPage() {
       {/* ══════════════ ROOMS ══════════════ */}
       <section id="rooms" className="mp-section mp-rooms">
         <div className="mp-section__head">
-          <span className="mp-eyebrow">Colson House · Brighton</span>
+          <span className="mp-eyebrow">Brighton Inn · Brighton</span>
           <h2 className="mp-section__title">Our Rooms</h2>
           <p className="mp-section__sub">Each room individually designed — period charm with modern comforts</p>
         </div>
@@ -327,7 +327,7 @@ export default function MainPage() {
             </ul>
             <div className="mp-contact__map">
               <iframe
-                title="Colson House location"
+                title="Brighton Inn location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.5!2d-0.1194!3d50.8193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDQ5JzA5LjUiTiAwwrAwNyc0OS44Ilc!5e0!3m2!1sen!2suk!4v1"
                 width="100%" height="260" style={{ border: 0 }}
                 allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
