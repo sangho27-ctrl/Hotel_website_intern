@@ -44,6 +44,7 @@
   opacity: 0;
   transform: translateY(24px);
   animation: roomCardIn 0.55s ease forwards;
+  height: 100%;
 }
 
 @keyframes roomCardIn {
