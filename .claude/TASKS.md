@@ -78,31 +78,232 @@ Full checklist before going live — broken links, Lighthouse scores, Google Sea
 ---
 
 ### 8.2 change information
-STT	Image file's name	Type of image	Room's name 	Description	Tiện nghi (Amenities)
-1	"room1
-room1_1 -> room1_9"	WEBP	"
-Room 1, Deluxe Double Room"	Guests will have a special experience as this double room offers a fireplace. Offering free toiletries, this double room includes a private bathroom with a shower and a hairdryer. This double room features a seating area, a wardrobe, flat-screen TV. The unit offers 1 bed.	ALL bedrooms Non Smoking • ALL Rooms Non-Smoking • Broadband/High Speed Internet Access • Central Heating • Daily Housekeeping • Designer Toiletries • Egyptian Cotton Linen • Electric Shaver Point • En Suite • LCD/Plasma Television • Remote Control TV • Shower EnSuite • Tea/Coffee • TV In Room • Wash Hand Basin EnSuite • WC EnSuite • WI-FI Internet Access • Wifi Free • Windows open • Complimentary Toiletries • Digital Television Channels • Flat Screen TV • Fridge • Linen & Towels Supplied • Private Bathroom • Work Desk
-2	"room2
-room2_1 -> room2_12"	WEBP	Room 2, Four Poster Room	Guests will have a special experience as this double room offers a fireplace. Offering free toiletries, this double room includes a private bathroom with a shower and a hairdryer. This double room features a seating area, a wardrobe, flat-screen TV, as well as chocolate for guests. The unit offers a four poster bed.	ALL bedrooms Non Smoking • ALL Rooms Non-Smoking • Broadband/High Speed Internet Access • Central Heating • Complimentary Toiletries • Daily Housekeeping • Designer Toiletries • Digital Television Channels • Egyptian Cotton Linen • En Suite • Flat Screen TV • Four Poster Bed • Fridge • Private Bathroom • Shower EnSuite • Tea/Coffee • Television • TV In Room • Wash Hand Basin EnSuite • WC EnSuite • WI-FI Internet Access • Wifi Free • Windows open
-3	"room3
-room3_1 -> room3_18"	WEBP	Room3, Standard Double	Featuring free toiletries, this double room includes a private bathroom with a shower and a hairdryer. This double room has a wardrobe, an electric kettle, flat-screen TV, as well as chocolate for guests. The unit has 1 bed.	Central Heating • Daily Housekeeping • Egyptian Cotton Linen • Flat Screen TV • Fridge • Kettle • Private Bathroom • Shower EnSuite • Tea/Coffee • Television • TV In Room • Wash Hand Basin EnSuite • WC EnSuite • WI-FI Internet Access • Wifi Free • Windows open • Work Desk
-4	"room4
-room4_1 -> room4_13"	WEBP	Room 4, Deluxe Balcony Room	This double room provides a fireplace. A seating area with a flat-screen TV, a desk, a balcony and a private bathroom are provided in this double room. The unit offers 1 bed.	ALL bedrooms Non Smoking • ALL Rooms Non-Smoking • Balcony • Broadband/High Speed Internet Access • Central Heating • Complimentary Toiletries • Daily Housekeeping • Designer Toiletries • Egyptian Cotton Linen • Flat Screen TV • Fridge • Kettle • Linen & Towels Supplied • Private Bathroom • Remote Control TV • Shower EnSuite • Tea/Coffee • Television • TV In Room • Wash Hand Basin EnSuite • WC EnSuite • WI-FI Internet Access • Wifi Free • Windows open
-5	"room5
-room5_1 -> room5_15"	WEBP	Room 5, Standard Double	Featuring free toiletries, this double room includes a private bathroom with a shower and a hairdryer. This double room has a wardrobe, an electric kettle, flat-screen TV, as well as chocolate for guests. The unit has 1 bed.	ALL bedrooms Non Smoking • ALL Rooms Non-Smoking • Broadband/High Speed Internet Access • Complimentary Toiletries • Daily Housekeeping • Designer Toiletries • Digital Television Channels • Egyptian Cotton Linen • Flat Screen TV • Fridge • Kettle • Linen & Towels Supplied • Shower EnSuite • Tea/Coffee • Wash Hand Basin EnSuite • WI-FI Internet Access • Wifi Free • Windows open • Work Desk with Lamp
-6	"room6
-room6_1 -> room6_20"	WEBP	Room 6, Deluxe Double	Offering free toiletries, this double room includes a private bathroom with a shower and a hairdryer. This double room features a seating area, a wardrobe, flat-screen TV, as well as chocolate for guests. The unit offers 1 bed.	ALL bedrooms Non Smoking • ALL Rooms Non-Smoking • Broadband/High Speed Internet Access • Complimentary Toiletries • Daily Housekeeping • Designer Toiletries • Electric Shaver Point • En Suite • Flat Screen TV • Fridge • Kettle • Linen & Towels Supplied • Private Bathroom • Remote Control TV • Shower EnSuite • Tea/Coffee • Wash Hand Basin EnSuite • WC EnSuite • WI-FI Internet Access • Wifi Free • Windows open • Work Desk
-7	"room7
-room7_1 -> room7_5"	WEBP	Room 7, Small Single	A TV, DVD player and tea/coffee making facilities are featured in this room.	"ALL bedrooms Non Smoking • ALL Rooms Non-Smoking • Broadband/High Speed Internet Access • Central Heating • Complimentary Toiletries • Daily Housekeeping • Designer Toiletries • Desk Chair • Egyptian Cotton Linen • Electric Shaver Point • En Suite • Heating Throughout Property • TV In Room • Wash Hand Basin EnSuite • WC EnSuite • WI-FI Internet Access • Wifi Free • Windows open • Work Desk
+STT	Image file's name	Room's name 	Description	Tiện nghi (Amenities)
+1	"rroom0
+rroom0_1 -> rroom0_31"	Room 0, Deluxe king room	Room 0 Deluxe Ground Floor King Room - 18m2. This light and airy ground floor room is beautifully decorated and full to the brim with boutique/high end fixtures and fittings to make your stay more enjoyable. It comes with the following amenities. Super comfy Kingsize bed, egyptian cotton linen, 32" smart led tv, wifi (high speed), ensuite wetroom with underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.	"Alarm Clock
+ALL bedrooms Non Smoking
+Broadband/High Speed Internet Access
+CD Player
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+Designer Toiletries
+Duvet
+DVD Library
+DVD Player
+Egyptian Cotton Linen
+Electric Shaver Point
+En Suite
+Flat Screen TV
+Fridge
+Full-Length Mirror
+Hair Dryer In Room
+Hairdryer
+Heating Throughout Property
+Internet via TV
+Ironing Facilities
+Kettle
+King Size Bed
+Linen & Towels Supplied
+Make Up Mirror
+Private Bathroom
+Radio
+Remote Control TV
+Shower EnSuite
+Tea/Coffee
+Television
+WC EnSuite
+WI-FI Internet Access
+Wifi Free
+Windows open"
+2	"rroom1
+rroom1_1 -> room1_15"	Room 1, luxurious small double	"Room 1 Compact Double - 10m2. This room is small but beautifully formed. Situated on the first floor at the rear of the house this room comes with the following amenities. Super comfy double bed, egyptian cotton linen, lcd tv, wifi(high speed), ensuite wetroom with underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.
 
-
+"	"Alarm Clock
+ALL bedrooms Non Smoking
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+Designer Toiletries
+Desk Chair
+Duvet
+DVD Player
+Egyptian Cotton Linen
+Electric Shaver Point
+En Suite
+Flat Screen TV
+Fridge
+Full-Length Mirror
+Hair Dryer In Room
+Hairdryer
+Heating Throughout Property
+I-Pod docking station
+Iron and Ironing Board on request
+Ironing Facilities
+Kettle
+LCD/Plasma Television
+Linen & Towels Supplied
+Make Up Mirror
+Private Bathroom
+Remote Control TV
+Shower EnSuite
+Shower Room
+Tea/Coffee
+Television
+TV In Room
+Wash Hand Basin EnSuite
+WC EnSuite
+WI-FI Internet Access
+Wifi Free
+Windows open
+Work Desk
+GHD Irons & Hairdryer"
+3	"rroom2
+rroom2_1 -> room2_10"	Room 2 rear aspect luxury double	Room 2 Luxury Double/Twin - 16m2. This room is situated on the first floor at the rear of the house and is beautifully decorated with quality fixtures and fittings. It comes with the following amenities. Kingsize bed or 2 singles, egyptian cotton linen, 32"lcd tv, wifi(high speed), ensuite wetroom with underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.	"Alarm Clock
+ALL bedrooms Non Smoking
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+DVD Player
+Egyptian Cotton Linen
+En Suite
+Flat Screen TV
+Fridge
+Full-Length Mirror
+Heating Throughout Property
+I-Pod docking station
+Ironing Facilities
+Kettle
+King Size Bed
+LCD/Plasma Television
+Wifi Free
+GHD Irons & Hairdryer"
+4	"rroom3
+rroom3_1 -> rroom3_21"	Room 3 front aspect luxury suite	Room 3 Suite - 25m2. Our largest room situated on the first floor at the front of the house. For the ultimate in luxury, it features a superking bed, freestanding roll top bath, egyptian cotton linen, chandelier, 32"lcd tv, wifi(high speed), ensuite wetroom with underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.	"Alarm Clock
+ALL bedrooms Non Smoking
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+DVD Player
+Egyptian Cotton Linen
+En Suite
+Flat Screen TV
+Fridge
+Full-Length Mirror
+Heating Throughout Property
+I-Pod docking station
+Ironing Facilities
+Kettle
+King Size Bed
+Wifi Free
+GHD Irons & Hairdryer"
+5	"rroom4
+rroom4_1 -> rroom4_15"	Room 4 Small Double	Room 4 Small Compact Double - 10m2. This room is small but beautifully formed. Situated on the second floor at the rear of the house this room comes with the following amenities. Super comfy double bed, egyptian cotton linen, lcd tv, wifi(high speed), ensuite wetroom with underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.	"Alarm Clock
+ALL bedrooms Non Smoking
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+DVD Player
+Egyptian Cotton Linen
+En Suite
+Flat Screen TV
+Fridge
+Full-Length Mirror
+Heating Throughout Property
+I-Pod docking station
+Ironing Facilities
+Kettle
+Wifi Free
+GHD Irons & Hairdryer"
+6	"rroom5
+rroom5_1 -> rroom5_15"	Room 5 Superior Double	Room 5 Superior Double/Twin - 16m2. This room is situated on the second floor at the rear of the house and is beautifully decorated with quality fixtures and fittings. It comes with the following amenities. Superking bed or 2 singles, egyptian cotton linen, 32"lcd tv, wifi(high speed), ensuite wetroom with underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.	"Alarm Clock
+ALL bedrooms Non Smoking
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+DVD Player
+Egyptian Cotton Linen
+En Suite
+Flat Screen TV
+Fridge
+Full-Length Mirror
+Heating Throughout Property
+I-Pod docking station
+Ironing Facilities
+Kettle
+King Size Bed
+Wifi Free
+GHD Irons & Hairdryer"
+7	"rroom6
+rroom6_1 -> rroom6_22"	Room 6 front aspect junior suite	Room 6 Junior Suite - 24m2. A beautiful room situated on the second floor at the front of the house. For the ultimate in luxury, it features a superking bed, freestanding roll top bath, egyptian cotton linen, chandelier, 32"lcd tv, wifi(high speed), ensuite wetroom with underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.	"Alarm Clock
+ALL bedrooms Non Smoking
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+DVD Player
+Egyptian Cotton Linen
+En Suite
+Flat Screen TV
+Fridge
+Full-Length Mirror
+Heating Throughout Property
+I-Pod docking station
+Ironing Facilities
+Kettle
+King Size Bed
+Wifi Free
+GHD Irons & Hairdryer
 "
-8	"room8
-room8_1 -> room8_11"	WEBP	Room 8, Deluxe Double	Offering free toiletries, this double room includes a private bathroom with a shower and a hairdryer. This double room features a seating area, a wardrobe, flat-screen TV, as well as chocolate for guests. The unit offers 1 bed.	"ALL bedrooms Non Smoking • ALL Rooms Non-Smoking • Broadband/High Speed Internet Access • Central Heating • Complimentary Toiletries • Daily Housekeeping • Designer Toiletries • Egyptian Cotton Linen • Electric Shaver Point • En Suite • Flat Screen TV • Fridge • Kettle • Private Bathroom • Shower EnSuite • Tea/Coffee • TV In Room • Wash Hand Basin EnSuite • WC EnSuite • WI-FI Internet Access • Wifi Free • Windows open • Work Desk
-"
-9	"room9
-room9_1 -> room9_14"	WEBP	Room 9, Split Level Double	Guests will have a special experience as this double room offers a fireplace. Offering free toiletries, this double room includes a private bathroom with a shower and a hairdryer. This double room features a seating area, a wardrobe, flat-screen TV, as well as chocolate for guests. The unit offers 1 bed.	ALL bedrooms Non Smoking • ALL Rooms Non-Smoking • Central Heating • Complimentary Toiletries • Daily Housekeeping • Designer Toiletries • Egyptian Cotton Linen • Electric Shaver Point • En Suite • Flat Screen TV • Fridge • Linen & Towels Supplied • Television • TV In Room • Wash Hand Basin EnSuite • WC EnSuite • WI-FI Internet Access • Wifi Free • Windows open • Work Desk
-
+8	"rroom7
+rroom7_1 -> rroom7_22"	Room 7 superior double with sofa	Room 7 Superior Double With Sofa - 16m2. This room is situated on the third/top floor and is sumptuously decorated with quality fixtures and fittings. It comes with the following amenities. Kingsize bed, egyptian cotton linen, 32"lcd tv, wifi(high speed), ensuite wetroom with underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.	"Alarm Clock
+ALL bedrooms Non Smoking
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+DVD Player
+Egyptian Cotton Linen
+En Suite
+Flat Screen TV
+Fridge
+Full-Length Mirror
+Heating Throughout Property
+I-Pod docking station
+Ironing Facilities
+Kettle
+King Size Bed
+Wifi Free
+GHD Irons & Hairdryer"
+9	"rroom8
+rroom8_1 -> rroom8_24"	Room 8 Deluxe double (Internal)	Room 8 Deluxe double room - 16m2. This room is situated on the ground floor to the rear of the house. This room is stylishly decorated with quality fixtures and fittings. It comes with the following amenities. Super comfy Superking bed, egyptian cotton linen, 42"lcd tv, wifi(high speed), ensuite bathroom with bath and underfloor heating, free designer toiletries, Grohe rain and power shower, GHD hair straighteners and hairdryer, mini fridge.	"ALL bedrooms Non Smoking
+Bath Ensuite
+Bath Tub
+Bath/Shower
+Bottled Water (Complimentary)
+Central Heating
+Complimentary Toiletries
+Daily Housekeeping
+Designer Toiletries
+Digital Television Channels
+Duvet
+Egyptian Cotton Linen
+En Suite
+Fridge
+Full-Length Mirror
+Hair Dryer In Room
+Hairdryer
+Heating Throughout Property
+Ironing Facilities
+Kettle
+LCD/Plasma Television
+Linen & Towels Supplied
+Make Up Mirror
+Private Bathroom
+Rainfall Shower
+Remote Control TV
+Tea/Coffee
+Television
+WI-FI Internet Access
+Wifi Free"
 ## Done
 
 - [x] E2.0 — Website designs (signed off)
