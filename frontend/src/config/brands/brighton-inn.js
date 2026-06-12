@@ -5,7 +5,7 @@ export default {
   phone: "+44 1273 044 306",
   email: "info@brightoninn.co.uk",
   address: "20 St Georges Terrace, Brighton, BN2 1JH",
-  bookingUrl: "/book",
+  bookingUrl: "/availability",
   social: {
     instagram: "https://instagram.com/brightoninn",
     facebook: "https://facebook.com/brightoninn",
