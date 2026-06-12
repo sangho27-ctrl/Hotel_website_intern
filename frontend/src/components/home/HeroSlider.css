@@ -112,8 +112,9 @@
 }
 
 .hero-slider__btn--primary {
-  background-color: var(--color-accent);
-  color: #1a1208;
+  background-color: var(--color-bg-button, var(--color-accent));
+  color: var(--color-text);
+  border: 1px solid transparent;
 }
 
 .hero-slider__btn--primary:hover {

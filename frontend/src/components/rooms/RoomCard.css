@@ -230,11 +230,12 @@
 }
 
 .room-card__btn--primary {
-  background-color: var(--color-accent);
-  color: #1a1208;
+  background-color: var(--color-bg-button, var(--color-accent));
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
 }
 
-.room-card__btn--primary:hover { opacity: 0.85; }
+.room-card__btn--primary:hover { opacity: 0.75; }
 
 .room-card__btn--outline {
   background: transparent;
@@ -243,8 +244,8 @@
 }
 
 .room-card__btn--outline:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  border-color: var(--color-text);
+  color: var(--color-text);
 }
 
 /* Responsive: stack on smaller screens */

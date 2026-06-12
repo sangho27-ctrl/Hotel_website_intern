@@ -75,8 +75,8 @@ export default function HeroSlider() {
 function HeroContent() {
   return (
     <div className="hero-slider__content">
-      <span className="hero-slider__eyebrow">Brighton · Est. 1997</span>
-      <h1 className="hero-slider__title">Welcome to<br />Colson House</h1>
+      <span className="hero-slider__eyebrow">{brand.subtitle} · Est. 1997</span>
+      <h1 className="hero-slider__title">Welcome to<br />{brand.name}</h1>
       <p className="hero-slider__sub">
         A boutique Georgian townhouse hotel in the heart of Brighton's Kemp Town
       </p>

@@ -12,8 +12,13 @@ export default function Footer() {
       <div className="footer__inner reveal stagger" ref={innerRef}>
         <div className="footer__col footer__col--brand">
           <div className="footer__logo">
-            <span className="footer__logo-name">{brand.name}</span>
-            <span className="footer__logo-subtitle">{brand.subtitle}</span>
+            {brand.logo
+              ? <img src={brand.logo} alt={brand.name} className="footer__logo-img" />
+              : <>
+                  <span className="footer__logo-name">{brand.name}</span>
+                  <span className="footer__logo-subtitle">{brand.subtitle}</span>
+                </>
+            }
           </div>
           <p className="footer__tagline">{brand.tagline}</p>
           <div className="footer__social">

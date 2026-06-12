@@ -47,8 +47,13 @@ export default function Header() {
 
       <div className="header__main">
         <Link to="/" className="header__logo">
-          <span className="header__logo-name">{brand.name}</span>
-          <span className="header__logo-subtitle">{brand.subtitle}</span>
+          {brand.logo
+            ? <img src={brand.logo} alt={brand.name} className="header__logo-img" />
+            : <>
+                <span className="header__logo-name">{brand.name}</span>
+                <span className="header__logo-subtitle">{brand.subtitle}</span>
+              </>
+          }
         </Link>
 
         <nav>

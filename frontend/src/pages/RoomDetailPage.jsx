@@ -117,10 +117,6 @@ export default function RoomDetailPage() {
         {/* Sticky sidebar */}
         <aside className="room-detail__sidebar">
           <div className="room-detail__cta-card">
-            <div className="room-detail__price">
-              <span className="room-detail__price-amount">£{room.price}</span>
-              <span className="room-detail__price-label">per night</span>
-            </div>
             <Link to={brand.bookingUrl} className="room-detail__book-btn">
               Book This Room
             </Link>

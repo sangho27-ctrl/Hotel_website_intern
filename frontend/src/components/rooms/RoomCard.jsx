@@ -74,7 +74,6 @@ export default function RoomCard({ room, checkIn, checkOut }) {
       <div className="room-card__body">
         <div className="room-card__meta">
           {room.size && <span className="room-card__size">{room.size} m²</span>}
-          <span className="room-card__price">£{room.price}<span>/night</span></span>
         </div>
 
         <h2 className="room-card__name">

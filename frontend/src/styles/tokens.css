@@ -16,6 +16,23 @@
   --font-body:    'Inter', system-ui, sans-serif;
 }
 
+[data-theme="light"] {
+  --color-bg:          #ffffff;
+  --color-bg-header:   #eeeeee;
+  --color-bg-footer:   #ebebeb;
+  --color-bg-button:   #f0f0f0;
+  --color-bg-light:    #f5f5f5;
+  --color-accent:      #2c2a26;
+  --color-text:        #2c2a26;
+  --color-text-muted:  #888888;
+  --color-border:      #e0e0e0;
+  --color-card:        #f9f9f9;
+  --color-text-dark:   #ffffff;
+  --color-text-on-light:       #2c2a26;
+  --color-text-muted-on-light: #888888;
+  --color-border-on-light:     #e0e0e0;
+}
+
 *,
 *::before,
 *::after {

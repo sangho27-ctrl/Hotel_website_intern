@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { AuthProvider } from './context/AuthContext'
+import { brand } from './config/brand'
 import Layout from './components/layout/Layout'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 
@@ -38,6 +39,10 @@ function Placeholder({ title }) {
 }
 
 function App() {
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', brand.theme ?? 'dark')
+  }, [])
+
   return (
     <AuthProvider>
       <BrowserRouter>
