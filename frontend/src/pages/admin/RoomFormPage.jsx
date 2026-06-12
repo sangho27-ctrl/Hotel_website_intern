@@ -14,7 +14,6 @@ const EMPTY_FORM = {
   name: '',
   size: '',
   description: '',
-  price: '',
   amenities: [],
   images: [],
 }
@@ -37,7 +36,6 @@ export default function RoomFormPage() {
           name: data.name || '',
           size: data.size || '',
           description: data.description || '',
-          price: data.price || '',
           amenities: data.amenities || [],
           images: data.images || [],
         })
@@ -69,7 +67,6 @@ export default function RoomFormPage() {
       name: form.name,
       size: form.size ? Number(form.size) : null,
       description: form.description,
-      price: Number(form.price),
       amenities: form.amenities,
       images: form.images,
     }
@@ -126,19 +123,6 @@ export default function RoomFormPage() {
               />
             </div>
 
-            <div className="room-form__field room-form__field--half">
-              <label className="room-form__label" htmlFor="price">Price per Night (£) *</label>
-              <input
-                id="price"
-                name="price"
-                type="number"
-                className="room-form__input"
-                value={form.price}
-                onChange={handleChange}
-                required
-                min="0"
-              />
-            </div>
           </div>
 
           <div className="room-form__field">

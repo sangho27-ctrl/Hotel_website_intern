@@ -183,13 +183,6 @@ export default function RoomDetailPage() {
         {/* ── Sticky sidebar ── */}
         <aside className="rd__sidebar">
           <div className="rd__cta-card">
-            <div className="rd__price-block">
-              <span className="rd__price">£{room.price}</span>
-              <span className="rd__price-per">per night</span>
-            </div>
-
-            <div className="rd__cta-divider" />
-
             <ul className="rd__cta-perks">
               <li>✓ Best rate guaranteed</li>
               <li>✓ Free cancellation (48 hrs)</li>
@@ -229,7 +222,6 @@ export default function RoomDetailPage() {
                     </div>
                   )}
                   <div className="rd__other-body">
-                    <span className="rd__other-price">£{r.price}<span>/night</span></span>
                     <h3 className="rd__other-name">{r.name}</h3>
                     {r.description && <p className="rd__other-desc">{r.description}</p>}
                   </div>
