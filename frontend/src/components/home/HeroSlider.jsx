@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { brand } from '../../config/brand'
 import './HeroSlider.css'
 
@@ -87,9 +88,9 @@ function HeroContent() {
         }}>
           Explore Rooms
         </a>
-        <a href={brand.bookingUrl} className="hero-slider__btn hero-slider__btn--outline" target="_blank" rel="noopener noreferrer">
+        <Link to={brand.bookingUrl} className="hero-slider__btn hero-slider__btn--outline">
           Book Now
-        </a>
+        </Link>
       </div>
     </div>
   )

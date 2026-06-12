@@ -55,26 +55,22 @@ export default function Header() {
           <ul className="header__nav">
             {brand.nav.map((item) => (
               <li key={item.label}>
-                {item.hash ? (
-                  <a
-                    href={`#${item.hash}`}
-                    onClick={(e) => handleNavClick(e, item)}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <NavLink to={item.path} end className={({ isActive }) => isActive ? 'active' : ''}>
-                    {item.label}
-                  </NavLink>
-                )}
+                <NavLink
+                  to={item.path}
+                  end={item.path === '/'}
+                  className={({ isActive }) => isActive ? 'active' : ''}
+                  onClick={(e) => { if (item.hash) handleNavClick(e, item) }}
+                >
+                  {item.label}
+                </NavLink>
               </li>
             ))}
           </ul>
         </nav>
 
-        <a href={brand.bookingUrl} className="header__book-btn" target="_blank" rel="noopener noreferrer">
+        <Link to={brand.bookingUrl} className="header__book-btn">
           Book Now
-        </a>
+        </Link>
 
         <button
           className="header__hamburger"
@@ -89,35 +85,26 @@ export default function Header() {
 
       <nav className={`header__mobile-nav${menuOpen ? ' open' : ''}`}>
         {brand.nav.map((item) => (
-          item.hash ? (
-            <a
-              key={item.label}
-              href={`#${item.hash}`}
-              onClick={(e) => handleNavClick(e, item)}
-            >
-              {item.label}
-            </a>
-          ) : (
-            <NavLink
-              key={item.label}
-              to={item.path}
-              end
-              className={({ isActive }) => isActive ? 'active' : ''}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.label}
-            </NavLink>
-          )
+          <NavLink
+            key={item.label}
+            to={item.path}
+            end={item.path === '/'}
+            className={({ isActive }) => isActive ? 'active' : ''}
+            onClick={(e) => {
+              if (item.hash) handleNavClick(e, item)
+              setMenuOpen(false)
+            }}
+          >
+            {item.label}
+          </NavLink>
         ))}
-        <a
-          href={brand.bookingUrl}
+        <Link
+          to={brand.bookingUrl}
           className="header__mobile-book"
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}
         >
           Book Now
-        </a>
+        </Link>
       </nav>
     </header>
   )

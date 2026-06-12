@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
+import { brand } from '../config/brand'
 import './RoomDetailPage.css'
 
 export default function RoomDetailPage() {
@@ -120,7 +121,7 @@ export default function RoomDetailPage() {
               <span className="room-detail__price-amount">£{room.price}</span>
               <span className="room-detail__price-label">per night</span>
             </div>
-            <Link to={`/book?room=${room.id}`} className="room-detail__book-btn">
+            <Link to={brand.bookingUrl} className="room-detail__book-btn">
               Book This Room
             </Link>
             <Link to="/rooms" className="room-detail__back-link">

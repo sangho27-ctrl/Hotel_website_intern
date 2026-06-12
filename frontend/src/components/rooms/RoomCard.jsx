@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import { brand } from '../../config/brand'
 import './RoomCard.css'
 
+function imgSrc(path) {
+  if (!path) return null
+  return path.startsWith('http') ? path : `/storage/${path}`
+}
+
 export default function RoomCard({ room, checkIn, checkOut }) {
   const [imgIndex, setImgIndex] = useState(0)
   const images = room.images ?? []
@@ -26,7 +31,7 @@ export default function RoomCard({ room, checkIn, checkOut }) {
         <Link to={`/rooms/${room.id}`} className="room-card__main-img-link">
           {images.length > 0 ? (
             <img
-              src={`/storage/${images[imgIndex]}`}
+              src={imgSrc(images[imgIndex])}
               alt={`${room.name} — photo ${imgIndex + 1}`}
               className="room-card__main-img"
               loading="lazy"
@@ -53,7 +58,7 @@ export default function RoomCard({ room, checkIn, checkOut }) {
                 onClick={() => setImgIndex(i)}
                 aria-label={`Photo ${i + 1}`}
               >
-                <img src={`/storage/${src}`} alt="" loading="lazy" />
+                <img src={imgSrc(src)} alt="" loading="lazy" />
               </button>
             ))}
             {images.length > 5 && (
@@ -92,9 +97,9 @@ export default function RoomCard({ room, checkIn, checkOut }) {
           <Link to={`/rooms/${room.id}`} className="room-card__btn room-card__btn--outline">
             View Room
           </Link>
-          <a href={bookUrl} className="room-card__btn room-card__btn--primary" target="_blank" rel="noopener noreferrer">
+          <Link to={bookUrl} className="room-card__btn room-card__btn--primary">
             Book Now
-          </a>
+          </Link>
         </div>
       </div>
     </article>

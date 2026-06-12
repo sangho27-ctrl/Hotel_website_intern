@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
+import { brand } from '../config/brand'
 import './OffersPage.css'
 
 const OFFERS = [
@@ -56,7 +57,7 @@ export default function OffersPage() {
                 <h2 className="offer-card__title">{offer.title}</h2>
                 <p className="offer-card__desc">{offer.description}</p>
                 <span className="offer-card__valid">{offer.valid}</span>
-                <Link to="/book" className="offer-card__btn">Book This Offer</Link>
+                <a href={brand.bookingUrl} className="offer-card__btn" target="_blank" rel="noopener noreferrer">Book This Offer</a>
               </div>
             </article>
           ))}

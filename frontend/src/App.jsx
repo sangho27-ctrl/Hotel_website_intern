@@ -15,7 +15,7 @@ const DashboardPage   = lazy(() => import('./pages/admin/DashboardPage'))
 const RoomsAdminPage  = lazy(() => import('./pages/admin/RoomsAdminPage'))
 const RoomFormPage    = lazy(() => import('./pages/admin/RoomFormPage'))
 const MediaAdminPage  = lazy(() => import('./pages/admin/MediaAdminPage'))
-const BookingPage          = lazy(() => import('./pages/BookingPage'))
+const AvailabilityPage     = lazy(() => import('./pages/AvailabilityPage'))
 const LocalAttractionsPage = lazy(() => import('./pages/LocalAttractionsPage'))
 
 function PageLoader() {
@@ -51,7 +51,8 @@ function App() {
             <Route path="/reviews"     element={<Layout><ReviewsPage /></Layout>} />
             <Route path="/contact"     element={<Layout><ContactPage /></Layout>} />
             <Route path="/attractions" element={<Layout><LocalAttractionsPage /></Layout>} />
-            <Route path="/book"        element={<Layout><BookingPage /></Layout>} />
+            <Route path="/book"         element={<Navigate to="/availability" replace />} />
+            <Route path="/availability" element={<Layout><AvailabilityPage /></Layout>} />
             <Route path="/gallery"     element={<Layout><Placeholder title="Gallery" /></Layout>} />
             <Route path="/checkin"     element={<Layout><Placeholder title="Check-In & Check-Out" /></Layout>} />
             <Route path="/parking"     element={<Layout><Placeholder title="Parking" /></Layout>} />

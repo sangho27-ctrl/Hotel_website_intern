@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'freetobook' => [
+        'api_base'    => env('FREETOBOOK_API_BASE', 'https://api.freetobook.com/v1'),
+        'property_id' => env('FREETOBOOK_PROPERTY_ID'),
+        'api_key'     => env('FREETOBOOK_API_KEY'),
+    ],
+
 ];
