@@ -44,7 +44,7 @@ export default function RoomCard({ room }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Book Now
+          Check Availability
         </a>
       </div>
     </article>

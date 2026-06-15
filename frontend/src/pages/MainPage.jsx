@@ -100,7 +100,7 @@ export default function MainPage() {
           <p className="mp-hero__sub">A boutique Georgian townhouse hotel in the heart of Brighton's Kemp Town</p>
           <div className="mp-hero__ctas">
             <a href="#rooms" className="mp-btn mp-btn--primary">Explore Rooms</a>
-            <a href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties" className="mp-btn mp-btn--outline" target="_blank" rel="noopener noreferrer">Book Now</a>
+            <a href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties" className="mp-btn mp-btn--outline" target="_blank" rel="noopener noreferrer">Check Availability</a>
           </div>
         </div>
       </section>

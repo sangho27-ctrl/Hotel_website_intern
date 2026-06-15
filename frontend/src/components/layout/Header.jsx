@@ -86,7 +86,7 @@ export default function Header() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Book Now
+          Check Availability
         </a>
 
         <button
@@ -118,7 +118,7 @@ export default function Header() {
           rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}
         >
-          Book Now
+          Check Availability
         </a>
       </nav>
     </header>
