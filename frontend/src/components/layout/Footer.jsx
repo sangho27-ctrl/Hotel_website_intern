@@ -10,10 +10,9 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__inner reveal stagger" ref={innerRef}>
+
         <div className="footer__col footer__col--brand">
-          <div className="footer__logo">
-            <img src="/logo_brighton.png" alt={brand.name} className="footer__logo-img" />
-          </div>
+          <span className="footer__brand-name">{brand.name}</span>
           <p className="footer__tagline">{brand.tagline}</p>
           <div className="footer__social">
             <a
@@ -62,15 +61,12 @@ export default function Footer() {
         <div className="footer__col">
           <h4 className="footer__heading">Contact</h4>
           <ul className="footer__contact">
-            <li>
-              <a href={`mailto:${brand.email}`}>{brand.email}</a>
-            </li>
-            <li>
-              <a href={`tel:${brand.phone}`}>{brand.phone}</a>
-            </li>
+            <li><a href={`mailto:${brand.email}`}>{brand.email}</a></li>
+            <li><a href={`tel:${brand.phone}`}>{brand.phone}</a></li>
             <li>{brand.address}</li>
           </ul>
         </div>
+
       </div>
 
       <div className="footer__bottom">
