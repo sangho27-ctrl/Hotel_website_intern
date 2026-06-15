@@ -8,25 +8,28 @@ export default function Header() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  function getAnchor(path) {
-    return path === '/' ? 'home' : path.slice(1)
+  function getAnchor(item) {
+    // Support both {path} and legacy {anchor} config formats
+    if (item.anchor) return item.anchor
+    if (!item.path || item.path === '/') return 'home'
+    return item.path.replace(/^\//, '')
   }
 
   function handleNavClick(e, item) {
     e.preventDefault()
     setMenuOpen(false)
 
+    const anchor = getAnchor(item)
+
     if (location.pathname === '/') {
-      // Already on main page — scroll to section
-      const el = document.getElementById(getAnchor(item.path))
+      const el = document.getElementById(anchor)
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     } else {
-      // On another page — navigate to main page then scroll
       navigate('/')
       setTimeout(() => {
-        const el = document.getElementById(getAnchor(item.path))
+        const el = document.getElementById(anchor)
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 300)
+      }, 350)
     }
   }
 
@@ -60,9 +63,9 @@ export default function Header() {
         <nav>
           <ul className="header__nav">
             {brand.nav.map((item) => (
-              <li key={item.path}>
+              <li key={item.path || item.anchor}>
                 <a
-                  href={item.path}
+                  href={item.path || `#${item.anchor}`}
                   className={isActive(item.path) ? 'active' : ''}
                   onClick={(e) => handleNavClick(e, item)}
                 >
@@ -96,8 +99,8 @@ export default function Header() {
       <nav className={`header__mobile-nav${menuOpen ? ' open' : ''}`}>
         {brand.nav.map((item) => (
           <a
-            key={item.path}
-            href={item.path}
+            key={item.path || item.anchor}
+            href={item.path || `#${item.anchor}`}
             className={isActive(item.path) ? 'active' : ''}
             onClick={(e) => handleNavClick(e, item)}
           >
