@@ -28,11 +28,19 @@ export default function ContactPage() {
               <span className="contact-info__value">{brand.address}</span>
             </li>
             <li className="contact-info__item">
-              <span className="contact-info__label">Phone</span>
+              <span className="contact-info__label">Main Line</span>
               <a href={`tel:${brand.phone}`} className="contact-info__value contact-info__link">
                 {brand.phone}
               </a>
             </li>
+            {brand.hotline && (
+              <li className="contact-info__item">
+                <span className="contact-info__label">Hotline</span>
+                <a href={`tel:${brand.hotline}`} className="contact-info__value contact-info__link">
+                  {brand.hotline}
+                </a>
+              </li>
+            )}
             <li className="contact-info__item">
               <span className="contact-info__label">Email</span>
               <a href={`mailto:${brand.email}`} className="contact-info__value contact-info__link">

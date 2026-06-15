@@ -62,8 +62,10 @@ export default function Footer() {
           <h4 className="footer__heading">Contact</h4>
           <ul className="footer__contact">
             <li><a href={`mailto:${brand.email}`}>{brand.email}</a></li>
-            <li><a href={`tel:${brand.phone}`}>{brand.phone}</a></li>
-            <li>{brand.address}</li>
+            <li>Main Line : <a href={`tel:${brand.phone}`}>{brand.phone}</a></li>
+            {brand.hotline && (
+              <li>Hotline : <a href={`tel:${brand.hotline}`}>{brand.hotline}</a></li>
+            )}
           </ul>
         </div>
 

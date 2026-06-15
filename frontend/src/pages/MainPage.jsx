@@ -250,7 +250,8 @@ export default function MainPage() {
           <div className="mp-contact__info-col">
             <ul className="mp-contact__info">
               <li><span>Address</span><span>{brand.address}</span></li>
-              <li><span>Phone</span><a href={`tel:${brand.phone}`}>{brand.phone}</a></li>
+              <li><span>Main Line</span><a href={`tel:${brand.phone}`}>{brand.phone}</a></li>
+              {brand.hotline && <li><span>Hotline</span><a href={`tel:${brand.hotline}`}>{brand.hotline}</a></li>}
               <li><span>Email</span><a href={`mailto:${brand.email}`}>{brand.email}</a></li>
               <li><span>Check-in</span><span>From 3:00 PM</span></li>
               <li><span>Check-out</span><span>By 11:00 AM</span></li>
