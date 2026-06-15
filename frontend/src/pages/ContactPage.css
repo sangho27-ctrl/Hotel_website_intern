@@ -34,6 +34,11 @@
   padding: 0 40px;
 }
 
+.contact-page__content--single {
+  grid-template-columns: 1fr;
+  max-width: 680px;
+}
+
 .contact-page__col-title {
   font-family: var(--font-heading);
   font-size: 22px;
