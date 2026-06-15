@@ -44,7 +44,7 @@
 .mp-hero__sub {
   font-family: var(--font-body);
   font-size: clamp(14px, 2vw, 17px);
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.82);
   max-width: 480px;
   margin: 0 auto 40px;
   line-height: 1.7;
@@ -263,7 +263,7 @@
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.mp-offer-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+.mp-offer-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
 .mp-offer-card__badge {
   display: inline-block;
   background: var(--color-accent);
@@ -337,7 +337,7 @@
 }
 .mp-attraction-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 .mp-attraction-card__top {
   display: flex;

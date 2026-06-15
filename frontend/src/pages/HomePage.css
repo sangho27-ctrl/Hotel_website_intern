@@ -45,7 +45,7 @@
   font-family: var(--font-heading);
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
-  color: var(--color-text);
+  color: #ffffff;
   line-height: 1.1;
   margin-bottom: 24px;
   letter-spacing: -0.5px;
@@ -54,7 +54,7 @@
 .home__hero-sub {
   font-family: var(--font-body);
   font-size: clamp(14px, 2vw, 17px);
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.82);
   max-width: 480px;
   margin: 0 auto 40px;
   line-height: 1.7;
@@ -91,7 +91,7 @@
 
 .home__hero-btn--outline {
   background: transparent;
-  color: var(--color-text);
+  color: #ffffff;
   border: 1px solid rgba(255,255,255,0.4);
 }
 

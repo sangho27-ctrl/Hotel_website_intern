@@ -10,7 +10,7 @@
 .room-card:hover {
   outline-color: var(--color-accent);
   transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
 
 .room-card__image-link {
@@ -111,6 +111,7 @@
   font-family: var(--font-body);
   font-size: 11px;
   color: var(--color-text-muted);
+  background: var(--color-btn);
   border: 1px solid var(--color-border);
   padding: 3px 10px;
 }

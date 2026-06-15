@@ -73,7 +73,7 @@
 }
 
 .login-field__input {
-  background-color: #221e17;
+  background-color: var(--color-btn);
   border: 1px solid var(--color-border);
   color: var(--color-text);
   font-family: var(--font-body);

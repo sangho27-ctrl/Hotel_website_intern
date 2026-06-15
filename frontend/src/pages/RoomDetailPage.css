@@ -391,6 +391,7 @@
 .rd__call-btn {
   display: block;
   padding: 12px;
+  background: var(--color-btn);
   border: 1px solid var(--color-border);
   color: var(--color-text-muted);
   font-family: var(--font-body);
@@ -400,7 +401,7 @@
   letter-spacing: 1.5px;
   text-decoration: none;
   text-align: center;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 .rd__call-btn:hover {
   border-color: var(--color-accent);
@@ -462,7 +463,7 @@
 }
 .rd__other-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.1);
 }
 .rd__other-img {
   aspect-ratio: 4/3;
