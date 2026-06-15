@@ -198,10 +198,6 @@ export default function RoomDetailPage() {
               Book This Room
             </a>
 
-            <a href="tel:+441273000000" className="rd__call-btn">
-              Or call us to book
-            </a>
-
             <Link to="/rooms" className="rd__back-link">
               ← View all rooms
             </Link>
