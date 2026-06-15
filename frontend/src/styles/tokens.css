@@ -18,8 +18,8 @@
   --color-light-text-muted: #7f7f7f;
   --color-light-border:     #dfdfdf;
 
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body:    'Inter', system-ui, sans-serif;
+  --font-heading: 'Poppins', 'Lato', Avenir, Geneva, Tahoma, sans-serif;
+  --font-body:    'Poppins', 'Lato', Avenir, Geneva, Tahoma, sans-serif;
 }
 
 *,
