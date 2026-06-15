@@ -40,7 +40,8 @@ export default function ReviewsPage() {
         <div className="reviews-page__widget" ref={widgetRef}>
           <div
             className="ftb-widget"
-            data-pid="NpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb"
+            data-id="19678"
+            data-token="5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb"
             data-style="review"
           />
         </div>
