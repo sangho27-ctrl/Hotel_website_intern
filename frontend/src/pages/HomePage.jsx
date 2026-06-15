@@ -104,16 +104,27 @@ export default function HomePage() {
         <div className="home__about-inner reveal" ref={aboutRef}>
           <div className="home__about-text">
             <span className="home__eyebrow home__eyebrow--dark">Our Story</span>
-            <h2 className="home__about-title home__about-title--dark">A Home Away from Home in Brighton</h2>
+            <h2 className="home__about-title home__about-title--dark">Boutique Comfort in the Heart of Kemp Town</h2>
             <p className="home__about-body home__about-body--dark">
-              Colson House has been welcoming guests to Brighton since 1997. Set in a beautifully
-              preserved Georgian townhouse, just one street from the seafront, we offer a warm and
-              personal alternative to the big hotels.
+              We are a boutique style guest accommodation occupying a fully refurbished 1890s built four storey Georgian
+              townhouse situated in a quiet residential street in the fashionable Kemp Town area of Brighton. Just one
+              street back from the seafront and a ten minute walk to the pier, city centre, lanes and the marina — we
+              offer a great base from which you can explore all that Brighton has to offer, in comfort and style.
             </p>
             <p className="home__about-body home__about-body--dark">
-              Each of our individually designed rooms combines original period features with
-              modern comforts. From the sweeping Brighton Suite to the peaceful Garden Room, every
-              stay is a little different.
+              We have nine completely different rooms ranging from cosy compact doubles, to medium sized luxury and
+              superior doubles with superking beds, through to our two suites featuring freestanding roll top baths.
+              All rooms have ensuite wet rooms with underfloor heating and Grohe rain showers — sumptuously decorated
+              to give that high end feel without the hefty price tag.
+            </p>
+            <p className="home__about-body home__about-body--dark">
+              We operate a self check-in procedure via a coded front door, so you can arrive from 2pm and come and go
+              as you please using your own unique door code. Our best rates are always available by booking direct.
+            </p>
+            <p className="home__about-body home__about-body--dark">
+              <strong>Parking</strong> — Parking can be difficult in Brighton. There are no car parks, so all parking
+              is on street. When you book, we will email you precise parking instructions that will get you parked
+              quickly, cheaply, and close to us with no fuss.
             </p>
             <Link to="/rooms" className="home__about-link home__about-link--dark">
               View Our Rooms →
