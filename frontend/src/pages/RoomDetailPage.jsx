@@ -195,7 +195,7 @@ export default function RoomDetailPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book This Room
+              Check Availability
             </a>
 
             <Link to="/rooms" className="rd__back-link">
