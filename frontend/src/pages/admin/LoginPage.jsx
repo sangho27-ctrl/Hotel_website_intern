@@ -33,8 +33,7 @@ export default function LoginPage() {
     <div className="login-page">
       <div className="login-card">
         <div className="login-card__logo">
-          <span className="login-card__logo-name">{brand.name}</span>
-          <span className="login-card__logo-subtitle">{brand.subtitle}</span>
+          <img src="/logo_brighton.svg" alt={brand.name} className="login-card__logo-img" />
         </div>
 
         <h1 className="login-card__title">Admin Login</h1>

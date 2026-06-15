@@ -24,21 +24,13 @@
   margin-bottom: 20px;
 }
 
-.footer__logo-name {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--color-text);
-  letter-spacing: 1px;
-}
-
-.footer__logo-subtitle {
-  font-family: var(--font-body);
-  font-size: 8px;
-  font-weight: 500;
-  color: var(--color-accent);
-  letter-spacing: 5px;
-  text-transform: uppercase;
+.footer__logo-img {
+  height: 60px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  margin-bottom: 4px;
 }
 
 .footer__tagline {
