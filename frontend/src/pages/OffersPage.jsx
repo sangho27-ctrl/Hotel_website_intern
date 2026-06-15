@@ -56,7 +56,12 @@ export default function OffersPage() {
                 <h2 className="offer-card__title">{offer.title}</h2>
                 <p className="offer-card__desc">{offer.description}</p>
                 <span className="offer-card__valid">{offer.valid}</span>
-                <Link to="/book" className="offer-card__btn">Book This Offer</Link>
+                <a
+                  href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties"
+                  className="offer-card__btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Book This Offer</a>
               </div>
             </article>
           ))}

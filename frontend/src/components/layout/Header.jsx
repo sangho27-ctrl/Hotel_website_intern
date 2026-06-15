@@ -1,30 +1,14 @@
 import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { brand } from '../../config/brand'
 import './Header.css'
-
-function scrollToSection(anchor) {
-  const el = document.getElementById(anchor)
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-}
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
-  const navigate = useNavigate()
 
-  function handleNavClick(e, anchor) {
-    e.preventDefault()
+  function closeMenu() {
     setMenuOpen(false)
-    if (location.pathname === '/') {
-      scrollToSection(anchor)
-    } else {
-      // Navigate to homepage then scroll after render
-      navigate('/')
-      setTimeout(() => scrollToSection(anchor), 100)
-    }
   }
 
   return (
@@ -45,20 +29,20 @@ export default function Header() {
       </div>
 
       <div className="header__main">
-        <Link to="/" className="header__logo">
+        <Link to="/" className="header__logo" onClick={closeMenu}>
           <img src="/logo_brighton.png" alt={brand.name} className="header__logo-img" />
         </Link>
 
         <nav>
           <ul className="header__nav">
             {brand.nav.map((item) => (
-              <li key={item.anchor}>
-                <a
-                  href={`#${item.anchor}`}
-                  onClick={(e) => handleNavClick(e, item.anchor)}
+              <li key={item.path}>
+                <Link
+                  to={item.path}
+                  className={location.pathname === item.path ? 'active' : ''}
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -86,19 +70,21 @@ export default function Header() {
 
       <nav className={`header__mobile-nav${menuOpen ? ' open' : ''}`}>
         {brand.nav.map((item) => (
-          <a
-            key={item.anchor}
-            href={`#${item.anchor}`}
-            onClick={(e) => handleNavClick(e, item.anchor)}
+          <Link
+            key={item.path}
+            to={item.path}
+            className={location.pathname === item.path ? 'active' : ''}
+            onClick={closeMenu}
           >
             {item.label}
-          </a>
+          </Link>
         ))}
         <a
           href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties"
           className="header__mobile-book"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={closeMenu}
         >
           Book Now
         </a>
