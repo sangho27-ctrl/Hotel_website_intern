@@ -119,22 +119,21 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  background-color: var(--color-accent);
-  color: var(--color-text-dark);
-  border: none;
-  padding: 14px 22px;
+  background-color: var(--color-btn);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-btn-border);
+  padding: 13px 22px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: opacity 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .header__book-btn:hover {
-  opacity: 0.85;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(77, 210, 193, 0.3);
+  background-color: #f0f0f0;
+  color: var(--color-text);
 }
 
 /* Hamburger */
@@ -183,15 +182,16 @@
 }
 
 .header__mobile-book {
-  background-color: var(--color-accent);
-  color: var(--color-text-dark) !important;
+  background-color: var(--color-btn);
+  color: var(--color-text-muted) !important;
+  border-top: 1px solid var(--color-btn-border);
   text-align: center;
   padding: 16px 40px !important;
 }
 
 .header__mobile-book:hover {
-  opacity: 0.85;
-  color: var(--color-text-dark) !important;
+  background-color: #f0f0f0;
+  color: var(--color-text) !important;
 }
 
 .header__mobile-nav.open {

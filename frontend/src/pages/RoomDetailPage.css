@@ -372,8 +372,9 @@
 .rd__book-btn {
   display: block;
   padding: 16px;
-  background: var(--color-accent);
-  color: var(--color-text-dark);
+  background: var(--color-btn);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-btn-border);
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 700;
@@ -381,12 +382,11 @@
   letter-spacing: 2px;
   text-decoration: none;
   text-align: center;
-  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 .rd__book-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(77,210,193,0.3);
+  background-color: #f0f0f0;
+  color: var(--color-text);
 }
 .rd__call-btn {
   display: block;

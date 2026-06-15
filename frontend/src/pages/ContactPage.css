@@ -101,21 +101,21 @@
 
 .contact-form__btn {
   padding: 14px;
-  background-color: var(--color-accent);
-  color: var(--color-text-dark);
+  background-color: var(--color-btn);
+  color: var(--color-text-muted);
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  border: none;
+  border: 1px solid var(--color-btn-border);
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .contact-form__btn:hover:not(:disabled) {
-  opacity: 0.85;
-  transform: translateY(-2px);
+  background-color: #f0f0f0;
+  color: var(--color-text);
 }
 
 .contact-form__btn:disabled { opacity: 0.6; cursor: not-allowed; }
