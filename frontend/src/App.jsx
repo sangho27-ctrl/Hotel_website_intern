@@ -7,7 +7,6 @@ import ProtectedRoute from './components/admin/ProtectedRoute'
 const MainPage        = lazy(() => import('./pages/MainPage'))
 const RoomsPage       = lazy(() => import('./pages/RoomsPage'))
 const RoomDetailPage  = lazy(() => import('./pages/RoomDetailPage'))
-const OffersPage      = lazy(() => import('./pages/OffersPage'))
 const ReviewsPage     = lazy(() => import('./pages/ReviewsPage'))
 const ContactPage     = lazy(() => import('./pages/ContactPage'))
 const LoginPage       = lazy(() => import('./pages/admin/LoginPage'))
@@ -34,7 +33,7 @@ function App() {
             <Route path="/"            element={<Layout><MainPage /></Layout>} />
             <Route path="/rooms"       element={<Layout><RoomsPage /></Layout>} />
             <Route path="/rooms/:id"   element={<Layout><RoomDetailPage /></Layout>} />
-            <Route path="/offers"      element={<Layout><OffersPage /></Layout>} />
+            <Route path="/offers"      element={<Navigate to="/" replace />} />
             <Route path="/reviews"     element={<Layout><ReviewsPage /></Layout>} />
             <Route path="/contact"     element={<Layout><ContactPage /></Layout>} />
 

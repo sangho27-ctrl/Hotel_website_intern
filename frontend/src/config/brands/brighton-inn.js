@@ -14,14 +14,12 @@ export default {
   nav: [
     { label: "Home", path: "/" },
     { label: "Our Rooms", path: "/rooms" },
-    { label: "Offers", path: "/offers" },
     { label: "Reviews", path: "/reviews" },
     { label: "Contact", path: "/contact" },
   ],
   footer: {
     explore: [
       { label: "Our Rooms", path: "/rooms" },
-      { label: "Special Offers", path: "/offers" },
       { label: "Reviews", path: "/reviews" },
       { label: "Contact", path: "/contact" },
     ],

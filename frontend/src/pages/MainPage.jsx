@@ -59,12 +59,6 @@ const FEATURES = [
   { title: 'Heart of Kemp Town', desc: 'Steps from independent cafés, galleries, and Brighton\'s vibrant Lanes.' },
 ]
 
-const OFFERS = [
-  { id: 1, title: 'Midweek Escape', description: 'Stay Sunday to Thursday and enjoy 20% off our standard room rates. Perfect for a quiet getaway away from the weekend crowds.', valid: 'Valid until 31 August 2026', badge: '20% off' },
-  { id: 2, title: 'Brighton Boutique Breakfast', description: 'Start your day right with our full English breakfast included in your room rate. Available on all rooms throughout the year.', valid: 'Available year-round', badge: 'B&B rate' },
-  { id: 3, title: 'Long Stay Offer', description: 'Book 4 nights or more and receive a complimentary bottle of local Sussex sparkling wine on arrival.', valid: 'Valid on stays of 4+ nights', badge: 'Free gift' },
-  { id: 4, title: 'Early Bird Rate', description: 'Book at least 30 days in advance and save 15% on your entire stay. Our best rate for planners.', valid: 'Must book 30+ days ahead', badge: '15% off' },
-]
 
 
 /* ─── Main page ─── */
@@ -77,7 +71,6 @@ export default function MainPage() {
   const { rooms, loading, error } = useRooms()
   const featuresRef    = useReveal()
   const aboutRef       = useReveal()
-  const offersRef      = useReveal()
   const attractionsRef = useReveal()
   const contactRef     = useReveal()
 
@@ -166,30 +159,6 @@ export default function MainPage() {
             {[1,2,3].map((i) => <div key={i} className="mp-skeleton" />)}
           </div>
         )}
-      </section>
-
-      {/* ══════════════ DIVIDER ══════════════ */}
-      <div className="mp-divider" />
-
-      {/* ══════════════ OFFERS ══════════════ */}
-      <section id="offers" className="mp-section mp-offers">
-        <div className="mp-section__head">
-          <span className="mp-eyebrow">Direct Bookings Only</span>
-          <h2 className="mp-section__title">Special Offers</h2>
-          <p className="mp-section__sub">Exclusive deals you won't find anywhere else</p>
-        </div>
-
-        <div className="mp-offers__grid stagger" ref={offersRef}>
-          {OFFERS.map((offer) => (
-            <article key={offer.id} className="mp-offer-card reveal">
-              <div className="mp-offer-card__badge">{offer.badge}</div>
-              <h3 className="mp-offer-card__title">{offer.title}</h3>
-              <p className="mp-offer-card__desc">{offer.description}</p>
-              <span className="mp-offer-card__valid">{offer.valid}</span>
-              <a href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties" className="mp-offer-card__btn" target="_blank" rel="noopener noreferrer">Book This Offer</a>
-            </article>
-          ))}
-        </div>
       </section>
 
       {/* ══════════════ DIVIDER ══════════════ */}
