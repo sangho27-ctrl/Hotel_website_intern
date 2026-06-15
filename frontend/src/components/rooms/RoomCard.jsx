@@ -38,9 +38,14 @@ export default function RoomCard({ room }) {
           </ul>
         )}
 
-        <Link to={`/rooms/${room.id}`} className="room-card__btn">
+        <a
+          href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties"
+          className="room-card__btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Book Now
-        </Link>
+        </a>
       </div>
     </article>
   )

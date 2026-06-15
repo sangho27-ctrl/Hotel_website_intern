@@ -65,9 +65,10 @@ export default function Header() {
         </nav>
 
         <a
-          href="#contact"
+          href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties"
           className="header__book-btn"
-          onClick={(e) => handleNavClick(e, 'contact')}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Book Now
         </a>
@@ -94,9 +95,10 @@ export default function Header() {
           </a>
         ))}
         <a
-          href="#contact"
+          href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties"
           className="header__mobile-book"
-          onClick={(e) => handleNavClick(e, 'contact')}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Book Now
         </a>

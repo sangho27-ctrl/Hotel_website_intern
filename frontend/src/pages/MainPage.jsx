@@ -161,7 +161,7 @@ export default function MainPage() {
           <p className="mp-hero__sub">A boutique Georgian townhouse hotel in the heart of Brighton's Kemp Town</p>
           <div className="mp-hero__ctas">
             <a href="#rooms" className="mp-btn mp-btn--primary">Explore Rooms</a>
-            <a href="#contact" className="mp-btn mp-btn--outline">Book Now</a>
+            <a href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties" className="mp-btn mp-btn--outline" target="_blank" rel="noopener noreferrer">Book Now</a>
           </div>
         </div>
       </section>
@@ -240,7 +240,7 @@ export default function MainPage() {
               <h3 className="mp-offer-card__title">{offer.title}</h3>
               <p className="mp-offer-card__desc">{offer.description}</p>
               <span className="mp-offer-card__valid">{offer.valid}</span>
-              <a href="#contact" className="mp-offer-card__btn">Book This Offer</a>
+              <a href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties" className="mp-offer-card__btn" target="_blank" rel="noopener noreferrer">Book This Offer</a>
             </article>
           ))}
         </div>

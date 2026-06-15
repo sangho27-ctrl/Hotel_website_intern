@@ -35,9 +35,14 @@ export default function HomePage() {
             <Link to="/rooms" className="home__hero-btn home__hero-btn--primary">
               Explore Rooms
             </Link>
-            <Link to="/book" className="home__hero-btn home__hero-btn--outline">
+            <a
+              href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties"
+              className="home__hero-btn home__hero-btn--outline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Book Now
-            </Link>
+            </a>
           </div>
         </div>
       </section>

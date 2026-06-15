@@ -189,9 +189,14 @@ export default function RoomDetailPage() {
               <li>✓ Instant confirmation</li>
             </ul>
 
-            <Link to={`/book?room=${room.id}`} className="rd__book-btn">
+            <a
+              href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties"
+              className="rd__book-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Book This Room
-            </Link>
+            </a>
 
             <a href="tel:+441273000000" className="rd__call-btn">
               Or call us to book
