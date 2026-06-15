@@ -1,12 +1,12 @@
 FROM php:8.4-cli
 
 RUN apt-get update && apt-get install -y \
-    libpdo-mysql-dev \
-    libmbstring-dev \
+    default-libmysqlclient-dev \
+    libonig-dev \
     libxml2-dev \
     libcurl4-openssl-dev \
     unzip \
-    && docker-php-ext-install pdo pdo_mysql mbstring xml bcmath curl \
+    && docker-php-ext-install pdo pdo_mysql mbstring xml bcmath \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
