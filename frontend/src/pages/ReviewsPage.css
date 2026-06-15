@@ -49,7 +49,15 @@
 .reviews-page__content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 40px 40px;
+}
+
+.reviews-page__widget {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .reviews-page__widget { padding: 0; }
 }
 
 /* Stars */
