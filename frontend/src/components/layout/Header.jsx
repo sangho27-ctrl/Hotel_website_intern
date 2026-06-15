@@ -15,6 +15,14 @@ export default function Header() {
     return item.path.replace(/^\//, '')
   }
 
+  function scrollToAnchor(anchor) {
+    const el = document.getElementById(anchor)
+    if (!el) return
+    const headerHeight = document.querySelector('.header')?.offsetHeight || 0
+    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+
   function handleNavClick(e, item) {
     e.preventDefault()
     setMenuOpen(false)
@@ -22,14 +30,10 @@ export default function Header() {
     const anchor = getAnchor(item)
 
     if (location.pathname === '/') {
-      const el = document.getElementById(anchor)
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      scrollToAnchor(anchor)
     } else {
       navigate('/')
-      setTimeout(() => {
-        const el = document.getElementById(anchor)
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 350)
+      setTimeout(() => scrollToAnchor(anchor), 350)
     }
   }
 
