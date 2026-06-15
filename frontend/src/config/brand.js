@@ -6,4 +6,4 @@ const brandMap = {
   'brighton-inn': brightonInn,
 }
 
-export const brand = brandMap[import.meta.env.VITE_BRAND] || colsonHouse
+export const brand = brandMap[import.meta.env.VITE_BRAND] || brightonInn
