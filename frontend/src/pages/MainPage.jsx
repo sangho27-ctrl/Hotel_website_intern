@@ -67,24 +67,6 @@ const OFFERS = [
   { id: 4, title: 'Early Bird Rate', description: 'Book at least 30 days in advance and save 15% on your entire stay. Our best rate for planners.', valid: 'Must book 30+ days ahead', badge: '15% off' },
 ]
 
-const REVIEWS = [
-  { id: 1, author: 'Sarah M.', rating: 5, date: 'March 2026', source: 'Google', text: 'Absolutely wonderful stay. The room was beautifully decorated, the bed was incredibly comfortable, and the location is perfect — we walked to the beach in two minutes. Will definitely return.' },
-  { id: 2, author: 'James & Emily', rating: 5, date: 'February 2026', source: 'Booking.com', text: 'We stayed for our anniversary and were blown away by the attention to detail. The hosts were warm and welcoming, and the breakfast recommendations they gave us were spot on.' },
-  { id: 3, author: 'Charlotte B.', rating: 5, date: 'January 2026', source: 'TripAdvisor', text: 'Such a gem in Brighton. The Georgian architecture is stunning and the rooms feel authentic without sacrificing any modern comforts. Quiet, stylish, and perfectly located.' },
-  { id: 4, author: 'Tom H.', rating: 4, date: 'December 2025', source: 'Google', text: 'Really lovely boutique hotel. Stayed for two nights over Christmas and felt very well looked after. The room overlooking the garden was peaceful and cosy.' },
-  { id: 5, author: 'Priya K.', rating: 5, date: 'November 2025', source: 'Booking.com', text: 'One of the best boutique hotels I\'ve stayed in. Everything was immaculate, the location is unbeatable, and the personal touches made all the difference. Highly recommended.' },
-  { id: 6, author: 'David & Sue L.', rating: 5, date: 'October 2025', source: 'TripAdvisor', text: 'We have stayed at Brighton Inn three times now and it never disappoints. Feels like a home away from home. The Brighton Suite is exceptional — treat yourself.' },
-]
-
-function Stars({ rating }) {
-  return (
-    <span className="mp-stars">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <span key={i} className={i < rating ? 'mp-stars__on' : 'mp-stars__off'}>★</span>
-      ))}
-    </span>
-  )
-}
 
 /* ─── Contact form ─── */
 function ContactForm() {
@@ -146,8 +128,21 @@ export default function MainPage() {
   const aboutRef       = useReveal()
   const offersRef      = useReveal()
   const attractionsRef = useReveal()
-  const reviewsRef     = useReveal()
   const contactRef     = useReveal()
+
+  useEffect(() => {
+    const existing = document.getElementById('ftb-widget-script')
+    if (existing) existing.remove()
+    const script = document.createElement('script')
+    script.id = 'ftb-widget-script'
+    script.src = 'https://widget.freetobook.com/widget.js?v=20190925'
+    script.async = true
+    document.body.appendChild(script)
+    return () => {
+      const s = document.getElementById('ftb-widget-script')
+      if (s) s.remove()
+    }
+  }, [])
 
   return (
     <div className="mp">
@@ -279,24 +274,13 @@ export default function MainPage() {
         <div className="mp-section__head">
           <span className="mp-eyebrow">What Guests Say</span>
           <h2 className="mp-section__title">Guest Reviews</h2>
-          <div className="mp-reviews__avg">
-            <Stars rating={5} />
-            <span className="mp-reviews__score">4.9</span>
-            <span className="mp-reviews__label">average · 6 reviews</span>
-          </div>
         </div>
-
-        <div className="mp-reviews__grid stagger" ref={reviewsRef}>
-          {REVIEWS.map((r) => (
-            <article key={r.id} className="mp-review-card reveal">
-              <Stars rating={r.rating} />
-              <p className="mp-review-card__text">"{r.text}"</p>
-              <footer className="mp-review-card__footer">
-                <span className="mp-review-card__author">{r.author}</span>
-                <span className="mp-review-card__meta">{r.date} · {r.source}</span>
-              </footer>
-            </article>
-          ))}
+        <div className="mp-reviews__widget">
+          <div
+            className="ftb-widget"
+            data-pid="NpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb"
+            data-style="review"
+          />
         </div>
       </section>
 
