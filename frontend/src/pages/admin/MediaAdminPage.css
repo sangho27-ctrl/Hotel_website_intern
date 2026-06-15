@@ -20,7 +20,7 @@
 .media-upload:hover,
 .media-upload--drag {
   border-color: var(--color-accent);
-  background-color: rgba(77, 210, 193, 0.05);
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .media-upload__icon {
