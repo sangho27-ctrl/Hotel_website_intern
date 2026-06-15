@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="footer__inner reveal stagger" ref={innerRef}>
         <div className="footer__col footer__col--brand">
           <div className="footer__logo">
-            <img src="/logo_brighton.svg" alt={brand.name} className="footer__logo-img" />
+            <img src="/logo_brighton.png" alt={brand.name} className="footer__logo-img" />
           </div>
           <p className="footer__tagline">{brand.tagline}</p>
           <div className="footer__social">

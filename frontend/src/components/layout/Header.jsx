@@ -46,7 +46,7 @@ export default function Header() {
 
       <div className="header__main">
         <Link to="/" className="header__logo">
-          <img src="/logo_brighton.svg" alt={brand.name} className="header__logo-img" />
+          <img src="/logo_brighton.png" alt={brand.name} className="header__logo-img" />
         </Link>
 
         <nav>
