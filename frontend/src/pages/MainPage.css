@@ -63,7 +63,7 @@
   transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
 }
 .mp-btn--primary { background: var(--color-accent); color: #1a1611; }
-.mp-btn--primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(201,169,110,0.35); }
+.mp-btn--primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(77,210,193,0.35); }
 .mp-btn--outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); }
 .mp-btn--outline:hover { border-color: var(--color-accent); color: var(--color-accent); transform: translateY(-3px); }
 
@@ -111,7 +111,7 @@
 /* ══ Divider ══ */
 .mp-divider {
   height: 1px;
-  background: #c9a96e;
+  background: var(--color-accent);
   opacity: 0.35;
   margin: 0;
 }

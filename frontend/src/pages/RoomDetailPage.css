@@ -386,13 +386,13 @@
 .rd__book-btn:hover {
   opacity: 0.9;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201,169,110,0.3);
+  box-shadow: 0 8px 24px rgba(77,210,193,0.3);
 }
 .rd__call-btn {
   display: block;
   padding: 12px;
   background: var(--color-btn);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-btn-border);
   color: var(--color-text-muted);
   font-family: var(--font-body);
   font-size: 12px;

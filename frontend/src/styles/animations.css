@@ -116,7 +116,7 @@
 
 .btn-pulse:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201, 169, 110, 0.25);
+  box-shadow: 0 8px 24px rgba(77, 210, 193, 0.25);
 }
 
 .btn-pulse:active {

@@ -86,7 +86,7 @@
 
 .home__hero-btn--primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(201, 169, 110, 0.35);
+  box-shadow: 0 10px 28px rgba(77, 210, 193, 0.35);
 }
 
 .home__hero-btn--outline {
