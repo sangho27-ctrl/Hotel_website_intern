@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { brand } from '../../config/brand'
+import { apiUrl } from '../../config/api'
 import './RoomCard.css'
 
 function imgSrc(path) {
   if (!path) return null
-  return path.startsWith('http') ? path : `/storage/${path}`
+  return path.startsWith('http') ? path : apiUrl(`/storage/${path}`)
 }
 
 export default function RoomCard({ room, checkIn, checkOut }) {

@@ -49,7 +49,7 @@ export default function RoomDetailPage() {
       {/* Hero image */}
       {images[0] && (
         <div className="room-detail__hero">
-          <img src={`/storage/${images[activeImg]}`} alt={room.name} />
+          <img src={apiUrl(`/storage/${images[activeImg]}`)} alt={room.name} />
           {images.length > 1 && (
             <div className="room-detail__hero-thumbs">
               {images.slice(0, 8).map((src, i) => (
@@ -58,7 +58,7 @@ export default function RoomDetailPage() {
                   className={`room-detail__hero-thumb${i === activeImg ? ' active' : ''}`}
                   onClick={() => setActiveImg(i)}
                 >
-                  <img src={`/storage/${src}`} alt="" loading="lazy" />
+                  <img src={apiUrl(`/storage/${src}`)} alt="" loading="lazy" />
                 </button>
               ))}
               {images.length > 8 && (
@@ -111,7 +111,7 @@ export default function RoomDetailPage() {
                     className="room-detail__gallery-item"
                     onClick={() => setLightbox(i)}
                   >
-                    <img src={`/storage/${src}`} alt={`${room.name} ${i + 1}`} loading="lazy" />
+                    <img src={apiUrl(`/storage/${src}`)} alt={`${room.name} ${i + 1}`} loading="lazy" />
                   </button>
                 ))}
               </div>
