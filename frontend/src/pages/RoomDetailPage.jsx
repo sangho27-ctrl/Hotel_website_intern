@@ -34,8 +34,12 @@ export default function RoomDetailPage() {
   }, [id])
 
   if (loading) return <div className="room-detail__loading">Loading...</div>
-  if (error)   return <div className="room-detail__error">{error}</div>
-  if (!room)   return null
+  if (error || !room) return (
+    <div className="room-detail__error">
+      <p>Room not found.</p>
+      <Link to="/rooms" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontSize: '14px' }}>← Back to all rooms</Link>
+    </div>
+  )
 
   const images = room.images ?? []
 

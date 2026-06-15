@@ -38,6 +38,6 @@ export default {
       { label: "Cookie Policy", path: "/cookies" },
     ],
   },
-  copyright: "© 2024 Brighton Inn. All rights reserved.",
+  copyright: "© 2026 Brighton Inn. All rights reserved.",
   builtBy: "Website by Hodfords",
 }

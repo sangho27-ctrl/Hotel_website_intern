@@ -9,15 +9,15 @@ const MS_PER_DAY = 86400000
 const today = new Date().toISOString().split('T')[0]
 
 const STATIC_ROOMS = [
-  { id: 1, name: 'Deluxe Double Room',   size: 32, price: 185, description: 'Guests will have a special experience as this double room offers a fireplace. Includes a private bathroom with a shower and a hairdryer, seating area, wardrobe and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Tea/Coffee', 'Fridge', 'Daily Housekeeping'], images: [] },
-  { id: 2, name: 'Four Poster Room',     size: 22, price: 130, description: 'Guests will have a special experience as this double room offers a fireplace. Features a seating area, wardrobe, flat-screen TV and four poster bed.', amenities: ['Wifi Free', 'Four Poster Bed', 'En Suite', 'Flat Screen TV', 'Tea/Coffee', 'Daily Housekeeping'], images: [] },
-  { id: 3, name: 'Standard Double',      size: 18, price: 110, description: 'Featuring free toiletries, this double room includes a private bathroom with a shower and hairdryer, wardrobe, electric kettle and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Kettle', 'Tea/Coffee', 'Daily Housekeeping'], images: [] },
-  { id: 4, name: 'Deluxe Balcony Room',  size: 16, price: 95,  description: 'This double room provides a fireplace, seating area with flat-screen TV, a desk, a balcony and a private bathroom.', amenities: ['Wifi Free', 'Balcony', 'En Suite', 'Flat Screen TV', 'Kettle', 'Daily Housekeeping'], images: [] },
-  { id: 5, name: 'Standard Double',      size: 28, price: 165, description: 'Featuring free toiletries, this double room includes a private bathroom with a shower and hairdryer, wardrobe, electric kettle and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Work Desk', 'Tea/Coffee', 'Daily Housekeeping'], images: [] },
-  { id: 6, name: 'Deluxe Double',        size: 20, price: 120, description: 'Offering free toiletries, this double room includes a private bathroom with a shower and hairdryer. Features a seating area, wardrobe and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Fridge', 'Tea/Coffee', 'Daily Housekeeping'], images: [] },
-  { id: 7, name: 'Small Single',         size: 24, price: 140, description: 'A TV, DVD player and tea/coffee making facilities are featured in this room.', amenities: ['Wifi Free', 'En Suite', 'TV In Room', 'Tea/Coffee', 'Work Desk', 'Daily Housekeeping'], images: [] },
-  { id: 8, name: 'Deluxe Double',        size: 26, price: 155, description: 'Offering free toiletries, this double room includes a private bathroom. Features a seating area, wardrobe, flat-screen TV and fridge.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Fridge', 'Kettle', 'Daily Housekeeping'], images: [] },
-  { id: 9, name: 'Split Level Double',   size: 30, price: 175, description: 'Guests will have a special experience as this double room offers a fireplace. Features a seating area, wardrobe and flat-screen TV.', amenities: ['Wifi Free', 'En Suite', 'Flat Screen TV', 'Fridge', 'Work Desk', 'Daily Housekeeping'], images: [] },
+  { id: 1, name: 'Room 0, Deluxe King Room',          size: 18, description: 'This light and airy ground floor room is beautifully decorated and full to the brim with boutique/high end fixtures and fittings to make your stay more enjoyable.', amenities: ['King Size Bed', 'En Suite', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'Daily Housekeeping'], images: [] },
+  { id: 2, name: 'Room 1, Luxurious Small Double',    size: 10, description: 'This room is small but beautifully formed. Situated on the first floor at the rear of the house.', amenities: ['En Suite', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'GHD Irons & Hairdryer', 'Daily Housekeeping'], images: [] },
+  { id: 3, name: 'Room 2 Rear Aspect Luxury Double',  size: 16, description: 'Beautifully decorated with quality fixtures and fittings. Kingsize bed or 2 singles.', amenities: ['King Size Bed', 'En Suite', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'Daily Housekeeping'], images: [] },
+  { id: 4, name: 'Room 3 Front Aspect Luxury Suite',  size: 25, description: 'Our largest room featuring a superking bed, freestanding roll top bath and chandelier.', amenities: ['King Size Bed', 'En Suite', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'Daily Housekeeping'], images: [] },
+  { id: 5, name: 'Room 4 Small Double',               size: 10, description: 'This room is small but beautifully formed. Situated on the second floor at the rear of the house.', amenities: ['En Suite', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'GHD Irons & Hairdryer', 'Daily Housekeeping'], images: [] },
+  { id: 6, name: 'Room 5 Superior Double',            size: 16, description: 'Beautifully decorated with quality fixtures. Superking bed or 2 singles on the second floor.', amenities: ['King Size Bed', 'En Suite', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'Daily Housekeeping'], images: [] },
+  { id: 7, name: 'Room 6 Front Aspect Junior Suite',  size: 24, description: 'A beautiful room featuring a superking bed and freestanding roll top bath on the second floor.', amenities: ['King Size Bed', 'En Suite', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'Daily Housekeeping'], images: [] },
+  { id: 8, name: 'Room 7 Superior Double with Sofa',  size: 16, description: 'Sumptuously decorated on the third/top floor with a kingsize bed and sofa for extra space.', amenities: ['King Size Bed', 'En Suite', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'Daily Housekeeping'], images: [] },
+  { id: 9, name: 'Room 8 Deluxe Double (Internal)',   size: 16, description: 'Stylishly decorated on the ground floor with a superking bed and ensuite bathroom with bath.', amenities: ['En Suite', 'Bath Tub', 'Flat Screen TV', 'Wifi Free', 'Fridge', 'Daily Housekeeping'], images: [] },
 ]
 
 function fetchRooms(url, setRooms, setLoading, setError) {
@@ -25,7 +25,7 @@ function fetchRooms(url, setRooms, setLoading, setError) {
   setError(null)
   fetch(url)
     .then((r) => { if (!r.ok) throw new Error('Failed to load rooms'); return r.json() })
-    .then((data) => { setRooms(data); setLoading(false) })
+    .then((data) => { setRooms(Array.isArray(data) && data.length > 0 ? data : STATIC_ROOMS); setLoading(false) })
     .catch(() => { setRooms(STATIC_ROOMS); setLoading(false) })
 }
 

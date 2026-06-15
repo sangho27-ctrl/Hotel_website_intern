@@ -20,29 +20,11 @@ const OFFERS_PREVIEW = [
   { id: 4, title: 'Early Bird Rate', description: 'Book at least 30 days in advance and save 15% on your entire stay. Our best rate for planners.', valid: 'Must book 30+ days ahead', badge: '15% off' },
 ]
 
-const REVIEWS_PREVIEW = [
-  { id: 1, author: 'Sarah M.', rating: 5, date: 'March 2026', source: 'Google', text: 'Absolutely wonderful stay. The room was beautifully decorated, the bed was incredibly comfortable, and the location is perfect — we walked to the beach in two minutes. Will definitely return.' },
-  { id: 2, author: 'James & Emily', rating: 5, date: 'February 2026', source: 'Booking.com', text: 'We stayed for our anniversary and were blown away by the attention to detail. The hosts were warm and welcoming, and the breakfast recommendations they gave us were spot on.' },
-  { id: 3, author: 'Charlotte B.', rating: 5, date: 'January 2026', source: 'TripAdvisor', text: 'Such a gem in Brighton. The Georgian architecture is stunning and the rooms feel authentic without sacrificing any modern comforts. Quiet, stylish, and perfectly located.' },
-  { id: 4, author: 'Tom H.', rating: 4, date: 'December 2025', source: 'Google', text: 'Really lovely boutique hotel. Stayed for two nights over Christmas and felt very well looked after. The room overlooking the garden was peaceful and cosy.' },
-  { id: 5, author: 'Priya K.', rating: 5, date: 'November 2025', source: 'Booking.com', text: 'One of the best boutique hotels I\'ve stayed in. Everything was immaculate, the location is unbeatable, and the personal touches made all the difference. Highly recommended.' },
-  { id: 6, author: 'David & Sue L.', rating: 5, date: 'October 2025', source: 'TripAdvisor', text: 'We have stayed at Colson House three times now and it never disappoints. Feels like a home away from home. The Brighton Suite is exceptional — treat yourself.' },
-]
-
-function Stars({ rating }) {
-  return (
-    <span className="home__stars">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <span key={i} className={i < rating ? 'home__star--filled' : 'home__star--empty'}>★</span>
-      ))}
-    </span>
-  )
-}
 
 const STATIC_ROOMS_PREVIEW = [
-  { id: 1, name: 'Deluxe Double Room',  size: 32, price: 185, description: 'A fireplace, private bathroom, seating area and flat-screen TV. One street from Brighton seafront.', images: ['https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80'] },
-  { id: 2, name: 'Four Poster Room',    size: 22, price: 130, description: 'Romance and period charm with a stunning four poster bed, fireplace and en-suite bathroom.', images: ['https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80'] },
-  { id: 3, name: 'Deluxe Balcony Room', size: 16, price: 95,  description: 'Wake up to sea breezes on your private balcony. Flat-screen TV, desk and en-suite shower.', images: ['https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80'] },
+  { id: 1, name: 'Room 0, Deluxe King Room',   size: 18, description: 'This light and airy ground floor room is beautifully decorated and full to the brim with boutique/high end fixtures and fittings to make your stay more enjoyable.', images: [] },
+  { id: 2, name: 'Room 3 Front Aspect Luxury Suite', size: 25, description: 'Our largest room featuring a superking bed, freestanding roll top bath and chandelier for the ultimate in luxury.', images: [] },
+  { id: 3, name: 'Room 6 Front Aspect Junior Suite', size: 24, description: 'A beautiful room on the second floor featuring a superking bed and freestanding roll top bath.', images: [] },
 ]
 
 export default function HomePage() {
@@ -92,7 +74,7 @@ export default function HomePage() {
   useEffect(() => {
     fetch('/api/rooms')
       .then((r) => r.json())
-      .then((data) => setRooms(Array.isArray(data) ? data.slice(0, 3) : []))
+      .then((data) => setRooms(Array.isArray(data) && data.length > 0 ? data.slice(0, 3) : STATIC_ROOMS_PREVIEW))
       .catch(() => setRooms(STATIC_ROOMS_PREVIEW))
   }, [])
 
@@ -157,24 +139,23 @@ export default function HomePage() {
           </div>
           <div className="home__rooms-grid stagger" ref={roomsGridRef}>
             {rooms.map((room) => (
-              <Link key={room.id} to={`/rooms/${room.id}`} className="home__room-card reveal">
+              <Link key={room.id} to="/rooms" className="home__room-card reveal">
                 <div className="home__room-card-img">
-                  <img
-                    src={room.images?.[0]
-                      ? (room.images[0].startsWith('http') ? room.images[0] : `/storage/${room.images[0]}`)
-                      : `/storage/rooms/room${room.id}/room${room.id}.avif`}
-                    alt={room.name}
-                    onError={(e) => { e.target.style.display = 'none' }}
-                  />
+                  {room.images?.[0] ? (
+                    <img
+                      src={room.images[0].startsWith('http') ? room.images[0] : `/storage/${room.images[0]}`}
+                      alt={room.name}
+                      onError={(e) => { e.target.style.display = 'none' }}
+                    />
+                  ) : null}
                 </div>
                 <div className="home__room-card-body">
                   <div className="home__room-card-meta">
                     {room.size && <span>{room.size} m²</span>}
-                    {room.price && <span>£{room.price}/night</span>}
                   </div>
                   <h3 className="home__room-card-name">{room.name}</h3>
                   <p className="home__room-card-desc">{room.description?.slice(0, 100)}…</p>
-                  <span className="home__room-card-btn">Book Now</span>
+                  <span className="home__room-card-btn">View Room</span>
                 </div>
               </Link>
             ))}
@@ -243,23 +224,26 @@ export default function HomePage() {
         <div className="home__section-header reveal" ref={reviewsHeaderRef}>
           <span className="home__eyebrow home__eyebrow--dark">What Guests Say</span>
           <h2 className="home__section-title home__section-title--dark">Guest Reviews</h2>
-          <div className="home__reviews-avg">
-            <Stars rating={5} />
-            <span className="home__reviews-score">4.9</span>
-            <span className="home__reviews-label">average · 6 reviews</span>
-          </div>
+          <p className="home__section-sub home__section-sub--dark">Read genuine reviews from our guests — verified by FreeToBook.</p>
         </div>
-        <div className="home__reviews-grid stagger" ref={reviewsGridRef}>
-          {REVIEWS_PREVIEW.map((r) => (
-            <article key={r.id} className="home__review-card reveal">
-              <Stars rating={r.rating} />
-              <p className="home__review-text">"{r.text}"</p>
-              <footer className="home__review-footer">
-                <span className="home__review-author">{r.author}</span>
-                <span className="home__review-meta">{r.date} · {r.source}</span>
-              </footer>
-            </article>
-          ))}
+        <div className="home__reviews-embed reveal" ref={reviewsGridRef}>
+          <iframe
+            src="https://www.freetobook.com/reviews/all?w_id=19678&w_tkn=5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb"
+            title="Brighton Inn Guest Reviews"
+            className="home__reviews-iframe"
+            frameBorder="0"
+            loading="lazy"
+          />
+          <div className="home__reviews-fallback">
+            <a
+              href="https://www.freetobook.com/reviews/all?w_id=19678&w_tkn=5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="home__reviews-link"
+            >
+              Open reviews in a new tab →
+            </a>
+          </div>
         </div>
       </section>
 

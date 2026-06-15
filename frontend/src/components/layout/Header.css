@@ -132,8 +132,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  background-color: var(--color-bg-button, var(--color-accent));
-  color: var(--color-text);
+  background-color: #2c2a26;
+  color: #f0f0f0;
   border: none;
   padding: 14px 22px;
   cursor: pointer;
@@ -141,13 +141,11 @@
   display: inline-block;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: opacity 0.2s;
+  transition: background-color 0.2s;
 }
 
 .header__book-btn:hover {
-  opacity: 0.85;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201, 169, 110, 0.3);
+  background-color: #3e3b35;
 }
 
 /* Hamburger */

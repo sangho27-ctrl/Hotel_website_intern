@@ -68,7 +68,6 @@ export default function RoomsAdminPage() {
               <tr>
                 <th>Name</th>
                 <th>Size</th>
-                <th>Price / night</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -77,7 +76,6 @@ export default function RoomsAdminPage() {
                 <tr key={room.id}>
                   <td>{room.name}</td>
                   <td>{room.size ? `${room.size} m²` : '—'}</td>
-                  <td>£{room.price}</td>
                   <td className="rooms-admin__actions">
                     <Link to={`/admin/rooms/${room.id}/edit`} className="rooms-admin__edit-btn">
                       Edit

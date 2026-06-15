@@ -11,7 +11,6 @@ class Room extends Model
         'size',
         'description',
         'long_description',
-        'price',
         'amenities',
         'images',
     ];
@@ -20,6 +19,5 @@ class Room extends Model
         'amenities' => 'array',
         'images'    => 'array',
         'size'      => 'integer',
-        'price'     => 'integer',
     ];
 }
