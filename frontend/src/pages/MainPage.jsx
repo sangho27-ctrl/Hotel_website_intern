@@ -258,7 +258,7 @@ export default function MainPage() {
             <div className="mp-contact__map">
               <iframe
                 title="Brighton Inn location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.5!2d-0.1194!3d50.8193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDQ5JzA5LjUiTiAwwrAwNyc0OS44Ilc!5e0!3m2!1sen!2suk!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.9!2d-0.124561!3d50.819637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487585bca00c07d9%3A0x49cf4f1e6ad78a07!2sBrighton%20Inn%20Boutique%20Guest%20Accommodation!5e0!3m2!1sen!2suk!4v1"
                 width="100%" height="320" style={{ border: 0 }}
                 allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
               />
