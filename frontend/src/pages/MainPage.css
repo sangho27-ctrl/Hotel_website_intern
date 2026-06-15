@@ -528,26 +528,62 @@
 .mp-contact__map { margin-top: 28px; }
 .mp-contact__map iframe { display: block; filter: grayscale(0.3); }
 
+/* ══ Reviews widget ══ */
+.mp-reviews__widget {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 /* ══ Responsive ══ */
 @media (max-width: 1024px) {
   .mp-rooms__grid { grid-template-columns: repeat(2, 1fr); }
   .mp-reviews__grid { grid-template-columns: repeat(2, 1fr); }
   .mp-attractions__grid { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media (max-width: 768px) {
+  /* Fix iOS parallax black-screen bug */
+  .mp-hero { background-attachment: scroll; }
+
   .mp-features { grid-template-columns: 1fr; }
-  .mp-attractions { padding: 64px 20px; }
-  .mp-attractions__grid { grid-template-columns: 1fr; }
   .mp-feature { border-right: none; border-bottom: 1px solid var(--color-border); padding: 36px 24px; }
   .mp-feature:last-child { border-bottom: none; }
+
   .mp-about { padding: 64px 20px; }
   .mp-about__inner { grid-template-columns: 1fr; gap: 40px; }
   .mp-about__image { aspect-ratio: 16/9; order: -1; }
+
   .mp-section { padding: 64px 20px; }
+  .mp-rooms { padding: 64px 20px; }
   .mp-offers { padding: 64px 20px; }
+  .mp-attractions { padding: 64px 20px; }
+  .mp-reviews { padding: 64px 20px; }
   .mp-contact { padding: 64px 20px; }
+
   .mp-rooms__grid { grid-template-columns: 1fr; }
   .mp-offers__grid { grid-template-columns: 1fr; }
   .mp-reviews__grid { grid-template-columns: 1fr; }
+  .mp-attractions__grid { grid-template-columns: 1fr; }
   .mp-contact__inner { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 480px) {
+  .mp-section { padding: 48px 16px; }
+  .mp-rooms { padding: 48px 16px; }
+  .mp-offers { padding: 48px 16px; }
+  .mp-attractions { padding: 48px 16px; }
+  .mp-reviews { padding: 48px 16px; }
+  .mp-contact { padding: 48px 16px; }
+  .mp-about { padding: 48px 16px; }
+
+  .mp-hero__ctas { flex-direction: column; align-items: center; }
+  .mp-btn { width: 100%; max-width: 280px; text-align: center; }
+
+  .mp-section__head { margin-bottom: 36px; }
+  .mp-offer-card { padding: 24px; }
+
+  .mp-contact__info li { grid-template-columns: 72px 1fr; font-size: 12px; }
+  .mp-contact__map iframe { height: 200px; }
+  .mp-feature { padding: 28px 16px; }
 }

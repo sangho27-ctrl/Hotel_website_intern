@@ -169,3 +169,9 @@
   .contact-page__hero { padding: 48px 20px 40px; }
   .contact-page__content { grid-template-columns: 1fr; padding: 0 20px; gap: 40px; }
 }
+
+@media (max-width: 480px) {
+  .contact-page__hero { padding: 40px 16px 32px; }
+  .contact-page__content { padding: 0 16px; }
+  .contact-page__map iframe { height: 200px; }
+}
