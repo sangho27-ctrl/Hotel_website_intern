@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
 import { brand } from '../config/brand'
+import { apiUrl } from '../config/api'
 import './RoomDetailPage.css'
 
 export default function RoomDetailPage() {
@@ -18,7 +19,7 @@ export default function RoomDetailPage() {
   })
 
   useEffect(() => {
-    fetch(`/api/rooms/${id}`)
+    fetch(apiUrl(`/api/rooms/${id}`))
       .then((res) => {
         if (!res.ok) throw new Error('Room not found')
         return res.json()

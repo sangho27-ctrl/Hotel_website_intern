@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { brand } from '../config/brand'
+import { apiUrl } from '../config/api'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
 import './ContactPage.css'
@@ -21,7 +22,7 @@ export default function ContactPage() {
     setSending(true)
     setStatus(null)
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(apiUrl('/api/contact'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

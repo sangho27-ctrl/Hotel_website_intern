@@ -3,6 +3,7 @@ import RoomCard from '../components/rooms/RoomCard'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
 import { brand } from '../config/brand'
+import { apiUrl } from '../config/api'
 import './RoomsPage.css'
 
 const MS_PER_DAY = 86400000
@@ -47,7 +48,7 @@ export default function RoomsPage() {
   const gridRef = useReveal()
 
   useEffect(() => {
-    fetchRooms('/api/rooms', setRooms, setLoading, setError)
+    fetchRooms(apiUrl('/api/rooms'), setRooms, setLoading, setError)
   }, [])
 
   function handleSearch(e) {
@@ -55,7 +56,7 @@ export default function RoomsPage() {
     if (!checkIn || !checkOut) return
     setSearched(true)
     const params = new URLSearchParams({ check_in: checkIn, check_out: checkOut, guests })
-    fetchRooms(`/api/rooms/available?${params}`, setRooms, setLoading, setError)
+    fetchRooms(apiUrl(`/api/rooms/available?${params}`), setRooms, setLoading, setError)
   }
 
   function handleReset() {
@@ -63,7 +64,7 @@ export default function RoomsPage() {
     setCheckOut('')
     setGuests(1)
     setSearched(false)
-    fetchRooms('/api/rooms', setRooms, setLoading, setError)
+    fetchRooms(apiUrl('/api/rooms'), setRooms, setLoading, setError)
   }
 
   const nights = checkIn && checkOut

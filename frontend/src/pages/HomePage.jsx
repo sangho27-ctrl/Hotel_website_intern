@@ -4,6 +4,7 @@ import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
 import HeroSlider from '../components/home/HeroSlider'
 import { brand } from '../config/brand'
+import { apiUrl } from '../config/api'
 import { Landmark, Waves, MapPin } from 'lucide-react'
 import './HomePage.css'
 
@@ -56,7 +57,7 @@ export default function HomePage() {
     setContactSending(true)
     setContactStatus(null)
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(apiUrl('/api/contact'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(contactForm),
@@ -72,7 +73,7 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    fetch('/api/rooms')
+    fetch(apiUrl('/api/rooms'))
       .then((r) => r.json())
       .then((data) => setRooms(Array.isArray(data) && data.length > 0 ? data.slice(0, 3) : STATIC_ROOMS_PREVIEW))
       .catch(() => setRooms(STATIC_ROOMS_PREVIEW))
