@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { brand } from '../config/brand'
 import { useReveal } from '../hooks/useReveal'
 import { useSEO } from '../hooks/useSEO'
 import { useRooms } from '../hooks/useRooms'
-import { contactService } from '../services/contactService'
 import RoomCard from '../components/rooms/RoomCard'
 import './MainPage.css'
 
@@ -67,54 +66,6 @@ const OFFERS = [
   { id: 4, title: 'Early Bird Rate', description: 'Book at least 30 days in advance and save 15% on your entire stay. Our best rate for planners.', valid: 'Must book 30+ days ahead', badge: '15% off' },
 ]
 
-
-/* ─── Contact form ─── */
-function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState(null)
-  const [sending, setSending] = useState(false)
-
-  function handleChange(e) {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault()
-    setSending(true)
-    setStatus(null)
-    try {
-      await contactService.sendMessage(form)
-      setStatus('success')
-      setForm({ name: '', email: '', message: '' })
-    } catch { 
-      setStatus('error') 
-    } finally { 
-      setSending(false) 
-    }
-  }
-
-  return (
-    <form className="mp-contact-form" onSubmit={handleSubmit} noValidate>
-      <div className="mp-field">
-        <label htmlFor="c-name">Name</label>
-        <input id="c-name" name="name" type="text" value={form.name} onChange={handleChange} required />
-      </div>
-      <div className="mp-field">
-        <label htmlFor="c-email">Email</label>
-        <input id="c-email" name="email" type="email" value={form.email} onChange={handleChange} required />
-      </div>
-      <div className="mp-field">
-        <label htmlFor="c-msg">Message</label>
-        <textarea id="c-msg" name="message" rows={5} value={form.message} onChange={handleChange} required />
-      </div>
-      {status === 'success' && <p className="mp-form-ok">Thank you — we'll be in touch shortly.</p>}
-      {status === 'error' && <p className="mp-form-err">Something went wrong. Please try again.</p>}
-      <button type="submit" className="mp-form-btn" disabled={sending}>
-        {sending ? 'Sending…' : 'Send Message'}
-      </button>
-    </form>
-  )
-}
 
 /* ─── Main page ─── */
 export default function MainPage() {
@@ -295,14 +246,8 @@ export default function MainPage() {
           <h2 className="mp-section__title">Contact Us</h2>
         </div>
 
-        <div className="mp-contact__inner reveal" ref={contactRef}>
-          <div className="mp-contact__form-col">
-            <h3 className="mp-contact__col-title">Send a Message</h3>
-            <ContactForm />
-          </div>
-
+        <div className="mp-contact__inner mp-contact__inner--single reveal" ref={contactRef}>
           <div className="mp-contact__info-col">
-            <h3 className="mp-contact__col-title">Find Us</h3>
             <ul className="mp-contact__info">
               <li><span>Address</span><span>{brand.address}</span></li>
               <li><span>Phone</span><a href={`tel:${brand.phone}`}>{brand.phone}</a></li>
@@ -314,7 +259,7 @@ export default function MainPage() {
               <iframe
                 title="Brighton Inn location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.5!2d-0.1194!3d50.8193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDQ5JzA5LjUiTiAwwrAwNyc0OS44Ilc!5e0!3m2!1sen!2suk!4v1"
-                width="100%" height="260" style={{ border: 0 }}
+                width="100%" height="320" style={{ border: 0 }}
                 allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
               />
             </div>

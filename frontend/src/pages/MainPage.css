@@ -454,6 +454,10 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+.mp-contact__inner--single {
+  grid-template-columns: 1fr;
+  max-width: 680px;
+}
 .mp-contact__col-title {
   font-family: var(--font-heading);
   font-size: 20px;
