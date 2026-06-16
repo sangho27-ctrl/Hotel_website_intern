@@ -1,46 +1,12 @@
 import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { brand } from '../../config/brand'
 import './Header.css'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
-  const navigate = useNavigate()
 
-  function getAnchor(item) {
-    // Support both {path} and legacy {anchor} config formats
-    if (item.anchor) return item.anchor
-    if (!item.path || item.path === '/') return 'home'
-    return item.path.replace(/^\//, '')
-  }
-
-  function scrollToAnchor(anchor) {
-    const el = document.getElementById(anchor)
-    if (!el) return
-    const headerHeight = document.querySelector('.header')?.offsetHeight || 0
-    const top = el.getBoundingClientRect().top + window.scrollY - headerHeight
-    window.scrollTo({ top, behavior: 'smooth' })
-  }
-
-  function handleNavClick(e, item) {
-    e.preventDefault()
-    setMenuOpen(false)
-
-    const anchor = getAnchor(item)
-
-    if (location.pathname === '/') {
-      scrollToAnchor(anchor)
-    } else {
-      navigate('/')
-      setTimeout(() => scrollToAnchor(anchor), 350)
-    }
-  }
-
-  const isActive = (path) => {
-    if (path === '/') return location.pathname === '/'
-    return location.pathname.startsWith(path)
-  }
+  const navClass = ({ isActive }) => isActive ? 'active' : undefined
 
   return (
     <header className="header">
@@ -60,21 +26,21 @@ export default function Header() {
       </div>
 
       <div className="header__main">
-        <Link to="/" className="header__logo" onClick={() => setMenuOpen(false)}>
+        <NavLink to="/" className="header__logo" onClick={() => setMenuOpen(false)}>
           <img src="/logo_brighton.png" alt={brand.name} className="header__logo-img" />
-        </Link>
+        </NavLink>
 
         <nav>
           <ul className="header__nav">
             {brand.nav.map((item) => (
-              <li key={item.path || item.anchor}>
-                <a
-                  href={item.path || `#${item.anchor}`}
-                  className={isActive(item.path) ? 'active' : ''}
-                  onClick={(e) => handleNavClick(e, item)}
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  className={navClass}
+                  end={item.path === '/'}
                 >
                   {item.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -102,14 +68,15 @@ export default function Header() {
 
       <nav className={`header__mobile-nav${menuOpen ? ' open' : ''}`}>
         {brand.nav.map((item) => (
-          <a
-            key={item.path || item.anchor}
-            href={item.path || `#${item.anchor}`}
-            className={isActive(item.path) ? 'active' : ''}
-            onClick={(e) => handleNavClick(e, item)}
+          <NavLink
+            key={item.path}
+            to={item.path}
+            className={navClass}
+            end={item.path === '/'}
+            onClick={() => setMenuOpen(false)}
           >
             {item.label}
-          </a>
+          </NavLink>
         ))}
         <a
           href="https://booking-directly.com/widgets/5CHOo9oZjASNpUd4bui1KA5CxpmGwIJJFBrd5bE08nQymJ4sRz51KbfL8eaPb/properties"
